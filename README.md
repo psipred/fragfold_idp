@@ -1,8 +1,18 @@
 # fragfold_idp
 
-## Introdcution
+## Introduction
 
-Write some introductory blurb
+FRAGFOLD-IDP is a complex multi stages processs with a large number of dependencies. These scripts are designed to help automate installation and running FF-IDP.
+
+### Runtime
+
+1. Run basic sequences analysis
+2. Build an ensemble of FRAGFOLD models
+3. Cluster the models and produce a RMSD profile
+4. Run DynaMine
+5. BUild Consensus output
+6. Generate evaluation statistics
+
 
 ## How to Install
 
