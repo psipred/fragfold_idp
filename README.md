@@ -4,6 +4,10 @@
 
 FRAGFOLD-IDP is a complex multi stages processs with a large number of dependencies. These scripts are designed to help automate installation and running FF-IDP.
 
+### Installation
+
+We provide an ansible script for installation to any standard linux distro. You must have ansible and python2 available. See https://github.com/ansible/ansible for further details.
+
 ### Runtime
 
 1. Run basic sequences analysis
