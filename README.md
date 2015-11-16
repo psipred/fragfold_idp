@@ -43,7 +43,6 @@ We provide an ansible script for installation to any standard linux distro, se b
 
 ## TODO
 
-1. Write runSeqAnalysis.py
 2. Write runFFIDP.py
 3. Write runConsensus.py
 4. Write RSEVAL.py

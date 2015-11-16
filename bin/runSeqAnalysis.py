@@ -28,11 +28,11 @@ def run_exe(args, name):
         print(name+" Non Zero Exit status: "+str(code))
         sys.exit(code)
 
-#Here we grab the paths we set with the ansible install
+# Here we grab the paths we set with the ansible install
 paths_yaml = open("../ansible/paths.yml")
 paths = yaml.load(paths_yaml)
 
-#Now grab anything from the commandline or set it's defaults
+# Now grab anything from the commandline or set it's defaults
 parser = argparse.ArgumentParser(description='Runs the preliminary sequence '
                                              'parser for FF-IDP')
 
