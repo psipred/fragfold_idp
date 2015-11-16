@@ -7,7 +7,7 @@ import uuid
     1st part of the process. Python script takes a sequence then
     runs PSIPRED and HHBlits and output MSA and SS for Fragfold
 
-    # python runSeqAnalysis.py --input ../example_data/2KJV.seq --blast_dir /cs/research/bioinf/archive0/pfilt_test/ncbi-blast-2.2.31+ --hhsuite_dir /cs/research/bioinf/home1/green/dbuchan/Code/fragfold_idp/opt/hhsuite-2.0.16-linux-x86_64 --psipred_dir /cs/research/bioinf/home1/green/dbuchan/Code/fragfold_idp/opt/psipred --uniref90 /cs/research/bioinf/archive0/pfilt_test/uniref/test_db.fasta --hhblits_uniref20 /cs/research/bioinf/archive0/ffragfold_idp/hhsuite
+    # python runSeqAnalysis.py --input ../example_data/2KJV.seq --blast_dir /cs/research/bioinf/archive0/pfilt_test/ncbi-blast-2.2.31+ --hhsuite_dir /cs/research/bioinf/home1/green/dbuchan/Code/fragfold_idp/opt/hhsuite-2.0.16-linux-x86_64 --psipred_dir /cs/research/bioinf/home1/green/dbuchan/Code/fragfold_idp/opt/psipred --uniref90 /cs/research/bioinf/archive0/pfilt_test/uniref/test_db.fasta --hhblits_uniref20 /cs/research/bioinf/archive0/ffragfold_idp/hhsuite/uniprot20_2015_06
 """
 
 
@@ -46,7 +46,7 @@ parser.add_argument('--uniref90',
                     default="../opt/hhsuite_db/uniref90.fasta")
 parser.add_argument('--hhblits_uniref20',
                     help="Default location hhblits uniref20",
-                    default="../opt/uniref")
+                    default="../opt/uniprot20_2015_06/uniprot20_2015_06")
 parser.add_argument('--uuid',
                     help="UUID from previous step or controlling script",
                     default=str(uuid.uuid1()))
@@ -94,3 +94,10 @@ psipass_args = [args.psipred_dir+"/bin/psipass2",
 run_exe(psipass_args, "Psipass2")
 
 # Going to run HHBlits
+hhblits_args = [args.hhsuite_dir+"/bin/hhblits",
+                "-i", args.input,
+                "-o", args.uuid+".hh",
+                "-n", "4",
+                "-d", args.hhblits_uniref20,
+                ]
+run_exe(hhblits_args, "hhblits")
