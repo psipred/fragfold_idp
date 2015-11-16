@@ -5,7 +5,7 @@ import argparse
     1st part of the process. Python script takes a sequence then
     runs PSIPRED and HHBlits and output MSA and SS for Fragfold
 
-    # python runSeqAnalysis.py --input FILE --blast_dir /cs/research/bioinf/archive0/pfilt_test/ncbi-blast-2.2.31+ 
+    # python runSeqAnalysis.py --input ../example_data/2KJV.seq --blast_dir /cs/research/bioinf/archive0/pfilt_test/ncbi-blast-2.2.31+ --hhsuite_dir /cs/research/bioinf/home1/green/dbuchan/Code/fragfold_idp/opt/hhsuite-2.0.16-linux-x86_64 --psipred_dir /cs/research/bioinf/home1/green/dbuchan/Code/fragfold_idp/opt/psipred --uniref90 /cs/research/bioinf/archive0/pfilt_test/uniref --hhblits_uniref20 /cs/research/bioinf/archive0/ffragfold_idp/hhsuite
 """
 parser = argparse.ArgumentParser(description='Runs the preliminary sequence '
                                              'parser for FF-IDP')
@@ -23,3 +23,5 @@ parser.add_argument('--hhblits_uniref20', help="Default location hhblits uniref2
                     default="../opt/uniref")
 
 args = parser.parse_args()
+
+print(args.input)
