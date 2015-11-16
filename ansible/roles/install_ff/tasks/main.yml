@@ -4,10 +4,51 @@
   #   stat: path=/usr/local/psipred
   #   register: psipred_exist
 
-  - name : Check Out PSIPRED from GIT
-    # when: psipred_exist.stat.exists == False
-    git:
-      repo: https://github.com/psipred/psipred.git
-      dest: ../opt/psipred
-      clone: yes
-      force: yes
+  # - name : Check Out PSIPRED from GIT
+  #   # when: psipred_exist.stat.exists == False
+  #   git:
+  #     repo: https://github.com/psipred/psipred.git
+  #     dest: ../opt/psipred
+  #     clone: yes
+  #     force: yes
+
+  # - name: Download BLAST+
+  #   shell: "wget --timeout 120 ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.2.31+-x64-linux.tar.gz -O ../opt/ncbi-blast-2.2.31+-src.tar.gz"
+  #   register: get_url_result
+  #   until: get_url_result.stdout.find("Unable to establish SSL connection") == -1
+  #   retries: 10
+  #   delay: 10
+  #
+  # - name: untar the tarball
+  #   shell: cd ../opt/; tar -zxvf ncbi-blast-2.2.31+-src.tar.gz
+
+  # - name: Get HHBlits
+  #   shell: "wget --timeout 120 http://wwwuser.gwdg.de/~compbiol/data/hhsuite/releases/hhsuite-latest-linux-x86_64.tar.gz -O ../opt/hhsuite-latest-linux-x86_64.tar.gz"
+  #   register: get_url_result
+  #   until: get_url_result.stdout.find("Unable to establish SSL connection") == -1
+  #   retries: 10
+  #   delay: 10
+  #
+  # - name: untar the tarball
+  #   shell: cd ../opt/; tar -zxvf hhsuite-latest-linux-x86_64.tar.gz
+
+  # - name: Get uniref90
+  #   shell: "wget --timeout 120 ftp://ftp.uniprot.org/pub/databases/uniprot/uniref/uniref90/uniref90.fasta.gz -O /cs/research/bioinf/archive0/ffragfold_idp/uniref90/uniref90.fasta.gz"
+  #   register: get_url_result
+  #   until: get_url_result.stdout.find("Unable to establish SSL connection") == -1
+  #   retries: 10
+  #   delay: 10
+  #
+  # - name: unzip uniref90
+  #   shell: cd /cs/research/bioinf/archive0/ffragfold_idp/uniref90/; gunzip uniref90.fasta.gz
+  #   when: uniref_exist.stat.exists == False
+
+  - name: Get HHsuite db
+    shell: "wget --timeout 120 http://wwwuser.gwdg.de/~compbiol/data/hhsuite/databases/hhsuite_dbs/uniprot20_2015_06.tgz -O /cs/research/bioinf/archive0/ffragfold_idp/hhsuite/uniprot20_2015_06.tgz"
+    register: get_url_result
+    until: get_url_result.stdout.find("Unable to establish SSL connection") == -1
+    retries: 10
+    delay: 10
+
+  - name: untar the tarball
+    shell: cd /cs/research/bioinf/archive0/ffragfold_idp/hhsuite/; tar -zxvf uniprot20_2015_06.tgz
