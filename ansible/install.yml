@@ -1,0 +1,10 @@
+---
+# source /scratch0/NOT_BACKED_UP/dbuchan/python2/bin/activate
+# source /cs/research/bioinf/home1/green/dbuchan/ansible/hacking/env-setup
+# ansible-playbook -i hosts install.yml -f 1
+
+  - name: Get the exe dependencies
+    hosts: ffidp
+    user: dbuchan
+    roles:
+      - install_ff

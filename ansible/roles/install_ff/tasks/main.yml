@@ -1,0 +1,13 @@
+---
+
+  # - name: Check if psipred installed
+  #   stat: path=/usr/local/psipred
+  #   register: psipred_exist
+
+  - name : Check Out PSIPRED from GIT
+    # when: psipred_exist.stat.exists == False
+    git:
+      repo: https://github.com/psipred/psipred.git
+      dest: ../opt/psipred
+      clone: yes
+      force: yes
