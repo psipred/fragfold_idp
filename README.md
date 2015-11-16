@@ -6,7 +6,7 @@ FRAGFOLD-IDP is a complex multi stages processs with a large number of dependenc
 
 ### Installation
 
-We provide an ansible script for installation to any standard linux distro. You must have ansible and python2 available. See https://github.com/ansible/ansible for further details.
+We provide an ansible script for installation to any standard linux distro, se below. You must have ansible and python2 available. See https://github.com/ansible/ansible for further details.
 
 ### Runtime
 
@@ -17,8 +17,16 @@ We provide an ansible script for installation to any standard linux distro. You 
 5. BUild Consensus output
 6. Generate evaluation statistics
 
-
 ## How to Install
+
+1. Check out ansible https://github.com/ansible/ansible
+2. OPTIONAL: switch to python2 virtualenv
+3. Run setup script for ansible
+    ```source ~/ansible/hacking/env-setup```
+4. Change to our ansible script
+    ```cd ansible```
+5. Run FFIDP installation script
+    ```ansible-playbook -i hosts install.yml -f 1```
 
 ## How to run
 
