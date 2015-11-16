@@ -8,3 +8,5 @@
     user: dbuchan
     roles:
       - install_ff
+    vars_files:
+      - paths.yml

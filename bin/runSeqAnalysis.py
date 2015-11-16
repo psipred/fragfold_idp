@@ -2,6 +2,7 @@ import sys
 import argparse
 import subprocess
 import uuid
+import yaml
 
 """
     1st part of the process. Python script takes a sequence then
@@ -27,30 +28,35 @@ def run_exe(args, name):
         print(name+" Non Zero Exit status: "+str(code))
         sys.exit(code)
 
+#Here we grab the paths we set with the ansible install
+paths_yaml = open("../ansible/paths.yml")
+paths = yaml.load(paths_yaml)
 
+#Now grab anything from the commandline or set it's defaults
 parser = argparse.ArgumentParser(description='Runs the preliminary sequence '
                                              'parser for FF-IDP')
 
 parser.add_argument('--input', help="input fasta file")
 parser.add_argument('--blast_dir',
                     help="Default location of BLAST+ dir",
-                    default="../opt/ncbi-blast-2.2.31+/")
+                    default=paths["blast_dir"]+"/ncbi-blast-2.2.31+/")
 parser.add_argument('--hhsuite_dir',
                     help="Default location of HHSuite",
-                    default="../opt/hhsuite-2.0.16-linux-x86_64")
+                    default=paths["hhsuite_dir"]+"/hhsuite-2.0.16-linux-x86_64")
 parser.add_argument('--psipred_dir',
                     help="Default location of PSIPRED",
-                    default="../opt/psipred")
+                    default=paths["psipred_dir"])
 parser.add_argument('--uniref90',
                     help="Default location of BLAST+ db",
-                    default="../opt/hhsuite_db/uniref90.fasta")
+                    default=paths["uniref90_dir"]+"/uniref90.fasta")
 parser.add_argument('--hhblits_uniref20',
                     help="Default location hhblits uniref20",
-                    default="../opt/uniprot20_2015_06/uniprot20_2015_06")
+                    default=paths["uniref20_dir"]+"/uniprot20_2015_06/uniprot20_2015_06")
 parser.add_argument('--uuid',
                     help="UUID from previous step or controlling script",
                     default=str(uuid.uuid1()))
 args = parser.parse_args()
+
 # Going to run BLAST+
 blast_args = [args.blast_dir+"/bin/psiblast",
               "-query", args.input,
