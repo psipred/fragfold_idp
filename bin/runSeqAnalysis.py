@@ -39,10 +39,10 @@ parser = argparse.ArgumentParser(description='Runs the preliminary sequence '
 parser.add_argument('--input', help="input fasta file")
 parser.add_argument('--blast_dir',
                     help="Default location of BLAST+ dir",
-                    default=paths["blast_dir"]+"/ncbi-blast-2.2.31+/")
+                    default=paths["blast_dir"])
 parser.add_argument('--hhsuite_dir',
                     help="Default location of HHSuite",
-                    default=paths["hhsuite_dir"]+"/hhsuite-2.0.16-linux-x86_64")
+                    default=paths["hhsuite_dir"])
 parser.add_argument('--psipred_dir',
                     help="Default location of PSIPRED",
                     default=paths["psipred_dir"])
@@ -51,7 +51,7 @@ parser.add_argument('--uniref90',
                     default=paths["uniref90_dir"]+"/uniref90.fasta")
 parser.add_argument('--hhblits_uniref20',
                     help="Default location hhblits uniref20",
-                    default=paths["uniref20_dir"]+"/uniprot20_2015_06/uniprot20_2015_06")
+                    default=paths["uniref20_dir"]+"/uniprot20_2015_06")
 parser.add_argument('--uuid',
                     help="UUID from previous step or controlling script",
                     default=str(uuid.uuid1()))
