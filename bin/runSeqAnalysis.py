@@ -29,7 +29,7 @@ def run_exe(args, name):
         sys.exit(code)
 
 # Here we grab the paths we set with the ansible install
-paths_yaml = open("../ansible/paths.yml")
+paths_yaml = open("../paths.yml")
 paths = yaml.load(paths_yaml)
 
 # Now grab anything from the commandline or set it's defaults

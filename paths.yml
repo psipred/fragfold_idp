@@ -1,0 +1,24 @@
+---
+
+#paths for FFIDP.py
+
+#paths for runSeqAnalysis.py
+# psipred_dir: ../opt/psipred
+# blast_dir: ../opt/ncbi-blast-2.2.31+
+# hhsuite_dir: ../opt/hhsuite-2.0.16-linux-x86_64
+# uniref90_dir: ../opt/uniref
+# uniref20_dir: ../opt/uniprot20_2015_06
+# download_path: ../opt
+
+psipred_dir: /cs/research/bioinf/home1/green/dbuchan/Code/fragfold_idp/opt/psipred
+blast_dir: /cs/research/bioinf/archive0/pfilt_test/ncbi-blast-2.2.31+
+hhsuite_dir: /cs/research/bioinf/home1/green/dbuchan/Code/fragfold_idp/opt/hhsuite-2.0.16-linux-x86_64
+uniref90_dir: /cs/research/bioinf/archive0/pfilt_test/uniref/
+uniref20_dir: /cs/research/bioinf/archive0/ffragfold_idp/hhsuite/uniprot20_2015_06
+download_path: ../opt
+
+#paths for runFFIDP.py
+
+#paths for runConsensus.py
+
+#paths for RSEVAL.py

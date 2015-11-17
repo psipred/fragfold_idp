@@ -1,47 +1,68 @@
 ---
 
-  # - name: Check if psipred installed
-  #   stat: path=/usr/local/psipred
-  #   register: psipred_exist
+  - name: Check if psipred installed
+    stat: path={{ psipred_dir }}
+    register: psipred_exist
 
-  # - name : Check Out PSIPRED from GIT
-  #   # when: psipred_exist.stat.exists == False
-  #   git:
-  #     repo: https://github.com/psipred/psipred.git
-  #     dest: "{{ psipred_dir }}"
-  #     clone: yes
-  #     force: yes
+  - name : Check Out PSIPRED from GIT
+    when: psipred_exist.stat.exists == False
+    git:
+      repo: https://github.com/psipred/psipred.git
+      dest: "{{ psipred_dir }}"
+      clone: yes
+      force: yes
 
-  # - name: Download BLAST+
-  #   shell: "wget --timeout 120 ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.2.31+-x64-linux.tar.gz -O {{ blast_dir }}/ncbi-blast-2.2.31+-src.tar.gz"
-  #   register: get_url_result
-  #   until: get_url_result.stdout.find("Unable to establish SSL connection") == -1
-  #   retries: 10
-  #   delay: 10
-  #
-  # - name: untar the tarball
-  #   shell: "cd {{ blast_dir }}/; tar -zxvf ncbi-blast-2.2.31+-src.tar.gz"
+  - name: Check if BLAST+ installed
+    stat: path={{ blast_dir }}
+    register: blast_exist
 
-  # - name: Get HHBlits
-  #   shell: "wget --timeout 120 http://wwwuser.gwdg.de/~compbiol/data/hhsuite/releases/hhsuite-latest-linux-x86_64.tar.gz -O {{ hhsuite_dir }}/hhsuite-latest-linux-x86_64.tar.gz"
-  #   register: get_url_result
-  #   until: get_url_result.stdout.find("Unable to establish SSL connection") == -1
-  #   retries: 10
-  #   delay: 10
-  #
-  # - name: untar the tarball
-  #   shell: "cd {{ hhsuite_dir }}; tar -zxvf hhsuite-latest-linux-x86_64.tar.gz"
+  - name: Download BLAST+
+    shell: "wget --timeout 120 ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.2.31+-x64-linux.tar.gz -O {{ download_path }}/ncbi-blast-2.2.31+-src.tar.gz"
+    register: get_url_result
+    until: get_url_result.stdout.find("Unable to establish SSL connection") == -1
+    retries: 10
+    delay: 10
+    when: blast_exist.stat.exists == False
 
-  # - name: Get uniref90
-  #   shell: "wget --timeout 120 ftp://ftp.uniprot.org/pub/databases/uniprot/uniref/uniref90/uniref90.fasta.gz -O {{ uniref90_dir }}/uniref90.fasta.gz"
-  #   register: get_url_result
-  #   until: get_url_result.stdout.find("Unable to establish SSL connection") == -1
-  #   retries: 10
-  #   delay: 10
-  #
-  # - name: unzip uniref90
-  #   shell: cd {{ uniref90_dir }}; gunzip uniref90.fasta.gz
-  #   when: uniref_exist.stat.exists == False
+  - name: untar the tarball
+    shell: "cd {{ download_path }}/; tar -zxvf ncbi-blast-2.2.31+-src.tar.gz"
+    when: blast_exist.stat.exists == False
+
+  - name: Check if HHSuite installed
+    stat: path={{ hhsuite_dir }}
+    register: hhsuite_exist
+
+  - name: Get HHBlits
+    shell: "wget --timeout 120 http://wwwuser.gwdg.de/~compbiol/data/hhsuite/releases/hhsuite-latest-linux-x86_64.tar.gz -O {{ download_path }}/hhsuite-latest-linux-x86_64.tar.gz"
+    register: get_url_result
+    until: get_url_result.stdout.find("Unable to establish SSL connection") == -1
+    retries: 10
+    delay: 10
+    when: hhsuite_exist.stat.exists == False
+
+  - name: untar the tarball
+    shell: "cd {{ download_path }}; tar -zxvf hhsuite-latest-linux-x86_64.tar.gz"
+    when: hhsuite_exist.stat.exists == False
+
+  - name: Check if uniref90 available
+    stat: path={{ uniref90_dir }}
+    register: uniref90_exist
+
+  - name: Get uniref90
+    shell: "wget --timeout 120 ftp://ftp.uniprot.org/pub/databases/uniprot/uniref/uniref90/uniref90.fasta.gz -O {{ uniref90_dir }}/uniref90.fasta.gz"
+    register: get_url_result
+    until: get_url_result.stdout.find("Unable to establish SSL connection") == -1
+    retries: 10
+    delay: 10
+    when: uniref90_exist.stat.exists == False
+
+  - name: unzip uniref90
+    shell: cd {{ uniref90_dir }}; gunzip uniref90.fasta.gz
+    when: uniref90_exist.stat.exists == False
+
+  - name: Check if uniref20 available
+    stat: path={{ uniref20_dir }}
+    register: uniref20_exist
 
   - name: Get HHsuite db
     shell: "wget --timeout 120 http://wwwuser.gwdg.de/~compbiol/data/hhsuite/databases/hhsuite_dbs/uniprot20_2015_06.tgz -O {{ uniref20_dir }}/uniprot20_2015_06.tgz"
@@ -49,6 +70,8 @@
     until: get_url_result.stdout.find("Unable to establish SSL connection") == -1
     retries: 10
     delay: 10
+    when: uniref20_exist.stat.exists == False
 
   - name: untar the tarball
     shell: cd {{ uniref20_dir }}; tar -zxvf uniprot20_2015_06.tgz
+    when: uniref20_exist.stat.exists == False
