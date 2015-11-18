@@ -14,7 +14,7 @@ We provide an ansible script for installation to any standard linux distro, se b
 2. Build an ensemble of FRAGFOLD models
 3. Cluster the models and produce a RMSD profile
 4. Run DynaMine
-5. BUild Consensus output
+5. Build Consensus output
 6. Generate evaluation statistics
 
 ## How to Install
@@ -25,7 +25,7 @@ We provide an ansible script for installation to any standard linux distro, se b
 
   ```pip install pyyaml```
 
-4. Edit the ansible/paths.yml to reflect where you want to install the various
+4. Edit the paths.yml to reflect where you want to install the various
    components or where they have already been installed.
 5. Run setup script for ansible
 

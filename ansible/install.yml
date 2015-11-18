@@ -5,7 +5,6 @@
 
   - name: Get the exe dependencies
     hosts: ffidp
-    user: dbuchan
     roles:
       - install_ff
     vars_files:

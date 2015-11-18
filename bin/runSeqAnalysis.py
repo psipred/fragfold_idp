@@ -9,6 +9,7 @@ import yaml
     runs PSIPRED and HHBlits and output MSA and SS for Fragfold
 
     # python runSeqAnalysis.py --input ../example_data/2KJV.seq --blast_dir /cs/research/bioinf/archive0/pfilt_test/ncbi-blast-2.2.31+ --hhsuite_dir /cs/research/bioinf/home1/green/dbuchan/Code/fragfold_idp/opt/hhsuite-2.0.16-linux-x86_64 --psipred_dir /cs/research/bioinf/home1/green/dbuchan/Code/fragfold_idp/opt/psipred --uniref90 /cs/research/bioinf/archive0/pfilt_test/uniref/test_db.fasta --hhblits_uniref20 /cs/research/bioinf/archive0/ffragfold_idp/hhsuite/uniprot20_2015_06
+    # python runSeqAnalysis.py --input ../example_data/2KJV.seq --uniref90 /cs/research/bioinf/archive0/pfilt_test/uniref/test_db.fasta
 """
 
 

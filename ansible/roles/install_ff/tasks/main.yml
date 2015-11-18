@@ -1,7 +1,7 @@
 ---
 
   - name: Check if psipred installed
-    stat: path={{ psipred_dir }}
+    stat: "path={{ psipred_dir }}"
     register: psipred_exist
 
   - name : Check Out PSIPRED from GIT
@@ -75,3 +75,4 @@
   - name: untar the tarball
     shell: cd {{ uniref20_dir }}; tar -zxvf uniprot20_2015_06.tgz
     when: uniref20_exist.stat.exists == False
+    
