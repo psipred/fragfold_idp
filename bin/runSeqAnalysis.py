@@ -103,8 +103,8 @@ run_exe(psipass_args, "Psipass2")
 # Going to run HHBlits
 hhblits_args = [args.hhsuite_dir+"/bin/hhblits",
                 "-i", args.input,
-                "-o", args.uuid+".hh",
-                "-n", "4",
+                "-o", "../output/"+args.uuid+".hh",
+                "-n", "3",
                 "-d", args.hhblits_uniref20,
                 ]
 run_exe(hhblits_args, "hhblits")
