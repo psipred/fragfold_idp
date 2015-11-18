@@ -43,11 +43,15 @@ We provide an ansible script for installation to any standard linux distro, se b
 
 ## TODO
 
+1. Keep writing runFFIDP.py
+
+
+## NEXT UP
+
 2. Write runFFIDP.py
 3. Write runConsensus.py
 4. Write RSEVAL.py
 5. Write master control script (FFIDP.py)
-6. Write ansible install script
 7. Write Docs
 8. script to run FF on SGE
 9. PDB to Seq script
