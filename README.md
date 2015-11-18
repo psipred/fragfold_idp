@@ -6,7 +6,7 @@ FRAGFOLD-IDP is a complex multi stages processs with a large number of dependenc
 
 ### Installation
 
-We provide an ansible script for installation to any standard linux distro, se below. You must have ansible and python2 available. See https://github.com/ansible/ansible for further details.
+We provide an ansible script for installation to any standard linux distro, see below. You must have ansible and python2 available. See https://github.com/ansible/ansible for further details.
 
 ### Runtime
 
@@ -43,8 +43,7 @@ We provide an ansible script for installation to any standard linux distro, se b
 
 ## TODO
 
-1. Keep writing runFFIDP.py
-
+1. Keep writing ansible stuff
 
 ## NEXT UP
 
