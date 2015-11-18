@@ -47,11 +47,11 @@ We provide an ansible script for installation to any standard linux distro, see 
 
 ## NEXT UP
 
-2. Write runFFIDP.py
-3. Write runConsensus.py
-4. Write RSEVAL.py
-5. Write master control script (FFIDP.py)
-7. Write Docs
-8. script to run FF on SGE
-9. PDB to Seq script
-10. PDB sliding window thing
+1. Write runFFIDP.py
+2. Write runConsensus.py
+3. Write RSEVAL.py
+4. Write master control script (FFIDP.py)
+5. Write Docs
+6. script to run FF on SGE
+7. PDB to Seq script
+8. PDB sliding window thing
