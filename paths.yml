@@ -3,20 +3,22 @@
 #paths for FFIDP.py
 
 #paths for runSeqAnalysis.py
-# psipred_dir: ../opt/psipred
-# blast_dir: ../opt/ncbi-blast-2.2.31+
-# hhsuite_dir: ../opt/hhsuite-2.0.16-linux-x86_64
-# uniref90_dir: ../opt/uniref
-# uniref20_dir: ../opt/uniprot20_2015_06
-# download_path: ../opt
+# psipred_dir: /opt/psipred
+# blast_dir: /opt/ncbi-blast-2.2.31+
+# hhsuite_dir: /opt/hhsuite-2.0.16-linux-x86_64
+# uniref90_dir: /opt/uniref
+# uniref20_dir: /opt/uniprot20_2015_06
+# download_path: /opt
 
-psipred_dir: /cs/research/bioinf/home1/green/dbuchan/Code/fragfold_idp/opt/psipred
-blast_dir: /cs/research/bioinf/archive0/pfilt_test/ncbi-blast-2.2.31+
-hhsuite_dir: /cs/research/bioinf/home1/green/dbuchan/Code/fragfold_idp/opt/hhsuite-2.0.16-linux-x86_64
-uniref90_dir: /cs/research/bioinf/archive0/pfilt_test/uniref
-uniref20_dir: /cs/research/bioinf/archive0/ffragfold_idp/hhsuite/uniprot20_2015_06
-download_path: ../opt
-
+psipred_dir: /scratch0/NOT_BACKED_UP/dbuchan/opt/psipred
+blast_dir: /scratch0/NOT_BACKED_UP/dbuchan/opt/ncbi-blast-2.5.0+
+hhsuite_dir: /scratch0/NOT_BACKED_UP/dbuchan/opt/hhsuite-2.0.16-linux-x86_64
+uniref90_dir: /scratch0/NOT_BACKED_UP/dbuchan/opt/uniref
+hhdb_dir: /scratch0/NOT_BACKED_UP/dbuchan/opt/hhdb
+download_path: /scratch0/NOT_BACKED_UP/dbuchan/opt
+hhdb: uniprot20_2016_02.tgz
+hhpdb: pdb70_14Sep16.tgz
+blastversion: 2.5.0
 #paths for runFFIDP.py
 
 #paths for runConsensus.py

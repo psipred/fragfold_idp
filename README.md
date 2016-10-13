@@ -23,21 +23,22 @@ We provide an ansible script for installation to any standard linux distro, see 
 2. OPTIONAL: switch to python2 virtualenv
 3. install pyyaml
 
-  ```pip install pyyaml```
+`pip install pyyaml`
 
 4. Edit the paths.yml to reflect where you want to install the various
    components or where they have already been installed.
+
 5. Run setup script for ansible
 
-    ```source ~/ansible/hacking/env-setup```
+`source ~/ansible/hacking/env-setup`
 
 6. Change to the ansible script directory
 
-    ```cd ~/fragfold_idp/ansible```
+`cd ~/fragfold_idp/ansible`
 
 7. Run FFIDP installation script
 
-    ```ansible-playbook -i hosts install.yml -f 1```
+`ansible-playbook -i hosts install.yml -f 1`
 
 ## How to run
 
