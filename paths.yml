@@ -9,6 +9,10 @@
 # uniref90_dir: /opt/uniref
 # uniref20_dir: /opt/uniprot20_2015_06
 # download_path: /opt
+# hhdb: uniprot20_2016_02.tgz
+# hhdbversion: uniprot20_2016_02
+# hhpdb: pdb70_14Sep16.tgz
+# blastversion: 2.5.0
 
 psipred_dir: /scratch0/NOT_BACKED_UP/dbuchan/opt/psipred
 blast_dir: /scratch0/NOT_BACKED_UP/dbuchan/opt/ncbi-blast-2.5.0+
@@ -17,8 +21,10 @@ uniref90_dir: /scratch0/NOT_BACKED_UP/dbuchan/opt/uniref
 hhdb_dir: /scratch0/NOT_BACKED_UP/dbuchan/opt/hhdb
 download_path: /scratch0/NOT_BACKED_UP/dbuchan/opt
 hhdb: uniprot20_2016_02.tgz
+hhdbversion: uniprot20_2016_02
 hhpdb: pdb70_14Sep16.tgz
 blastversion: 2.5.0
+
 #paths for runFFIDP.py
 
 #paths for runConsensus.py

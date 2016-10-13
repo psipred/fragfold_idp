@@ -44,7 +44,7 @@ We provide an ansible script for installation to any standard linux distro, see 
 
 ## TODO
 
-1. Keep writing ansible stuff
+1. write/ensure runSeqAnalysis.py works
 
 ## NEXT UP
 

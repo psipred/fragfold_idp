@@ -3,6 +3,7 @@ import argparse
 import subprocess
 import uuid
 import yaml
+import os
 
 """
     1st part of the process. Python script takes a sequence then
@@ -11,7 +12,6 @@ import yaml
     # python runSeqAnalysis.py --input ../example_data/2KJV.seq --blast_dir /cs/research/bioinf/archive0/pfilt_test/ncbi-blast-2.2.31+ --hhsuite_dir /cs/research/bioinf/home1/green/dbuchan/Code/fragfold_idp/opt/hhsuite-2.0.16-linux-x86_64 --psipred_dir /cs/research/bioinf/home1/green/dbuchan/Code/fragfold_idp/opt/psipred --uniref90 /cs/research/bioinf/archive0/pfilt_test/uniref/test_db.fasta --hhblits_uniref20 /cs/research/bioinf/archive0/ffragfold_idp/hhsuite/uniprot20_2015_06
     # python runSeqAnalysis.py --input ../example_data/2KJV.seq --uniref90 /cs/research/bioinf/archive0/pfilt_test/uniref/test_db.fasta
 """
-
 
 def run_exe(args, name):
     """
@@ -30,8 +30,14 @@ def run_exe(args, name):
         sys.exit(code)
 
 # Here we grab the paths we set with the ansible install
-paths_yaml = open("../paths.yml")
-paths = yaml.load(paths_yaml)
+script_path = os.path.dirname(os.path.realpath(__file__))
+paths_path = script_path+"/../paths.yml"
+if os.path.isfile(paths_path):
+    paths_yaml = open(paths_path)
+    paths = yaml.load(paths_yaml)
+else:
+    print("Unable to find paths.yml.n\nShould be in top dir for fragfold_idp")
+    exit()
 
 # Now grab anything from the commandline or set it's defaults
 parser = argparse.ArgumentParser(description='Runs the preliminary sequence '
@@ -52,39 +58,46 @@ parser.add_argument('--uniref90',
                     default=paths["uniref90_dir"]+"/uniref90.fasta")
 parser.add_argument('--hhblits_uniref20',
                     help="Default location hhblits uniref20",
-                    default=paths["uniref20_dir"]+"/uniprot20_2015_06")
+                    default=paths["hhdb_dir"]+"/"+paths["hhdbversion"])
 parser.add_argument('--uuid',
                     help="UUID from previous step or controlling script",
                     default=str(uuid.uuid1()))
+parser.add_argument('--threads',
+                    help="Number of threads to use for BLAST and HHBlits",
+                    default="10")
+
 args = parser.parse_args()
 
+outdir = script_path+"/../output/"
 # Going to run BLAST+
 blast_args = [args.blast_dir+"/bin/psiblast",
               "-query", args.input,
               "-db", args.uniref90,
               "-inclusion_ethresh", "0.001",
-              "-out_pssm", "../output/"+args.uuid+".pssm",
-              "-out", "../output/"+args.uuid+".bls",
+              "-out_pssm", outdir+args.uuid+".pssm",
+              "-out", outdir+args.uuid+".bls",
               "-num_iterations", "3",
               "-num_alignments", "0",
+              "-num_descriptions", "5000",
+              "-num_threads", args.threads,
               ]
 run_exe(blast_args, "BLAST+")
 
 # Going to run PSIPRED components
 chkparse_args = [args.psipred_dir+"/bin/chkparse",
-                 "../output/"+args.uuid+".pssm",
+                 outdir+args.uuid+".pssm",
                  ">",
-                 "../output/"+args.uuid+".mtx",
+                 outdir+args.uuid+".mtx",
                  ]
 run_exe(chkparse_args, "chkparse")
 
 psipred_args = [args.psipred_dir+"/bin/psipred",
-                "../output/"+args.uuid+".mtx",
+                outdir+args.uuid+".mtx",
                 args.psipred_dir+"/data/weights.dat",
                 args.psipred_dir+"/data/weights.dat2",
                 args.psipred_dir+"/data/weights.dat3",
                 ">",
-                "../output/"+args.uuid+".ss",
+                outdir+args.uuid+".ss",
                 ]
 run_exe(psipred_args, "Psipred")
 
@@ -93,18 +106,19 @@ psipass_args = [args.psipred_dir+"/bin/psipass2",
                 "1",
                 "1.0",
                 "1.0",
-                "../output/"+args.uuid+".ss2",
-                "../output/"+args.uuid+".ss",
+                outdir+args.uuid+".ss2",
+                outdir+args.uuid+".ss",
                 ">",
-                "../output/"+args.uuid+".horiz",
+                outdir+args.uuid+".horiz",
                 ]
 run_exe(psipass_args, "Psipass2")
 
 # Going to run HHBlits
 hhblits_args = [args.hhsuite_dir+"/bin/hhblits",
                 "-i", args.input,
-                "-o", "../output/"+args.uuid+".hh",
+                "-o", outdir+args.uuid+".hh",
                 "-n", "3",
-                "-d", args.hhblits_uniref20,
+                "-d", args.hhblits_uniref20+"/"+paths["hhdbversion"],
+                "-cpu", args.threads,
                 ]
 run_exe(hhblits_args, "hhblits")
