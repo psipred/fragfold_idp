@@ -44,9 +44,10 @@ We provide an ansible script for installation to any standard linux distro, see 
 ## How to run
 
 1. Run the Sequence analysis script over each of your fasta files. This will
-also produce the Fragfold input files
+also produce the Fragfold input files. By default the results go in the
+fragfold_idp/output dir. You can change the paths on the command line see --help
 
-`python runSeqAnalysis.py --input`
+`python runSeqAnalysis.py --input example_data/2KJV.pdb`
 
 ## TODO
 

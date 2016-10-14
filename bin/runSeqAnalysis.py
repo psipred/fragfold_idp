@@ -43,7 +43,10 @@ else:
 parser = argparse.ArgumentParser(description='Runs the preliminary sequence '
                                              'parser for FF-IDP')
 
-parser.add_argument('--input', help="input fasta file")
+parser.add_argument('--input', help="input pdb file")
+parser.add_argument('--chain',
+                    help="The chain in the pdb file you want to analyse",
+                    default="A")
 parser.add_argument('--blast_dir',
                     help="Default location of BLAST+ dir",
                     default=paths["blast_dir"])
@@ -71,9 +74,16 @@ parser.add_argument('--outdir',
 
 args = parser.parse_args()
 
+fastapdbv3_args = [script_path+'/fasta_pdbv3.pl',
+                   args.input,
+                   args.outdir+args.uuid+".fasta",
+                   args.chain,
+                   ]
+run_exe(fastapdbv3_args, "Converting PDB file")
+
 # Going to run BLAST+
 blast_args = [args.blast_dir+"/bin/psiblast",
-              "-query", args.input,
+              "-query", args.outdir+args.uuid+".fasta",
               "-db", args.uniref90,
               "-inclusion_ethresh", "0.001",
               "-out_pssm", args.outdir+args.uuid+".pssm",
@@ -117,7 +127,7 @@ run_exe(psipass_args, "Psipass2")
 
 # Going to run HHBlits
 hhblits_args = [args.hhsuite_dir+"/bin/hhblits",
-                "-i", args.input,
+                "-i", args.outdir+args.uuid+".fasta",
                 "-o", args.outdir+args.uuid+".hh",
                 "-oa3m", args.outdir+args.uuid+".a3m",
                 "-n", "3",
@@ -163,7 +173,7 @@ run_exe(processSS2_args, "Add SS")
 
 seq_args = ['grep', '-v',
             '"^>"',
-            args.input,
+            args.outdir+args.uuid+".fasta",
             '|',
             'tr', '-d', "'\\n'",
             '|',

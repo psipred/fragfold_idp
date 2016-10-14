@@ -26,7 +26,7 @@ hhdb: uniprot20_2016_02.tgz
 hhdbversion: uniprot20_2016_02
 hhpdb: pdb70_14Sep16.tgz
 blastversion: 2.5.0
-dynamine_api_key: 
+dynamine_api_key:
 #paths for runFFIDP.py
 
 #paths for runConsensus.py
