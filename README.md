@@ -25,18 +25,19 @@ We provide an ansible script for installation to any standard linux distro, see 
 
 `pip install pyyaml`
 
-4. Edit the paths.yml to reflect where you want to install the various
+4. Get a Dynamine API key from http://dynamine.ibsquare.be/download/
+5. Edit the paths.yml to reflect where you want to install the various
    components or where they have already been installed.
 
-5. Run setup script for ansible
+6. Run setup script for ansible
 
 `source ~/ansible/hacking/env-setup`
 
-6. Change to the ansible script directory
+7. Change to the ansible script directory
 
 `cd ~/fragfold_idp/ansible`
 
-7. Run FFIDP installation script
+8. Run FFIDP installation script
 
 `ansible-playbook -i hosts install.yml -f 1`
 
@@ -44,7 +45,7 @@ We provide an ansible script for installation to any standard linux distro, see 
 
 ## TODO
 
-1. write/ensure runSeqAnalysis.py works
+1. add msa and nfpar and ffaln output to runSeqAnalysis script
 
 ## NEXT UP
 

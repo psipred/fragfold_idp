@@ -65,17 +65,20 @@ parser.add_argument('--uuid',
 parser.add_argument('--threads',
                     help="Number of threads to use for BLAST and HHBlits",
                     default="10")
+parser.add_argument('--outdir',
+                    help="Where to put the output files",
+                    default=script_path+"/../output/")
+
 
 args = parser.parse_args()
 
-outdir = script_path+"/../output/"
 # Going to run BLAST+
 blast_args = [args.blast_dir+"/bin/psiblast",
               "-query", args.input,
               "-db", args.uniref90,
               "-inclusion_ethresh", "0.001",
-              "-out_pssm", outdir+args.uuid+".pssm",
-              "-out", outdir+args.uuid+".bls",
+              "-out_pssm", args.outdir+args.uuid+".pssm",
+              "-out", args.outdir+args.uuid+".bls",
               "-num_iterations", "3",
               "-num_alignments", "0",
               "-num_descriptions", "5000",
@@ -85,19 +88,19 @@ run_exe(blast_args, "BLAST+")
 
 # Going to run PSIPRED components
 chkparse_args = [args.psipred_dir+"/bin/chkparse",
-                 outdir+args.uuid+".pssm",
+                 args.outdir+args.uuid+".pssm",
                  ">",
-                 outdir+args.uuid+".mtx",
+                 args.outdir+args.uuid+".mtx",
                  ]
 run_exe(chkparse_args, "chkparse")
 
 psipred_args = [args.psipred_dir+"/bin/psipred",
-                outdir+args.uuid+".mtx",
+                args.outdir+args.uuid+".mtx",
                 args.psipred_dir+"/data/weights.dat",
                 args.psipred_dir+"/data/weights.dat2",
                 args.psipred_dir+"/data/weights.dat3",
                 ">",
-                outdir+args.uuid+".ss",
+                args.outdir+args.uuid+".ss",
                 ]
 run_exe(psipred_args, "Psipred")
 
@@ -106,19 +109,100 @@ psipass_args = [args.psipred_dir+"/bin/psipass2",
                 "1",
                 "1.0",
                 "1.0",
-                outdir+args.uuid+".ss2",
-                outdir+args.uuid+".ss",
+                args.outdir+args.uuid+".ss2",
+                args.outdir+args.uuid+".ss",
                 ">",
-                outdir+args.uuid+".horiz",
+                args.outdir+args.uuid+".horiz",
                 ]
 run_exe(psipass_args, "Psipass2")
 
 # Going to run HHBlits
 hhblits_args = [args.hhsuite_dir+"/bin/hhblits",
                 "-i", args.input,
-                "-o", outdir+args.uuid+".hh",
+                "-o", args.outdir+args.uuid+".hh",
+                "-oa3m", args.outdir+args.uuid+".a3m",
                 "-n", "3",
                 "-d", args.hhblits_uniref20+"/"+paths["hhdbversion"],
                 "-cpu", args.threads,
                 ]
 run_exe(hhblits_args, "hhblits")
+
+# Going to proces msa
+msa_args = ['egrep', '-v', '"^>"', args.outdir+args.uuid+".a3m",
+            '|',
+            'sed', "'s/[a-z]//g'",
+            '>',
+            args.outdir+args.uuid+".msa",
+            ]
+# print(' '.join(msa_args))
+run_exe(msa_args, "MSA_GEN")
+
+# Here we basically replicate the old do_ffaln.sh script
+createffaln_args = ['echo', '-e',
+                    args.uuid,
+                    '>>',
+                    args.outdir+args.uuid+".ffaln",
+                    ]
+run_exe(createffaln_args, "Creating ffaln")
+
+addlines_args = ['wc', '-l', args.outdir+args.uuid+".msa",
+                 '|',
+                 'awk', "'{print $1}'",
+                 '>>',
+                 args.outdir+args.uuid+".ffaln",
+                 ]
+run_exe(addlines_args, "Add msa count")
+
+# TODO: this should be replaced with psfilt!!!!
+processSS2_args = ['echo', '`awk', '-vORS=',
+                   "'{ print $3 }'",
+                   args.outdir+args.uuid+".ss`",
+                   ">>",
+                   args.outdir+args.uuid+".ffaln",
+                   ]
+run_exe(processSS2_args, "Add SS")
+
+seq_args = ['grep', '-v',
+            '"^>"',
+            args.input,
+            '|',
+            'tr', '-d', "'\\n'",
+            '|',
+            'sed', "'s/$/\\n/'",
+            '>>',
+            args.outdir+args.uuid+".ffaln",
+            ]
+# print(' '.join(seq_args))
+run_exe(seq_args, "Add Sequence")
+
+addmsa_args = ['cat', args.outdir+args.uuid+".msa",
+               '>>',
+               args.outdir+args.uuid+".ffaln",
+               ]
+run_exe(addmsa_args, "Add MSA")
+
+#Output the fragfold file
+nfpar_string = "# FRAGFOLD Parameter File\n\n# Alignment file\n"
+nfpar_string += "ALNFILE "+args.outdir+args.uuid+".ffaln\n\n# contacts file\n\n"
+nfpar_string += "# Weighting mode\nWTMODE STDEV\n"
+nfpar_string += "# Steric mode\nSTERMODE ALLATOM\n"
+nfpar_string += "# Short range weighting\nSRWT 1.0\n"
+nfpar_string += "# Long range weighting\nLRWT 1.0\n"
+nfpar_string += "# Solvation weighting\nSOLVWT 1.0\n"
+nfpar_string += "# Hydrogen bond weighting\nHBWT 1.0\n"
+nfpar_string += "# Compactness weighting\nCOMPACTWT 1.0\n"
+nfpar_string += "# Steric weighting\nSTERICWT 3.0\n"
+nfpar_string += "# Disulphide weighting\nDSWT 0.0\n"
+nfpar_string += "# RMSD-to-target weighting\nTARGWT 0.0\n"
+nfpar_string += "# Residue-residue contact weighting\nRRWT 0.0\n"
+nfpar_string += "# Max. annealing steps\nMAXSTEPS 10000000\n"
+nfpar_string += "# Initial temperature\nINITEMP 0.6\n"
+nfpar_string += "# MAXFRAGS\nMAXFRAGS 5\n"
+nfpar_string += "# MAXFRAGS2\nMAXFRAGS2 25\n"
+nfpar_string += "MODE FOLD\n"
+nfpar_string += "POOLSIZE 10\n"
+nfpar_string += "TRATIO 0.6\n"
+nfpar_string += "OPTMETHOD REPMC\n"
+nfpar = open(args.outdir+args.uuid+".nfpar", 'w')
+nfpar.write(nfpar_string)
+nfpar.close()
