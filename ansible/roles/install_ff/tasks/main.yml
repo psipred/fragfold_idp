@@ -142,3 +142,48 @@
   - name: untar pdb70
     shell: "cd {{ hhdb_dir }}; tar -zxvf {{ hhpdb }} -C pdb/"
     when: hhdb_exist.stat.exists == False
+
+  - name: Check if pfclust is installed
+    stat: path={{ pfclust_dir }}
+    register: pfclust_exist
+
+  - name: get pfclust
+    when: pfclust_exist.stat.exists == False
+    get_url:
+      url: "http://chemistry.st-andrews.ac.uk/staff/jbom/group/PFClust.zip"
+      dest: "{{ download_path }}"
+      timeout: 120
+    register: get_url_result
+
+  - name: unarchive pfclust
+    when: pfclust_exist.stat.exists == False
+    unarchive:
+      src: "{{ download_path }}/PFClust.zip"
+      dest: "{{ download_path }}"
+      remote_src: yes
+
+  - name: Check if dynamine is installed
+    stat: path={{ dynamine_dir }}
+    register: dynamine_exist
+
+  - name: get dynamine
+    when: dynamine_exist.stat.exists == False
+    get_url:
+      url: "http://dynamine.ibsquare.be/www/dynamine.tgz"
+      dest: "{{ download_path }}"
+      timeout: 120
+    register: get_url_result
+
+  - name: unarchive dynamine
+    when: dynamine_exist.stat.exists == False
+    unarchive:
+      src: "{{ download_path }}/dynamine.tgz"
+      dest: "{{ download_path }}"
+      remote_src: yes
+
+  - name: change dynamine API Key
+    when: dynamine_exist.stat.exists == False
+    replace:
+      dest: "{{ dynamine_dir }}/config.txt"
+      replace: "json_api_key = '{{ dynamine_api_key }}'"
+      regexp: "^json_api_key = 'your personal API key'"
