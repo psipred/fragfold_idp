@@ -69,7 +69,6 @@ parser.add_argument('--outdir',
                     help="Where to put the output files",
                     default=script_path+"/../output/")
 
-
 args = parser.parse_args()
 
 # Going to run BLAST+
@@ -182,6 +181,7 @@ addmsa_args = ['cat', args.outdir+args.uuid+".msa",
 run_exe(addmsa_args, "Add MSA")
 
 #Output the fragfold file
+print("Printing nfpar file")
 nfpar_string = "# FRAGFOLD Parameter File\n\n# Alignment file\n"
 nfpar_string += "ALNFILE "+args.outdir+args.uuid+".ffaln\n\n# contacts file\n\n"
 nfpar_string += "# Weighting mode\nWTMODE STDEV\n"

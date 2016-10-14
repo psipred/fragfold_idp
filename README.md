@@ -43,6 +43,11 @@ We provide an ansible script for installation to any standard linux distro, see 
 
 ## How to run
 
+1. Run the Sequence analysis script over each of your fasta files. This will
+also produce the Fragfold input files
+
+`python runSeqAnalysis.py --input`
+
 ## TODO
 
 1. add msa and nfpar and ffaln output to runSeqAnalysis script
