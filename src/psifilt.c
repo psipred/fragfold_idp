@@ -32,4 +32,5 @@ int main(int argc, char **argv)
            putchar('?');
      }
    putchar('\n');
+   return(0);
 }

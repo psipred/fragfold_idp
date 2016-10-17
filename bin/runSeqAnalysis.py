@@ -163,9 +163,9 @@ addlines_args = ['wc', '-l', args.outdir+args.uuid+".msa",
 run_exe(addlines_args, "Add msa count")
 
 # TODO: this should be replaced with psfilt!!!!
-processSS2_args = ['echo', '`awk', '-vORS=',
-                   "'{ print $3 }'",
-                   args.outdir+args.uuid+".ss`",
+processSS2_args = [script_path+'/psifilt',
+                   '<',
+                   args.outdir+args.uuid+".ss2",
                    ">>",
                    args.outdir+args.uuid+".ffaln",
                    ]
