@@ -14,5 +14,5 @@ clean:
 	/bin/rm -f psifilt
 	/bin/rm -f ../bin/psifilt
 
-chkparse:
+psifilt:
 	$(CC) psifilt.c $(LIBS) -o psifilt

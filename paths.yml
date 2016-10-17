@@ -21,6 +21,7 @@ uniref90_dir: /scratch0/NOT_BACKED_UP/dbuchan/opt/uniref
 dynamine_dir: /scratch0/NOT_BACKED_UP/dbuchan/opt/dynamine
 pfclust_dir: /scratch0/NOT_BACKED_UP/dbuchan/opt/PFClust
 hhdb_dir: /scratch0/NOT_BACKED_UP/dbuchan/opt/hhdb
+fragfold_dir: /scratch0/NOT_BACKED_UP/dbuchan/opt/fragfold
 download_path: /scratch0/NOT_BACKED_UP/dbuchan/opt
 hhdb: uniprot20_2016_02.tgz
 hhdbversion: uniprot20_2016_02

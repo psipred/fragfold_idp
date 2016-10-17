@@ -187,3 +187,23 @@
       dest: "{{ dynamine_dir }}/config.txt"
       replace: "json_api_key = '{{ dynamine_api_key }}'"
       regexp: "^json_api_key = 'your personal API key'"
+
+  - name: Check if fragfold
+    stat: path={{ fragfold_dir }}
+    register: fragfold_exist
+
+  - name : Check Out FRAGFOLD from GIT
+    when: fragfold_exist.stat.exists == False
+    git:
+      repo: https://github.com/psipred/fragfold.git
+      dest: "{{ fragfold_dir }}"
+      clone: yes
+      force: yes
+
+  - name: make fragfold
+    shell: "cd {{ fragfold_dir }}/src; make"
+    when: fragfold_exist.stat.exists == False
+
+  - name: install fragfold
+    shell: "cd {{ fragfold_dir }}/src; make install"
+    when: fragfold_exist.stat.exists == False
