@@ -49,6 +49,11 @@ fragfold_idp/output dir. You can change the paths on the command line see --help
 
 `python runSeqAnalysis.py --input example_data/2KJV.pdb`
 
+2. Run Frag Fold
+
+3. Run Dynamine
+
+
 ## TODO
 
 1. add msa and nfpar and ffaln output to runSeqAnalysis script
