@@ -1,9 +1,6 @@
 ######################################################################
-#	Makefile for PSIpred4                                        #
+#	Makefile for fragfold_idp components                               #
 ######################################################################
-
-#### CC		Command to execute C compiler
-#### CFLAGS	Flags to pass to C compiler.
 
 CC		= cc
 LIBS		= -lm
@@ -16,7 +13,6 @@ install:
 clean:
 	/bin/rm -f psifilt
 	/bin/rm -f ../bin/psifilt
-
 
 chkparse:
 	$(CC) psifilt.c $(LIBS) -o psifilt
