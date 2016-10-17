@@ -49,7 +49,14 @@ fragfold_idp/output dir. You can change the paths on the command line see --help
 
 `python runSeqAnalysis.py --input example_data/2KJV.pdb`
 
-2. Run Frag Fold
+2. At this point we have generated the pdb file's MSA and fragfold input files.
+A large ensemble of fragfold models (>200) needs to be generated. We include here a python
+script which will generate a modest set of models (20) and cat them together in to
+an ensemble of models. FRAGFOLD is time consuming when generating large numbers
+of models, we note that users may instead wish to skip this step and use a
+computing cluster or cloud service to run many simultanesou fragfold runs.
+
+`python runFRAGFOLD --input_name a15a6b5e-9463-11e6-a62a-989096c13ee6`
 
 3. Run Dynamine
 

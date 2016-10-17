@@ -43,7 +43,7 @@ else:
 parser = argparse.ArgumentParser(description='Runs the preliminary sequence '
                                              'parser for FF-IDP')
 
-parser.add_argument('--input', help="input pdb file")
+parser.add_argument('--input', help="input pdb file", required=True)
 parser.add_argument('--chain',
                     help="The chain in the pdb file you want to analyse",
                     default="A")
