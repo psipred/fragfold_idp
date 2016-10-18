@@ -1,4 +1,4 @@
-# fragfold_idp
+# FRAGFOLD_idp
 
 ## Introduction
 
@@ -21,9 +21,10 @@ We provide an ansible script for installation to any standard linux distro, see 
 
 1. Checkout ansible https://github.com/ansible/ansible
 2. OPTIONAL: switch to python2 virtualenv
-3. install pyyaml
+3. install python dependencies pyyaml
 
 `pip install pyyaml`
+`pip install biopython`
 
 4. Get a Dynamine API key from http://dynamine.ibsquare.be/download/
 5. Edit the paths.yml to reflect where you want to install the various
@@ -35,7 +36,7 @@ We provide an ansible script for installation to any standard linux distro, see 
 
 7. Change to the ansible script directory
 
-`cd ~/fragfold_idp/ansible`
+`cd ~/FRAGFOLD_idp/ansible`
 
 8. Run FFIDP installation script
 
@@ -43,27 +44,85 @@ We provide an ansible script for installation to any standard linux distro, see 
 
 ## How to run
 
+Fragfold-IDP is composed of several scripts which automate the verious steps
+required to make prediction. There are two ways to run FRAGFOLD-IDP. You can
+run each script in an independant step-by-step manner this also gives you
+the option of moving some or all of these steps to the cluster/cloud computing
+service of your choice. Alternatively we provide a "master" script which will
+run all the scripts for you, though we note that as the FRAGFOLD step very
+time consuming this script is not ideal.
+
+### Step-by-step
+
 1. Run the Sequence analysis script over each of your fasta files. This will
-also produce the Fragfold input files. By default the results go in the
-fragfold_idp/output dir. You can change the paths on the command line see --help
+also produce the FRAGFOLD input files. By default the results go in the
+FRAGFOLD_idp/output dir. You can change the paths on the command line see
+--help. If running this script on a cluster please ensure --num_threads is
+set appropriately
 
 `python runSeqAnalysis.py --input example_data/2KJV.pdb`
 
-2. At this point we have generated the pdb file's MSA and fragfold input files.
-A large ensemble of fragfold models (>200) needs to be generated. We include here a python
-script which will generate a modest set of models (20) and cat them together in to
-an ensemble of models. FRAGFOLD is time consuming when generating large numbers
-of models, we note that users may instead wish to skip this step and use a
-computing cluster or cloud service to run many simultanesou fragfold runs.
+2. At this point we have generated the pdb file's MSA and FRAGFOLD input files.
+A large ensemble of FRAGFOLD models (>200) needs to be generated. We include
+here a python script which will generate a modest set of models (20) and
+concatenate them together in to an ensemble of models (.ens file) for the later
+step. --input_name should be take from the uuid value generated for the
+runSeqAnalysis output files, yours will differ from the example below. If
+running this script on a cluster please ensure --num_threads is set
+appropriately
 
-`python runFRAGFOLD --input_name a15a6b5e-9463-11e6-a62a-989096c13ee6`
+`python runFRAGFOLD.py --input_name a15a6b5e-9463-11e6-a62a-989096c13ee6`
 
-3. Run Dynamine
+This step is non-ideal and you should attempt to generate at least 200 models.
+FRAGFOLD is time consuming when generating large numbers of models, we note
+that users use a computing cluster or cloud service to run many simultaneous
+FRAGFOLD runs. Executing this we must leave as an exercise for the reader.
 
+If you have (sensibly) chosen to run FRAGFOLD on the cluster computing or cloud
+platform of your choice then the pdb files will now need to be concatenated
+together. A cat command such as the following should suffice:
+
+`cat *.pdb > a15a6b5e-9463-11e6-a62a-989096c13ee6.ens`
+
+3. Step 3 takes the ensemble file which runFRAGFOLD outputted and runs PFclust
+and the FRAGFOLD IDP superposition. It will output the FF_IDP RMSD profile
+
+`python runFFIDP.py --input_name a15a6b5e-9463-11e6-a62a-989096c13ee6`
+
+4. Step 1 will have generated a fasta file from your input pdb in the output
+directory. You can now use this with the dynamine commandline script to
+make a protein dynamics prediction (note where you installed dynamine in the
+paths.yml file). Note dynamine is in python2 and requires biopython
+
+`python /opt/dynamine/dynamine.py output/a15a6b5e-9463-11e6-a62a-989096c13ee6.fasta`
+
+5. We would run the consensus predictor over the FF_IDP RMDS profile and the
+Dynamine profile
+
+`python runConsensus.py --input_name a15a6b5e-9463-11e6-a62a-989096c13ee6`
+
+6. Finally we calcualte the prediction statistics integrating data from all
+the previous steps
+
+`python RSEVAL.py --input_name a15a6b5e-9463-11e6-a62a-989096c13ee6`
+
+### Whole process
+
+1. The master script has two modes. Report mode and execution mode. In Report
+mode the script only outputs the commands needed to run the steps but will
+not actually execute each step. You can use this to understand what commands
+you need to run should you plan to run each step on a cloud/cluster. In execution
+mode the script will run each command.
+
+`python FFIDP.py --input 2KJV.pdb`
+`python FFIDP.py --input 2KJV.pdb --mode execute`
+
+This script has a great number of command line options allowing your to
+specifically configure each step.
 
 ## TODO
 
-1. add msa and nfpar and ffaln output to runSeqAnalysis script
+1. Write runFFIDP.py
 
 ## NEXT UP
 
@@ -73,5 +132,4 @@ computing cluster or cloud service to run many simultanesou fragfold runs.
 4. Write master control script (FFIDP.py)
 5. Write Docs
 6. script to run FF on SGE
-7. PDB to Seq script
 8. PDB sliding window thing

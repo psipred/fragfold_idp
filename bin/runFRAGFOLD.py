@@ -116,4 +116,5 @@ p.map(runff_partial, indices)
 p.close()
 p.join()
 
+print("Building model ensemble")
 build_ensemble(args)
