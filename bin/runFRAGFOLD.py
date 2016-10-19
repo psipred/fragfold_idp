@@ -69,7 +69,7 @@ parser = argparse.ArgumentParser(description='Runs FRAGFOLD multiple times  '
                                              'ensemble')
 parser.add_argument('--input_name', help="job name for the files generated in "
                                          "in the seq analysis step, usually "
-                                         "an md5", required=True)
+                                         "an uuid", required=True)
 parser.add_argument('--indir',
                     help="Where to find the .nfpar file. Defaults to the "
                          "runSeqAnalysis.py output directory",
