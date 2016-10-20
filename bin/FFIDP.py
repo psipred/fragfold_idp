@@ -94,7 +94,7 @@ parser.add_argument('--dynamine_dir',
 
 args = parser.parse_args()
 
-# Construct the runSeqAnalysis.py command
+# Construct the runSeqAnalysis.py command 1st step
 seq_args = ["python", script_path+"/runSeqAnalysis.py",
             '--input', args.input,
             '--uuid', args.name,
@@ -118,7 +118,7 @@ if "--outdir" in sys.argv:
 print("#### runSeqAnalysis Command ####")
 print(" ".join(seq_args)+"\n")
 
-# Construct the runFRAGFOLD.py command
+# Construct the runFRAGFOLD.py command 2nd step
 ff_args = ["python", script_path+"/runFRAGFOLD.py",
            "--input_name", args.name,
            "--large_override", args.large_override,
@@ -138,7 +138,7 @@ if "--fragfold_dir" in sys.argv:
 print("#### runFRAGFOLD Command ####")
 print(" ".join(ff_args)+"\n")
 
-# Construct the dynamine command
+# Construct the dynamine command 4th step
 dynamine_args = ["python", args.dynamine_dir+"/dynamine.py",
                  args.outdir+args.name+".fasta",
                  ]

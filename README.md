@@ -20,21 +20,21 @@ We provide an ansible script for installation to any standard linux distro, see 
 ## How to Install
 
 1. Checkout ansible https://github.com/ansible/ansible
-2. OPTIONAL: switch to python2 virtualenv
+2. OPTIONAL: switch to a python2 virtualenv
 3. install python dependencies pyyaml
 
 `pip install pyyaml`
 `pip install biopython`
 
 4. Get a Dynamine API key from http://dynamine.ibsquare.be/download/
-5. Edit the paths.yml to reflect where you want to install the various
+5. Edit the paths.yml file to reflect where you want to install the various
    components or where they have already been installed.
 
-6. Run setup script for ansible
+6. Run intialisation script for ansible
 
 `source ~/ansible/hacking/env-setup`
 
-7. Change to the ansible script directory
+7. Change to the FF-idp ansible script directory
 
 `cd ~/FRAGFOLD_idp/ansible`
 
@@ -42,17 +42,21 @@ We provide an ansible script for installation to any standard linux distro, see 
 
 `ansible-playbook -i hosts install.yml -f 1`
 
-## How to run
+After this point all the software listed in the paths.yml should be installed
+in the listed locations. If this fails or you wish to change anything the
+ansible-playbook command can be run repeatedly.
 
-Fragfold-IDP is composed of several scripts which automate the verious steps
-required to make prediction. There are two ways to run FRAGFOLD-IDP. You can
-run each script in an independant step-by-step manner this also gives you
+## How to run FRAGFOLD-IDP
+
+FRAGFOLD-IDP is composed of several scripts which automate the various steps
+required to make the  prediction. There are two ways to run FRAGFOLD-IDP. You
+can run each script in an independant step-by-step manner this also gives you
 the option of moving some or all of these steps to the cluster/cloud computing
 service of your choice. Alternatively we provide a "master" script which will
 run all the scripts for you, though we note that as the FRAGFOLD step very
-time consuming this script is not ideal.
+time consuming this master script is not ideal.
 
-### Step-by-step
+### Step-by-step Process
 
 1. Run the Sequence analysis script over each of your fasta files. This will
 also produce the FRAGFOLD input files. By default the results go in the
@@ -106,7 +110,7 @@ the previous steps
 
 `python RSEVAL.py --input_name a15a6b5e-9463-11e6-a62a-989096c13ee6`
 
-### Whole process
+### One Step Process
 
 1. The master script has two modes. Report mode and execution mode. In Report
 mode the script only outputs the commands needed to run the steps but will
@@ -114,7 +118,7 @@ not actually execute each step. You can use this to understand what commands
 you need to run should you plan to run each step on a cloud/cluster. In execution
 mode the script will run each command.
 
-`python FFIDP.py --input 2KJV.pdb`
+`python FFIDP.py --input example/2KJV.pdb`
 `python FFIDP.py --input 2KJV.pdb --mode execute`
 
 This script has a great number of command line options allowing your to
