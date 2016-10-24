@@ -287,11 +287,11 @@ int             jacobi(float a[6][6], float d[6], float v[6][6], int *nrot)
 #undef ROTATE
 
 /*
- * function eigsrt 
+ * function eigsrt
  *
  * Given the eigenvalues d[n] and eignevectors v[n][n] as output from jacobi
  * this routine sourts the eigenvalues into descending order and rearranges
- * the columns of v correspondingly 
+ * the columns of v correspondingly
  */
 void            eigsrt(float d[6], float v[6][6])
 {
@@ -497,7 +497,7 @@ main(argc, argv)
     unsigned int    nmatch[MAXNSTRUC], clustflg[MAXNSTRUC], filepos[MAXNSTRUC], modnum = 1;
     float           x, y, z, d, r, rmsd, u[3][3], **rmsdmat, matchsum, cutoff = 8.0, maxrmsd = 15.0, minrmsd = 6.0;
     char            fname[160];
-    FILE           *ifp, *ofp, *rfp;
+    FILE           *ifp, *ofp, *rfp, *rmsdfp;
     Point           new, CG_a, CG_b;
     Transform       fr_xf;
 
@@ -551,15 +551,15 @@ main(argc, argv)
 		vecadd(CG_a, CG_a, atoms[moda][j].pos);
 		vecadd(CG_b, CG_b, atoms[modb][j].pos);
 	    }
-	    
+
 	    vecscale(CG_a, CG_a, ONE / natoms[0]);
 	    vecscale(CG_b, CG_b, ONE / natoms[0]);
-	    
+
 	    for (i = 0; i < natoms[0]; i++)
 		vecsub(atoms[moda][i].pos, atoms[moda][i].pos, CG_a);
 	    for (j = 0; j < natoms[0]; j++)
 		vecsub(atoms[modb][j].pos, atoms[modb][j].pos, CG_b);
-	    
+
 	    /* Calculate U */
 	    for (i = 0; i < 3; i++)
 		for (j = 0; j < 3; j++)
@@ -569,16 +569,16 @@ main(argc, argv)
 		    for (l = 0; l < 3; l++)
 			u[k][l] += atoms[moda][j].pos[k] *
 			    atoms[modb][j].pos[l];
-	    
+
 	    if (lsq_fit(u, fr_xf))
 		puts("LSQFIT failed!");
-	    
+
 	    for (j = 0; j < natoms[0]; j++)
 	    {
 		transform_point(fr_xf, atoms[modb][j].pos, new);
 		veccopy(atoms[modb][j].pos, new);
 	    }
-	    
+
 	    for (nequiv = rmsd = i = 0; i < natoms[0]; i++)
 	    {
 		r = distsq(atoms[moda][i].pos, atoms[modb][i].pos);
@@ -635,7 +635,7 @@ main(argc, argv)
 		}
 
 	    printf("%f %d %d\n", cutoff, maxclusz, repnum+1);
-	    
+
 	    if (maxclusz >= MAX(nmodels/8, 1))
 		break;
 	}
@@ -651,7 +651,7 @@ main(argc, argv)
 	}
 
 	sprintf(fname, "CLUSTER_%03d.pdb", nclust);
-	
+
 	ofp = fopen(fname, "w");
 
 	if (ofp != NULL)
@@ -665,7 +665,7 @@ main(argc, argv)
 			fprintf(rfp, "MODEL    %4d\n", modnum++);
 			fprintf(rfp, "REMARK   Original model number: %d\n", moda+1);
 			fseek(ifp, filepos[moda], SEEK_SET);
-		    
+
 			while (!feof(ifp))
 			{
 			    if (!fgets(buf, 160, ifp))
@@ -681,7 +681,7 @@ main(argc, argv)
 		    fprintf(ofp, "MODEL    %4d\n", ++modb);
 		    fprintf(ofp, "REMARK   Original model number: %d\n", moda+1);
 		    fseek(ifp, filepos[moda], SEEK_SET);
-		    
+
 		    while (!feof(ifp))
 		    {
 			if (!fgets(buf, 160, ifp))
@@ -696,7 +696,22 @@ main(argc, argv)
 
 	    fclose(ofp);
 	}
-	
+
+    rmsdfp = fopen("RMSDarray", "w");
+
+	if (rmsdfp != NULL)
+	{
+	    for (moda=0; moda<nmodels; moda++)
+        {
+            for (modb=0; modb<nmodels; modb++)
+            {
+                fprintf(rmsdfp, "%.2f ", rmsdmat[moda][modb]);
+            }
+            fprintf(rmsdfp, "\n");
+        }
+	    fclose(rmsdfp);
+	}
+
 	printf("Cluster %d:\n", nclust);
 	for (moda=0; moda<nmodels; moda++)
 	    if (!clustflg[moda] && (moda == repnum || rmsdmat[moda][repnum] < cutoff))
