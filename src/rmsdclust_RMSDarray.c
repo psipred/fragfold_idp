@@ -496,26 +496,26 @@ main(argc, argv)
     int             blksize, hashval, moda, modb, maxclusz, repnum, nclust;
     unsigned int    nmatch[MAXNSTRUC], clustflg[MAXNSTRUC], filepos[MAXNSTRUC], modnum = 1;
     float           x, y, z, d, r, rmsd, u[3][3], **rmsdmat, matchsum, cutoff = 8.0, maxrmsd = 15.0, minrmsd = 6.0;
-    char            fname[160];
-    FILE           *ifp, *ofp, *rfp, *rmsdfp;
+    char            fname[256];
+    FILE            *ifp, *ofp, *rfp, *rmsdfp;
     Point           new, CG_a, CG_b;
     Transform       fr_xf;
 
-    if (argc < 2)
-	fail("usage : rmsmat ensemble.pdb {maxclustrmsd}");
+    if (argc < 3)
+	fail("usage : rmsmat ensemble.pdb output_prefix {minclustrmsd} {maxclustrmsd}");
 
     ifp = fopen(argv[1], "r");	/* Open PDB file in TEXT mode */
     if (!ifp)
     {
-	printf("PDB file error!\n");
-	exit(-1);
+	    printf("PDB file error!\n");
+	    exit(-1);
     }
 
-    if (argc > 2)
-	minrmsd = atof(argv[2]);
-
     if (argc > 3)
-	maxrmsd = atof(argv[3]);
+	minrmsd = atof(argv[3]);
+
+    if (argc > 4)
+	maxrmsd = atof(argv[4]);
 
 /*     printf("MAXRMSD = %f\n", maxrmsd); */
 
@@ -610,7 +610,9 @@ main(argc, argv)
 		    clustflg[modb] = 1;
 		}
 
-    rfp = fopen("clustreps.pdb", "w");
+    char clusterrep[256];
+    sprintf(clusterrep, "%sclustreps.pdb", argv[2]);
+    rfp = fopen(clusterrep, "w");
 
     for (nclust=1; nclust<=200; nclust++)
     {
@@ -649,10 +651,8 @@ main(argc, argv)
 	    puts("\n");
 	    break;
 	}
-
-	sprintf(fname, "CLUSTER_%03d.pdb", nclust);
-
-	ofp = fopen(fname, "w");
+  sprintf(fname, "%sCLUSTER_%03d.pdb", argv[2], nclust);
+  ofp = fopen(fname, "w");
 
 	if (ofp != NULL)
 	{
@@ -696,8 +696,9 @@ main(argc, argv)
 
 	    fclose(ofp);
 	}
-
-    rmsdfp = fopen("RMSDarray", "w");
+    char arrayname[256];
+    sprintf(arrayname, "%sRMSDarray", argv[2]);
+    rmsdfp = fopen(arrayname, "w");
 
 	if (rmsdfp != NULL)
 	{

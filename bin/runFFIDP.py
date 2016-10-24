@@ -14,7 +14,9 @@ else:
 parser = argparse.ArgumentParser(description='Runs PFclust and the sliding '
                                               'window superposition code')
 
-#run rmsdclust.c
+
+
+run rmsdclust.c
 
 #java -jar pfclust indir outdir comma,list,files,
 #-cp? and needs some env vars
