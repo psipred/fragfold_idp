@@ -28,7 +28,7 @@ import clustering.Threshold;
 
 
 /**
- * This class implements the main loop and the convergence steps of the algorithm. 
+ * This class implements the main loop and the convergence steps of the algorithm.
  */
 public class PFClust {
 
@@ -91,10 +91,9 @@ public class PFClust {
 				long end = System.nanoTime();
 
 				Util.printClusteringResults(bestClustering, end - start);
-				
+
 				//Writes the results of clustering to the output
 				Util.writeResults(fileName, bestClustering);
-				
 			}
 
 			catch(Exception e) {
@@ -138,7 +137,7 @@ public class PFClust {
 			 * Adds the clustering into collection
 			 */
 			clusteringCollection.add(clustering);
-			
+
 		}
 
 
@@ -156,11 +155,11 @@ public class PFClust {
 
 
 	/**
-	 * If the Rand index of the clustering collection is less 
-	 * than a specified value, it builds a new clustering 
+	 * If the Rand index of the clustering collection is less
+	 * than a specified value, it builds a new clustering
 	 * and replaces the worst clustering in the list
-	 * with the new one, if the new clustering is better 
-	 * than the worst clustering in the list. 
+	 * with the new one, if the new clustering is better
+	 * than the worst clustering in the list.
 	 * The process continues unless the Rand index of the collection
 	 * is greater than 0.99
 	 * @param final Matrix matrix
@@ -175,7 +174,7 @@ public class PFClust {
 			Clustering worstClustering = clusteringCollection.getWorstClustering();
 			ArrayList<Double> thresholds = Threshold.estimate(matrix);
 			Clustering clustering  = ClusterConstruction.perform(matrix, thresholds);
-			
+
 			if(clustering.compareTo(worstClustering) > 0) {
 				clusteringCollection.remove(worstClustering);
 				clusteringCollection.add(clustering);

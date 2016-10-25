@@ -72,11 +72,14 @@ public class Util {
 		//Each file is named in the following format:
 		//datasetName_numberOfClusters_Silhoutte_Dunn_Threshold.clu
 		String append = clustering.toString().replaceAll("[\\.\t]", "");
-		String clusterFileName = OUTPUT_DIR + source.substring(0, source.lastIndexOf(".")) + append + ".clu";
+		append = append.toString().replaceAll(" ", "_");
+
+    //Util.print(append);
+		String clusterFileName = OUTPUT_DIR + source + append + ".clu";
 
 		//Contains the following information about the cluster:
 		//number of clusters, silhouette width, dunn index, threshold and the corresponding cluster file.
-		String dataFileName = OUTPUT_DIR + source.substring(0, source.lastIndexOf(".")) + ".data";
+		String dataFileName = OUTPUT_DIR + source + ".data";
 
 		try {
 			//Initializes the corresponding file writers.
