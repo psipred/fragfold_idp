@@ -13,6 +13,7 @@ import os
     # python runSeqAnalysis.py --input ../example_data/2KJV.seq --uniref90 /cs/research/bioinf/archive0/pfilt_test/uniref/test_db.fasta
 """
 
+
 def run_exe(args, name):
     """
         Function takes a list of command line args and executes the subprocess.
