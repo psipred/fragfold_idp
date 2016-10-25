@@ -18,6 +18,7 @@ def run_exe(args, name):
     code = 0
     print("Running "+name)
     try:
+        # print(' '.join(args))
         code = subprocess.call(' '.join(args), shell=True)
     except Exception as e:
         print(str(e))
@@ -51,13 +52,18 @@ parser.add_argument('--outdir',
 
 args = parser.parse_args()
 
-rmsdclust_args = [script_path+'/rmsdclust',
-                  args.indir+args.input_name+".ens"
+rmsdclust_args = [script_path+'/rmsdclust_RMSDarray',
+                  args.indir+args.input_name+".ens",
+                  args.outdir+args.input_name+"_",
                   ]
-run_exe(rmsdclust_args, "rmsd clust")
+run_exe(rmsdclust_args, "RMSD Ensemble Clustering")
 
+pfclust_args = ["java",
+                "-jar",
+                script_path+"/../opt/PFClust/PFClust.jar",
+                args.indir,
+                args.outdir,
+                args.input_name+"_RMSDarray",
+                ]
 
-#run rmsdclust.c
-
-#java -jar pfclust indir outdir comma,list,files,
-#-cp? and needs some env vars
+run_exe(pfclust_args, "PFClust")
