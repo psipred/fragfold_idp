@@ -1,11 +1,6 @@
-from optparse import OptionParser
 import numpy as np
-import random
-import itertools
 from itertools import combinations
-import pickle
 import glob
-import re
 
 """
     The script takes an ensemble of structures (PDB file) and performs sliding
