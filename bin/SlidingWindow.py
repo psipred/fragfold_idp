@@ -1,6 +1,7 @@
 import numpy as np
 from itertools import combinations
 import glob
+from manipulatePDB import ReadPDB
 
 """
     The script takes an ensemble of structures (PDB file) and performs sliding
