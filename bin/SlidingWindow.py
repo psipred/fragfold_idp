@@ -1,6 +1,7 @@
 import numpy as np
 from itertools import combinations
 import glob
+from os.path import splitext
 from manipulatePDB import ReadPDB
 
 """
@@ -10,7 +11,7 @@ from manipulatePDB import ReadPDB
 """
 
 
-def run_Sliding_Window(ens_fp, SW_size=10):
+def run_Sliding_Window(ens_fp, SW_size=10, to_file=False):
 
     # READ *ENS* FILES
     if '*' in ens_fp:
@@ -24,7 +25,12 @@ def run_Sliding_Window(ens_fp, SW_size=10):
 
     PerRes_RMSD = sliding_window_RMSD(ens, sw=int(SW_size))
 
-    return PerRes_RMSD
+    if to_file = False:
+        return PerRes_RMSD
+    else:
+        if '.' not in to_file:
+            to_file = to_file + '.ffidp'
+        np.savetxt(to_file, PerRes_RMSD, fmt='%.3f')
 
 
 def sliding_window_RMSD(*args, **opts):
