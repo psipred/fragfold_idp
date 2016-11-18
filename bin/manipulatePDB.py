@@ -162,8 +162,8 @@ def SavePDB(xyz_CA, residues, target):
     if header_info:
         f.write('HEADER    %s') % header_info
 
-    f.write('EXPDTA    GENERATED USING PYTHON BY TOMASZ KOSCIOLEK ON %s') %
-            datetime.date.today().strftime('%d/%m/%Y')
+    f.write('EXPDTA    GENERATED USING PYTHON BY TOMASZ KOSCIOLEK ON %s') % \
+        datetime.date.today().strftime('%d/%m/%Y')
 
     for line in zip(res_name, x_ca, y_ca, z_ca):
         res_no += 1

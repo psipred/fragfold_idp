@@ -25,7 +25,7 @@ def run_Sliding_Window(ens_fp, SW_size=10, to_file=False):
 
     PerRes_RMSD = sliding_window_RMSD(ens, sw=int(SW_size))
 
-    if to_file = False:
+    if to_file == False:
         return PerRes_RMSD
     else:
         if '.' not in to_file:
@@ -109,7 +109,7 @@ def sliding_window_RMSD(*args, **opts):
 
 
 def multi_RMSD(*args, **opts):
-	'''
+    '''
     calculates RMSD (total or per-residue) on a set of models for all
     pair-wise combinations
 
