@@ -15,7 +15,7 @@ import pickle
 """
 
 
-def run_network(ffidp_fp, dm_fp, net_fp, out_fp):
+def run_network(ffidp_fp, dm_fp, ss_fp, aln_fp, net_fp, out_fp):
     '''
     main script to run the neural network
 
@@ -25,7 +25,7 @@ def run_network(ffidp_fp, dm_fp, net_fp, out_fp):
 
     fout = open(out_fp, 'a')
     net = pybrain.tools.customxml.networkreader.NetworkReader.readFrom(net_fp)
-    inp = network_input(ffidp_fp, dm_fp)
+    inp = network_input(ffidp_fp, dm_fp, ss_fp, aln_fp)
 
     nn = []
     for res in inp:
@@ -34,11 +34,42 @@ def run_network(ffidp_fp, dm_fp, net_fp, out_fp):
     return np.array(nn)
 
 
-def network_input(ffidp_fp, dm_fp):
+def network_input(ffidp_fp, dm_fp, ss_fp, aln_fp):
+    # read secondary structure predictions
+    # PSIPRED SS file (NOT SS2!)
+    ss = read_inp(ss_fp,  columns=(3, 6))
+    # read DynaMine results
+    dm = read_inp(dm_fp)  # should be 1.0-dm ?
+    # read FRAGFOLD-IDP results
+    ff = read_inp(ffidp_fp)  # should be ff/2.0 ?
+
+    # sanity checks
+    try:
+        assert len(dm) == len(ff)
+        assert len(ss) == len(ff)
+    except AssertionError:
+        print('input file lengths do not match')
+
+    # generate amino acid composition statistics
+    aa = aa_composition(aln_fp)
+
+    # generate list of input features
+    inp_features = []
+    for res in range(len(ff)):
+        _feat = [dm[res], ff[res], ss[res][0], ss[res][1], ss[res][2]]
+        for i in range(21):
+            _feat.append(aa[res][i])
+        inp_features.append(_feat)
+
+    # perform sliding window on list of input features
+    win_size = 9
+    net_inp = SlidingWindow(inp_features, win_size)
+
+    # list of lists
     return net_inp
 
 
-def read_inp(finp):
+def read_inp(finp, columns=False):
     '''
     read input data as a list of lists
     '''
@@ -48,8 +79,42 @@ def read_inp(finp):
 
     inp = []
     for line in lines:
-        inp.append(map(float, line.split()))
+        if not columns:
+            inp.append(map(float, line.split()))
+        else:
+            inp.append(map(float, line.split()[columns[0]:columns[1]]))
     return inp
+
+
+def aa_composition(aln_fp):
+    '''
+    calculate AA composition statistics
+
+    input:
+    file path to file with MSA without headers (e.g. ffaln file)
+
+    returns:
+    2D numpy array of 21-element lists of residue frequencies
+    '''
+    aln_arr = []
+
+    f = open(aln_fp, 'r')
+    lines = f.readlines()
+    f.close()
+    for line in lines:
+        aln_arr.append(list(line.rstrip()))
+
+    aln = np.asarray(aln_arr)
+
+    Naln = AlnToNum(aln)
+    N = float(aln.shape[1])
+    freq = np.zeros((N, 21))
+
+    for pos, col in enumerate(Naln.transpose()):
+        for aa in range(21):
+            freq[pos, aa] = list(col).count(aa)/float(len(col))
+
+    return freq
 
 
 def SlidingWindow(inp_full, window_size=9):
@@ -98,3 +163,33 @@ def SlidingWindow(inp_full, window_size=9):
         inp_sw.append(tmp_inp)
 
     return inp_sw
+
+
+def AlnToNum(aln):
+    N_aln = np.zeros(aln.shape)
+    for i, col in enumerate(aln.transpose()):
+        N_aln[:, i] = AA_alphabet(col)
+    return N_aln
+
+
+def AA_alphabet(seq):
+    '''
+    input: list or string with 1-letter sequence
+    output: list with numbered amino-acid code
+    '''
+
+    if type(seq) is list:
+        seq = str(' '.join(seq))
+    elif type(seq) is str and ',' in seq:
+        seq = seq.replace(',', ' ')
+
+    d = {'-': 0, 'C': 1, 'D': 2, 'S': 3, 'Q': 4, 'K': 5,
+         'I': 6, 'P': 7, 'T': 8, 'F': 9, 'N': 10,
+         'G': 11, 'H': 12, 'L': 13, 'R': 14, 'W': 15,
+         'A': 16, 'V': 17, 'E': 18, 'Y': 19, 'M': 20,
+         'X': 0, 'B': 10, 'U': 3}
+
+    abc = np.zeros(len(seq))
+    for i in range(len(seq)):
+        abc[i] = d[seq[i]]
+    return abc
