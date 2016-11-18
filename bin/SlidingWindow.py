@@ -25,7 +25,7 @@ def run_Sliding_Window(ens_fp, SW_size=10, to_file=False):
 
     PerRes_RMSD = sliding_window_RMSD(ens, sw=int(SW_size))
 
-    if to_file == False:
+    if to_file is False:
         return PerRes_RMSD
     else:
         if '.' not in to_file:
