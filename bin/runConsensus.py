@@ -2,11 +2,13 @@
 # -*- coding: utf-8 -*-
 #
 
-import pybrain
-from train_nn import *
-import pybrain
-import sys
-import pickle
+# import pybrain
+import numpy as np
+import subprocess
+import tempfile
+import os
+import shutil
+import re
 
 
 """
@@ -34,14 +36,19 @@ def run_network(ffidp_fp, dm_fp, ss_fp, aln_fp, net_fp, out_fp):
     return np.array(nn)
 
 
-def network_input(ffidp_fp, dm_fp, ss_fp, aln_fp):
+def network_input(ffidp_fp, dm_fp, ss_fp, aln_fp, win_size=9):
+    '''
+    input is in the form:
+    DM	logistic(FF-IDP)	PSIPRED(3)	AAcomposition(21)	log(length)	log(N_dist)	log(C_dist)
+    '''
+
+    # read DynaMine results
+    dm = read_inp(dm_fp, columns=(1, 2))
+    # read FRAGFOLD-IDP results
+    ff = list(map(lambda x: sigmoid(x), read_inp(ffidp_fp)))
     # read secondary structure predictions
     # PSIPRED SS file (NOT SS2!)
     ss = read_inp(ss_fp,  columns=(3, 6))
-    # read DynaMine results
-    dm = read_inp(dm_fp)  # should be 1.0-dm ?
-    # read FRAGFOLD-IDP results
-    ff = read_inp(ffidp_fp)  # should be ff/2.0 ?
 
     # sanity checks
     try:
@@ -51,7 +58,8 @@ def network_input(ffidp_fp, dm_fp, ss_fp, aln_fp):
         print('input file lengths do not match')
 
     # generate amino acid composition statistics
-    aa = aa_composition(aln_fp)
+    hhfilt="/Users/tomasz/projects/MicroProt/tools/hh-suite/build/bin/hhfilter"
+    aa = aa_composition(aln_fp, hhfilter=hhfilt)
 
     # generate list of input features
     inp_features = []
@@ -61,8 +69,15 @@ def network_input(ffidp_fp, dm_fp, ss_fp, aln_fp):
             _feat.append(aa[res][i])
         inp_features.append(_feat)
 
+    # ADD global fratures
+    # log(len)
+    # inp_features.append(np.log10(len(ff)))
+    # log(N_dist)
+    # log(C_dist)
+
+    print(inp_features[1])
+
     # perform sliding window on list of input features
-    win_size = 9
     net_inp = SlidingWindow(inp_features, win_size)
 
     # list of lists
@@ -80,13 +95,13 @@ def read_inp(finp, columns=False):
     inp = []
     for line in lines:
         if not columns:
-            inp.append(map(float, line.split()))
+            inp.append(list(map(float, line.split())))
         else:
-            inp.append(map(float, line.split()[columns[0]:columns[1]]))
-    return inp
+            inp.append(list(map(float, line.split()[columns[0]:columns[1]])))
+    return np.squeeze(inp)
 
 
-def aa_composition(aln_fp):
+def aa_composition(msa_fp, hhfilter="$HHLIB/bin/hhfilter"):
     '''
     calculate AA composition statistics
 
@@ -96,9 +111,27 @@ def aa_composition(aln_fp):
     returns:
     2D numpy array of 21-element lists of residue frequencies
     '''
-    aln_arr = []
+    # perform HHfilt on input alignment
+    tempdir = tempfile.mkdtemp(dir=os.getcwd())
+    a3mfilt_fp = tempdir + '/a3mfilt'
+    alnfilt_fp = tempdir + '/alnfilt'
+    aln_fp = tempdir + '/aln'
 
-    f = open(aln_fp, 'r')
+    msa2fasta(msa_fp, aln_fp)
+
+    hhfilter_cmd = '%s -i %s -id 90 -qid 30 -o %s' % (hhfilter,
+                                                      aln_fp,
+                                                      a3mfilt_fp)
+
+    subprocess.call(hhfilter_cmd.split())
+
+    grep = subprocess.Popen(' '.join(['grep -v "^>"', a3mfilt_fp,
+                            "| sed '"'s/[a-z]//g'"' >", alnfilt_fp]),
+                            shell=True, stdout=subprocess.PIPE)
+    grep.communicate()
+
+    aln_arr = []
+    f = open(alnfilt_fp, 'r')
     lines = f.readlines()
     f.close()
     for line in lines:
@@ -114,6 +147,9 @@ def aa_composition(aln_fp):
         for aa in range(21):
             freq[pos, aa] = list(col).count(aa)/float(len(col))
 
+    # clean up temp files
+    shutil.rmtree(tempdir)
+
     return freq
 
 
@@ -128,7 +164,7 @@ def SlidingWindow(inp_full, window_size=9):
     inp_sw = []
     inp = []
     central_res = []
-    winLR = (window_size-1)/2
+    winLR = int((window_size-1)/2)
 
     ## add missing residues feature
     # if missing: feature = 1
@@ -193,3 +229,29 @@ def AA_alphabet(seq):
     for i in range(len(seq)):
         abc[i] = d[seq[i]]
     return abc
+
+
+def msa2fasta(in_fp, out_fp):
+    f = open(in_fp, 'r')
+    lines = f.readlines()
+    f.close()
+    out = open(out_fp, 'w')
+    for line in lines:
+        out.write(re.sub('^', '>\n', line))
+    out.close()
+
+
+def sigmoid(x):
+    y = 1.0/(1.0 + np.exp(-1.0*x))
+    return y
+
+def scale_out(raw_out):
+    '''
+    takes numpy.array
+
+    returns:
+    logistic-normalized output
+    '''
+    mean = 0.986
+    scaled_out = 1.0/(np.exp(-1.0*raw_out/(2+(2*mean))))
+    return scaled_out
