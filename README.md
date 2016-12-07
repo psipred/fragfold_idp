@@ -27,6 +27,8 @@ We provide an ansible script for installation to any standard linux distro, see 
 
 `pip install biopython`
 
+`pip install numpy`
+
 4. Get a Dynamine API key from http://dynamine.ibsquare.be/download/
 5. Edit the paths.yml file to reflect where you want to install the various
    components or where they have already been installed.
