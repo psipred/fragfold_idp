@@ -60,7 +60,6 @@ def sliding_window_RMSD(*args, **opts):
             sw = opts['sw']
 
 # check input
-    print(len(args[0]))
     if len(args[0]) > 1:
         n_conf = len(args[0][0])
         prot1 = args[0][0]
