@@ -139,7 +139,7 @@ print("#### runFRAGFOLD Command ####")
 print(" ".join(ff_args)+"\n")
 
 # Construct the dynamine command 4th step
-dynamine_args = ["python", args.dynamine_dir+"/dynamine.py",
+dynamine_args = ["python2", args.dynamine_dir+"/dynamine.py",
                  args.outdir+args.name+".fasta",
                  ]
 

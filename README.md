@@ -18,10 +18,9 @@ We provide an ansible script for installation to any standard linux distro, see 
 6. Generate evaluation statistics
 
 ## How to Install
+FFIDP largely assumes you will be running using python3
 
-1. Checkout ansible https://github.com/ansible/ansible
-2. OPTIONAL: switch to a python2 virtualenv
-3. install python dependencies pyyaml
+1. Install python dependencies for your python3 installation ot virtualenv
 
 `pip install pyyaml`
 
@@ -29,25 +28,34 @@ We provide an ansible script for installation to any standard linux distro, see 
 
 `pip install numpy`
 
-4. Get a Dynamine API key from http://dynamine.ibsquare.be/download/
-5. Edit the paths.yml file to reflect where you want to install the various
+2. Install python2 dependencies for your python2 installation ot virtualenv
+
+`pip2 install biopython`
+
+3. Checkout ansible https://github.com/ansible/ansible
+4. OPTIONAL: switch to a python2 virtualenv
+5. Get a Dynamine API key from http://dynamine.ibsquare.be/download/
+6. Edit the paths.yml file to reflect where you want to install the various
    components or where they have already been installed.
 
-6. Run intialisation script for ansible
+7. Run intialisation script for ansible
 
 `source ~/ansible/hacking/env-setup`
 
-7. Change to the FF-idp ansible script directory
+8. Change to the FF-idp ansible script directory
 
 `cd ~/FRAGFOLD_idp/ansible`
 
-8. Run FFIDP installation script
+9. Run FFIDP installation script
 
 `ansible-playbook -i hosts install.yml -f 1`
 
 After this point all the software listed in the paths.yml should be installed
 in the listed locations. If this fails or you wish to change anything the
 ansible-playbook command can be run repeatedly.
+
+10. If you used a python2 virtualenv to run ansible then switch back to
+your python3 evironment once the ansible install has been succesful
 
 ## How to run FRAGFOLD-IDP
 
@@ -58,6 +66,8 @@ the option of moving some or all of these steps to the cluster/cloud computing
 service of your choice. Alternatively we provide a "master" script which will
 run all the scripts for you, though we note that as the FRAGFOLD step very
 time consuming this master script is not ideal.
+
+Unless otherwised stated we assume python3
 
 ### Step-by-step Process
 
