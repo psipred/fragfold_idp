@@ -111,7 +111,7 @@ the previous steps
 
 `python RSEVAL.py --input_name a15a6b5e-9463-11e6-a62a-989096c13ee6`
 
-### One Step Process
+### Single Step Executable
 
 1. The master script has two modes. Report mode and execution mode. In Report
 mode the script only outputs the commands needed to run the steps but will
@@ -127,10 +127,16 @@ specifically configure each step.
 
 ## TODO
 
-1. Write runFFIDP.py
+1. Write master control script (FFIDP.py)
+    done: added runSeqAnalysis
+          added runFRAGFOLD
+          added dynamine
+    todo: add runFFIDP
+          add runConsensus
+          add RSEVAL
+          add PDBfile slidingwindow superposition
 
 ## NEXT UP
 
-4. Write master control script (FFIDP.py)
 5. Write Docs
 6. script to run FF on SGE
