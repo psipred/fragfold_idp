@@ -18,9 +18,12 @@ We provide an ansible script for installation to any standard linux distro, see 
 6. Generate evaluation statistics
 
 ## How to Install
-FFIDP largely assumes you will be running using python3
 
-1. Install python dependencies for your python3 installation ot virtualenv
+1. The FFIDP code is implemented in python3. Some of the dependencies such as
+dynamine require python2. You should ensure you have system installs of
+python2, python3, pip2 and pip3 available.
+
+2. Install python dependencies for your python3 installation ot virtualenv
 
 `pip install pyyaml`
 
@@ -28,25 +31,25 @@ FFIDP largely assumes you will be running using python3
 
 `pip install numpy`
 
-2. Install python2 dependencies for your python2 installation ot virtualenv
+3. Install python2 dependencies for your python2 installation ot virtualenv
 
 `pip2 install biopython`
 
-3. Checkout ansible https://github.com/ansible/ansible
-4. OPTIONAL: switch to a python2 virtualenv
-5. Get a Dynamine API key from http://dynamine.ibsquare.be/download/
-6. Edit the paths.yml file to reflect where you want to install the various
+4. Checkout ansible https://github.com/ansible/ansible
+5. OPTIONAL: switch to a python2 virtualenv
+6. Get a Dynamine API key from http://dynamine.ibsquare.be/download/
+7. Edit the paths.yml file to reflect where you want to install the various
    components or where they have already been installed.
 
-7. Run intialisation script for ansible
+8. Run intialisation script for ansible
 
 `source ~/ansible/hacking/env-setup`
 
-8. Change to the FF-idp ansible script directory
+9. Change to the FF-idp ansible script directory
 
 `cd ~/FRAGFOLD_idp/ansible`
 
-9. Run FFIDP installation script
+10. Run FFIDP installation script
 
 `ansible-playbook -i hosts install.yml -f 1`
 
@@ -54,7 +57,7 @@ After this point all the software listed in the paths.yml should be installed
 in the listed locations. If this fails or you wish to change anything the
 ansible-playbook command can be run repeatedly.
 
-10. If you used a python2 virtualenv to run ansible then switch back to
+11. If you used a python2 virtualenv to run ansible then switch back to
 your python3 evironment once the ansible install has been succesful
 
 ## How to run FRAGFOLD-IDP
