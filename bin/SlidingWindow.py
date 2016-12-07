@@ -14,15 +14,14 @@ from manipulatePDB import ReadPDB
 def run_Sliding_Window(ens_fp, SW_size=10, to_file=False):
 
     # READ *ENS* FILES
+    _ens = []
     if '*' in ens_fp:
-        _ens = []
         for inp_file in glob.glob(ens_fp):
             _ens.append(ReadPDB(inp_file))
-        ens = np.array(_ens)
-    else:
-        # in CA mode
-        ens = ReadPDB(ens_fp)
+    else:  # in CA mode
+        _ens.append(ReadPDB(ens_fp))
 
+    ens = np.array(_ens)
     PerRes_RMSD = sliding_window_RMSD(ens, sw=int(SW_size))
 
     if to_file is False:
@@ -44,7 +43,7 @@ def sliding_window_RMSD(*args, **opts):
     returns:
     np.array of per-residue RMSD values
     '''
-
+    #print(args)
 # **PRE-PROCESSING**
 # prepare proteins np.array, and
 # find out the length of the protein and number of conformations to analyse
@@ -61,20 +60,20 @@ def sliding_window_RMSD(*args, **opts):
             sw = opts['sw']
 
 # check input
-    if len(args) > 1:
-        n_conf = len(args)
-        prot1 = args[0]
+    print(len(args[0]))
+    if len(args[0]) > 1:
+        n_conf = len(args[0][0])
+        prot1 = args[0][0]
         if len(prot1.shape) > 1:
             n_aa = prot1.shape[-2]
         else:
             n_aa = 1
         proteins = np.zeros((n_conf, n_aa, 3))
-
         for n in range(n_conf):
-            proteins[n, :, :] = args[n]
+            proteins = args[0][n]
         del prot1
-    elif len(args) == 1:
-        proteins = args[0]
+    elif len(args[0]) == 1:
+        proteins = args[0][0]
         n_conf = proteins.shape[0]
         n_aa = proteins.shape[1]
     else:
@@ -294,3 +293,7 @@ def RMSD_dumb(arrA, arrB, per_res=False):
         return [np.sqrt(sum(r)) for r in rmsd]
     else:
         return np.sqrt(sum([sum(r) for r in zip(*rmsd)])/n_at)
+
+value = run_Sliding_Window("/home/dbuchan/Code/fragfold_idp/output/*_CLUSTER*")
+# value = run_Sliding_Window("/home/dbuchan/Code/fragfold_idp/output/a15a6b5e-9463-11e6-a62a-989096c13ee6_CLUSTER_001.pdb")
+print(value)

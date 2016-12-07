@@ -2,13 +2,13 @@
 
 ## Introduction
 
-FRAGFOLD-IDP is a complex multi stages processs with a large number of dependencies. These scripts are designed to help automate installation and running FF-IDP.
+FRAGFOLD-IDP is a complex multi-stage processs with a large number of dependencies. These scripts are designed to help automate both installation and running FF-IDP.
 
 ### Installation
 
 We provide an ansible script for installation to any standard linux distro, see below. You must have ansible and python2 available. See https://github.com/ansible/ansible for further details.
 
-### Runtime
+###  The basit FF-IDP process
 
 1. Run basic sequences analysis
 2. Build an ensemble of FRAGFOLD models
@@ -24,6 +24,7 @@ We provide an ansible script for installation to any standard linux distro, see 
 3. install python dependencies pyyaml
 
 `pip install pyyaml`
+
 `pip install biopython`
 
 4. Get a Dynamine API key from http://dynamine.ibsquare.be/download/
@@ -121,7 +122,7 @@ mode the script will run each command.
 `python FFIDP.py --input example/2KJV.pdb`
 `python FFIDP.py --input 2KJV.pdb --mode execute`
 
-This script has a great number of command line options allowing your to
+This script has a great number of command line options allowing you to
 specifically configure each step.
 
 ## TODO
@@ -130,10 +131,6 @@ specifically configure each step.
 
 ## NEXT UP
 
-1. Write runFFIDP.py
-2. Write runConsensus.py
-3. Write RSEVAL.py
 4. Write master control script (FFIDP.py)
 5. Write Docs
 6. script to run FF on SGE
-8. PDB sliding window thing
