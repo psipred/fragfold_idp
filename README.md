@@ -19,9 +19,8 @@ We provide an ansible script for installation to any standard linux distro, see 
 
 ## How to Install
 
-1. The FFIDP code is implemented in python3. Some of the dependencies such as
-dynamine require python2. You should ensure you have system installs of
-python2, python3, pip2 and pip3 available.
+1. The FFIDP code is implemented in python3. Some of the dependencies required
+other runtime environments such as the jvm and python3. You should ensure you have system installs of python2, python3, pip2, pip3, java, C/C++ available.
 
 2. Install python dependencies for your python3 installation ot virtualenv
 
