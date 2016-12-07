@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 #
 
-# import pybrain
 import numpy as np
+import pickle
 import subprocess
 import tempfile
 import os
@@ -12,42 +12,91 @@ import re
 
 
 """
-    5th step in the process. Takes Dynamine and FFIDP RMSD profile and builds
+    5th step in the process. Takes DynaMine and FFIDP RMSD profile and builds
     consensus output
 """
 
 
-def run_network(ffidp_fp, dm_fp, ss_fp, aln_fp, net_fp, out_fp):
-    '''
-    main script to run the neural network
+def run_network(ffidp_fp, dm_fp, ss_fp, aln_fp, net_fp, out_fp=None, scale=False):
+    '''main script to run the neural network
 
-    returns:
-    np.array with predicted per-residue RMSD values
+    Parameters
+    ----------
+    ffidp_fp
+        FRAGFOLD-IDP output file path
+    dm_fp
+        DynaMine output file path
+    ss_fp
+        PSIPRED SS2 file path
+    aln_fp
+        Multiple sequence alignment file path
+    net_fp
+        Neural network parameters file path (from data/)
+    out_fp
+        Output neural network results file path (default: None)
+    scale: bool
+        Should output network values be scaled for easier comparisons
+        to other methods?
+
+    Returns
+    -------
+    numpy.array
+        predicted per-residue RMSD values
     '''
 
-    fout = open(out_fp, 'a')
-    net = pybrain.tools.customxml.networkreader.NetworkReader.readFrom(net_fp)
+    net_fh = open(net_fp, 'r')
+    net = pickle.load(net_fh)
+    net_fh.close()
+
     inp = network_input(ffidp_fp, dm_fp, ss_fp, aln_fp)
 
     nn = []
     for res in inp:
-        nn.append(net.activate(res))
+        nn.append(net.activate(res)[0])
+    nn = np.array(nn)
 
-    return np.array(nn)
+    if out_fp:
+        np.savetxt(out_fp, nn, fmt='%.3f\n')
+
+    if scale:
+        nn = scale_out(nn)
+
+    return nn
 
 
 def network_input(ffidp_fp, dm_fp, ss_fp, aln_fp, win_size=9):
-    '''
+    '''Generate input for the neural network
+
+    Parameters
+    ----------
+    ffidp_fp
+        FRAGFOLD-IDP output file path
+    dm_fp
+        DynaMine output file path
+    ss_fp
+        PSIPRED SS2 file path
+    aln_fp
+        Multiple sequence alignment file path
+    win_size: int
+        Window size for sliding window size for neural network (default: 9)
+
+    Returns
+    -------
+    list of lists
+        list of per-residue features (246 features per residue if window size=9)
+
+    Notes
+    -----
     input is in the form:
-    DM	logistic(FF-IDP)	PSIPRED(3)	AAcomposition(21)	log(length)	log(N_dist)	log(C_dist)
+    DM	sigmoid(FF-IDP)	PSIPRED(3)	AAcomposition(21)	log(length)	log(N_dist)	log(C_dist)
     '''
 
     # read DynaMine results
     dm = read_inp(dm_fp, columns=(1, 2))
-    # read FRAGFOLD-IDP results
-    ff = list(map(lambda x: sigmoid(x), read_inp(ffidp_fp)))
+    # read FRAGFOLD-IDP results and apply sigmoid transformation
+    ff = list(map(lambda x: sigmoid(x, x0=1.432), read_inp(ffidp_fp)))
     # read secondary structure predictions
-    # PSIPRED SS file (NOT SS2!)
+    # PSIPRED SS2 file
     ss = read_inp(ss_fp,  columns=(3, 6))
 
     # sanity checks
@@ -58,24 +107,30 @@ def network_input(ffidp_fp, dm_fp, ss_fp, aln_fp, win_size=9):
         print('input file lengths do not match')
 
     # generate amino acid composition statistics
-    hhfilt="/Users/tomasz/projects/MicroProt/tools/hh-suite/build/bin/hhfilter"
-    aa = aa_composition(aln_fp, hhfilter=hhfilt)
+    aa = aa_composition(aln_fp)
 
     # generate list of input features
     inp_features = []
-    for res in range(len(ff)):
+    for res, res_val in enumerate(ff):
+        # ADD window features
+        # DynaMine, FFIDP, Secondary structure (3) features
         _feat = [dm[res], ff[res], ss[res][0], ss[res][1], ss[res][2]]
+
+        # ADD window features
+        # AA composition (21)
         for i in range(21):
             _feat.append(aa[res][i])
+
+        # ADD global fratures
+        # log(len)
+        n_res = len(ff)
+        _feat.append(np.log10(n_res))
+        # log(N_dist)
+        _feat.append(np.log10(res+1))
+        # log(C_dist)
+        _feat.append(np.log10(n_res-res))
+
         inp_features.append(_feat)
-
-    # ADD global fratures
-    # log(len)
-    # inp_features.append(np.log10(len(ff)))
-    # log(N_dist)
-    # log(C_dist)
-
-    print(inp_features[1])
 
     # perform sliding window on list of input features
     net_inp = SlidingWindow(inp_features, win_size)
@@ -85,8 +140,19 @@ def network_input(ffidp_fp, dm_fp, ss_fp, aln_fp, win_size=9):
 
 
 def read_inp(finp, columns=False):
-    '''
-    read input data as a list of lists
+    '''read input data as a list of lists
+
+    Parameters
+    ----------
+    finp: str
+        input file path
+    columns: tuple
+        select input columns range to be read (default: False; all columns)
+
+    Returns
+    -------
+    list of lists
+        list of per-residue input features
     '''
     f = open(str(finp), 'r')
     lines = f.readlines()
@@ -94,6 +160,9 @@ def read_inp(finp, columns=False):
 
     inp = []
     for line in lines:
+        # ignore commented (#) and blank lines
+        if line.startswith('#') or not line.strip():
+            continue
         if not columns:
             inp.append(list(map(float, line.split())))
         else:
@@ -101,37 +170,50 @@ def read_inp(finp, columns=False):
     return np.squeeze(inp)
 
 
-def aa_composition(msa_fp, hhfilter="$HHLIB/bin/hhfilter"):
-    '''
-    calculate AA composition statistics
+def aa_composition(msa_fp, hhfilter=None):
+    '''calculate AA composition statistics
 
-    input:
-    file path to file with MSA without headers (e.g. ffaln file)
+    Parameters
+    ----------
+    msa_fp: str
+        file path to file with MSA without headers
+        (e.g. `msa` file from example folder)
+    hhfilter: str
+        optional parameter to filter out similar sequences using HHfilter
+        (default: None)
 
-    returns:
-    2D numpy array of 21-element lists of residue frequencies
+    Returns
+    -------
+    numpy.array
+        2D numpy array of 21-element lists of residue frequencies
     '''
+
+    if hhfilter:
     # perform HHfilt on input alignment
-    tempdir = tempfile.mkdtemp(dir=os.getcwd())
-    a3mfilt_fp = tempdir + '/a3mfilt'
-    alnfilt_fp = tempdir + '/alnfilt'
-    aln_fp = tempdir + '/aln'
+        hhfilter="$HHLIB/bin/hhfilter"
+        tempdir = tempfile.mkdtemp(dir=os.getcwd())
+        a3mfilt_fp = tempdir + '/a3mfilt'
+        alnfilt_fp = tempdir + '/alnfilt'
+        aln_fp = tempdir + '/aln'
 
-    msa2fasta(msa_fp, aln_fp)
+        msa2fasta(msa_fp, aln_fp)
 
-    hhfilter_cmd = '%s -i %s -id 90 -qid 30 -o %s' % (hhfilter,
-                                                      aln_fp,
-                                                      a3mfilt_fp)
+        hhfilter_cmd = '%s -i %s -id 90 -qid 30 -o %s' % (hhfilter,
+                                                          aln_fp,
+                                                          a3mfilt_fp)
+        subprocess.call(hhfilter_cmd.split())
 
-    subprocess.call(hhfilter_cmd.split())
-
-    grep = subprocess.Popen(' '.join(['grep -v "^>"', a3mfilt_fp,
-                            "| sed '"'s/[a-z]//g'"' >", alnfilt_fp]),
-                            shell=True, stdout=subprocess.PIPE)
-    grep.communicate()
+        grep = subprocess.Popen(' '.join(['grep -v "^>"', a3mfilt_fp,
+                                "| sed '"'s/[a-z]//g'"' >", alnfilt_fp]),
+                                shell=True, stdout=subprocess.PIPE)
+        grep.communicate()
 
     aln_arr = []
-    f = open(alnfilt_fp, 'r')
+
+    if hhfilter:
+        f = open(alnfilt_fp, 'r')
+    else:
+        f = open(msa_fp, 'r')
     lines = f.readlines()
     f.close()
     for line in lines:
@@ -139,8 +221,8 @@ def aa_composition(msa_fp, hhfilter="$HHLIB/bin/hhfilter"):
 
     aln = np.asarray(aln_arr)
 
-    Naln = AlnToNum(aln)
-    N = float(aln.shape[1])
+    Naln = aln_to_num(aln)
+    N = int(aln.shape[1])
     freq = np.zeros((N, 21))
 
     for pos, col in enumerate(Naln.transpose()):
@@ -148,18 +230,19 @@ def aa_composition(msa_fp, hhfilter="$HHLIB/bin/hhfilter"):
             freq[pos, aa] = list(col).count(aa)/float(len(col))
 
     # clean up temp files
-    shutil.rmtree(tempdir)
+    if hhfilter:
+        shutil.rmtree(tempdir)
 
     return freq
 
 
 def SlidingWindow(inp_full, window_size=9):
-#####
-#####	remove log(length), N_dist and C_dist features from non-central residues
-#####
 
     # assert window size is an odd number
     assert window_size % 2 == 1
+    # check if `inp_full` is a list. If not, then make it a list
+    if not type(inp_full) is list:
+        inp_full = inp_full.tolist()
 
     inp_sw = []
     inp = []
@@ -201,7 +284,7 @@ def SlidingWindow(inp_full, window_size=9):
     return inp_sw
 
 
-def AlnToNum(aln):
+def aln_to_num(aln):
     N_aln = np.zeros(aln.shape)
     for i, col in enumerate(aln.transpose()):
         N_aln[:, i] = AA_alphabet(col)
@@ -241,17 +324,24 @@ def msa2fasta(in_fp, out_fp):
     out.close()
 
 
-def sigmoid(x):
-    y = 1.0/(1.0 + np.exp(-1.0*x))
+def sigmoid(x, x0=0.0):
+    y = 1.0/(1.0 + np.exp(-1.0*(x-x0)))
     return y
 
-def scale_out(raw_out):
-    '''
-    takes numpy.array
+def scale_out(raw_out, mean=0.986):
+    '''Scale neural network result to get results comparable with FRAGFOLD-IDP
 
-    returns:
-    logistic-normalized output
+    Parameters
+    ----------
+    raw_out: numpy.array
+    mean: float
+        mean value to scale to
+
+    Returns
+    -------
+    numpy.array
+        logistic-normalized output
     '''
-    mean = 0.986
+
     scaled_out = 1.0/(np.exp(-1.0*raw_out/(2+(2*mean))))
     return scaled_out
