@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+    #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 
@@ -9,7 +9,8 @@ import tempfile
 import os
 import shutil
 import re
-
+import yaml
+import argparse
 
 """
     5th step in the process. Takes DynaMine and FFIDP RMSD profile and builds
@@ -345,3 +346,51 @@ def scale_out(raw_out, mean=0.986):
 
     scaled_out = 1.0/(np.exp(-1.0*raw_out/(2+(2*mean))))
     return scaled_out
+
+script_path = os.path.dirname(os.path.realpath(__file__))
+paths_path = script_path+"/../paths.yml"
+if os.path.isfile(paths_path):
+    paths_yaml = open(paths_path)
+    paths = yaml.load(paths_yaml)
+else:
+    print("Unable to find paths.yml.n\nShould be in top dir for fragfold_idp")
+    exit()
+
+parser = argparse.ArgumentParser(description='Builds a Consensus disorder ' \
+                                 'profile from the FFIDP and Dynamine outputs')
+parser.add_argument('--input_name', help="job name for the files generated in "
+                                         "in the previous steps, usually "
+                                         "a uuid", required=True)
+parser.add_argument('--indir',
+                    help="Where to find the .ens file. Defaults to the "
+                         "runSeqAnalysis.py output directory",
+                    default=script_path+"/../output/")
+parser.add_argument('--outdir',
+                    help="Where to put the output files",
+                    default=script_path+"/../output/")
+parser.add_argument('--ffidp_path',
+                    help="The path for the FFIDP profile output",
+                    default=script_path+"/../output/")
+parser.add_argument('--dynamine_path',
+                    help="The path for the FFIDP profile output",
+                    default=script_path+"/../output/")
+parser.add_argument('--psipred_path',
+                    help="The path for the FFIDP profile output",
+                    default=script_path+"/../output/")
+parser.add_argument('--alignment_path',
+                    help="The path for the FFIDP profile output",
+                    default=script_path+"/../output/")
+parser.add_argument('--window_size',
+                    help="The path for the FFIDP profile output",
+                    default=9)
+
+args = parser.parse_args()
+print(args.ffidp_path+args.input_name+".")
+exit()
+# network_results = run_network(ffidp_fp
+#                               dm_fp
+#                               ss_fp
+#                               aln_fp
+#                               win_size=9)
+
+# run_network(ffidp_fp, dm_fp, ss_fp, aln_fp, win_size=9)

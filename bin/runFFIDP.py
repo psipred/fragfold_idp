@@ -335,7 +335,7 @@ parser = argparse.ArgumentParser(description='Runs PFclust and the sliding '
                                              'window superposition code')
 parser.add_argument('--input_name', help="job name for the files generated in "
                                          "in the previous steps, usually "
-                                         "an uuid", required=True)
+                                         "a uuid", required=True)
 parser.add_argument('--indir',
                     help="Where to find the .ens file. Defaults to the "
                          "runSeqAnalysis.py output directory",
