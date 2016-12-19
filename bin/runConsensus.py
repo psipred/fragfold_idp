@@ -11,6 +11,7 @@ import shutil
 import re
 import yaml
 import argparse
+import glob
 
 """
     5th step in the process. Takes DynaMine and FFIDP RMSD profile and builds
@@ -385,7 +386,12 @@ parser.add_argument('--window_size',
                     default=9)
 
 args = parser.parse_args()
-print(args.ffidp_path+args.input_name+".")
+print(args.ffidp_path+args.input_name+".ffidp")
+print(args.ffidp_path+args.input_name+"/Dynamine_b_*")
+print(args.ffidp_path+args.input_name+".ss2")
+print(args.ffidp_path+args.input_name+".aln")
+
+
 exit()
 # network_results = run_network(ffidp_fp
 #                               dm_fp
