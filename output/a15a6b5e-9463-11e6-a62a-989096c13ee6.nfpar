@@ -1,0 +1,41 @@
+# FRAGFOLD Parameter File
+
+# Alignment file
+ALNFILE /scratch0/NOT_BACKED_UP/dbuchan/Code/fragfold_idp/bin/../output/a15a6b5e-9463-11e6-a62a-989096c13ee6.ffaln
+
+# contacts file
+
+# Weighting mode
+WTMODE STDEV
+# Steric mode
+STERMODE ALLATOM
+# Short range weighting
+SRWT 1.0
+# Long range weighting
+LRWT 1.0
+# Solvation weighting
+SOLVWT 1.0
+# Hydrogen bond weighting
+HBWT 1.0
+# Compactness weighting
+COMPACTWT 1.0
+# Steric weighting
+STERICWT 3.0
+# Disulphide weighting
+DSWT 0.0
+# RMSD-to-target weighting
+TARGWT 0.0
+# Residue-residue contact weighting
+RRWT 0.0
+# Max. annealing steps
+MAXSTEPS 10000000
+# Initial temperature
+INITEMP 0.6
+# MAXFRAGS
+MAXFRAGS 5
+# MAXFRAGS2
+MAXFRAGS2 25
+MODE FOLD
+POOLSIZE 10
+TRATIO 0.6
+OPTMETHOD REPMC
