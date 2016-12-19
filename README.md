@@ -141,7 +141,11 @@ specifically configure each step.
 
 ## TODO
 
-1. Write master control script (FFIDP.py)
+1. CLI for runConsensus.py
+
+## NEXT UP
+3. CLI for SlidingWindow.py
+4. Write master control script (FFIDP.py)
     done: added runSeqAnalysis
           added runFRAGFOLD
           added dynamine
@@ -149,8 +153,5 @@ specifically configure each step.
           add runConsensus
           add RSEVAL
           add PDBfile slidingwindow superposition
-
-## NEXT UP
-
 5. Write Docs
 6. script to run FF on SGE
