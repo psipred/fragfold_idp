@@ -381,22 +381,23 @@ parser.add_argument('--psipred_path',
 parser.add_argument('--alignment_path',
                     help="The path for the FFIDP profile output",
                     default=script_path+"/../output/")
-parser.add_argument('--window_size',
-                    help="The path for the FFIDP profile output",
-                    default=9)
 
 args = parser.parse_args()
-print(args.ffidp_path+args.input_name+".ffidp")
-print(args.ffidp_path+args.input_name+"/Dynamine_b_*")
-print(args.ffidp_path+args.input_name+".ss2")
-print(args.ffidp_path+args.input_name+".aln")
-
-
-exit()
-# network_results = run_network(ffidp_fp
-#                               dm_fp
-#                               ss_fp
-#                               aln_fp
-#                               win_size=9)
-
-# run_network(ffidp_fp, dm_fp, ss_fp, aln_fp, win_size=9)
+# print(args.ffidp_path+args.input_name+".ffidp")
+# print(args.ffidp_path+args.input_name+"/Dynamine_b_*")
+# print(args.ffidp_path+args.input_name+".ss2")
+# print(args.ffidp_path+args.input_name+".aln")
+dynaResults = glob.glob(args.ffidp_path+args.input_name+"/Dynamine_b_*")[0]
+dynamineOutput = ''
+for dynaFile in glob.glob(dynaResults+"/*"):
+    if ".pred" in dynaFile:
+        dynamineOutput = dynaFile
+# print(dynamineOutput)
+# exit()
+network_results = run_network(args.ffidp_path+args.input_name+".ffidp",
+                              dynamineOutput,
+                              args.ffidp_path+args.input_name+".ss2",
+                              args.ffidp_path+args.input_name+".aln",
+                              script_path+"/../data/network_params_example",
+                              out_fp=args.outdir+args.input_name+".consensus"
+                              )
