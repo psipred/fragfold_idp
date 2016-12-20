@@ -129,12 +129,18 @@ paths.yml file). Note dynamine is in python2 and requires biopython
 `python /opt/dynamine/dynamine.py output/a15a6b5e-9463-11e6-a62a-989096c13ee6.fasta`
 
 5. We would run the consensus predictor over the FF_IDP RMDS profile and the
-Dynamine profile
+Dynamine profile. This gives our final prediction values
 
 `python runConsensus.py --input_name a15a6b5e-9463-11e6-a62a-989096c13ee6`
 
-6. Finally we calcualte the prediction statistics integrating data from all
-the previous steps
+6. If your input PDB file is an NMR file with an ensembl of structures you
+can now run the slidingwindow script. SKIP THIS STEP IF YOUR INPUT PDB FILE
+IS NOT AN NMR ENSEMBLE
+
+`python SlidingWindow.py --input_name a15a6b5e-9463-11e6-a62a-989096c13ee6 --input_file example_data/2KJV.pdb`
+
+7. Finally we can calculate the correlation between the ensemble available
+for benchmarking and diagnositic purposes.
 
 `python RSEVAL.py --input_name a15a6b5e-9463-11e6-a62a-989096c13ee6`
 
@@ -154,9 +160,6 @@ specifically configure each step.
 
 ## TODO
 
-1. CLI for SlidingWindow.py
-
-## NEXT UP
 4. Write master control script (FFIDP.py)
     done: added runSeqAnalysis
           added runFRAGFOLD
@@ -165,5 +168,7 @@ specifically configure each step.
           add runConsensus
           add RSEVAL
           add PDBfile slidingwindow superposition
+
+## NEXT UP
 5. Write Docs
 6. script to run FF on SGE
