@@ -318,8 +318,8 @@ parser.add_argument('--window_size',
                     default=10)
 args = parser.parse_args()
 
-print(args.input_file)
-print(args.outdir+"/"+args.input_name+".pdb_ens")
+# print(args.input_file)
+# print(args.outdir+"/"+args.input_name+".pdb_ens")
 
 value = run_Sliding_Window(args.input_file,
                            to_file=args.outdir+"/"+args.input_name+".pdb_ens",
