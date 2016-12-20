@@ -46,8 +46,8 @@ def run_network(ffidp_fp, dm_fp, ss_fp, aln_fp, net_fp, out_fp=None, scale=False
         predicted per-residue RMSD values
     '''
 
-    net_fh = open(net_fp, 'r')
-    net = pickle.load(net_fh)
+    net_fh = open(net_fp, 'rb')
+    net = pickle.load(net_fh, encoding='latin1')
     net_fh.close()
 
     inp = network_input(ffidp_fp, dm_fp, ss_fp, aln_fp)
@@ -159,7 +159,7 @@ def read_inp(finp, columns=False):
     f = open(str(finp), 'r')
     lines = f.readlines()
     f.close()
-
+    #print(lines)
     inp = []
     for line in lines:
         # ignore commented (#) and blank lines
@@ -396,8 +396,8 @@ for dynaFile in glob.glob(dynaResults+"/*"):
 # exit()
 network_results = run_network(args.ffidp_path+args.input_name+".ffidp",
                               dynamineOutput,
-                              args.ffidp_path+args.input_name+".ss2",
-                              args.ffidp_path+args.input_name+".aln",
+                              args.ffidp_path+args.input_name+".ss",
+                              args.ffidp_path+args.input_name+".msa",
                               script_path+"/../data/network_params_example",
                               out_fp=args.outdir+args.input_name+".consensus"
                               )

@@ -22,13 +22,26 @@ We provide an ansible script for installation to any standard linux distro, see 
 1. The FFIDP code is implemented in python3. Some of the dependencies required
 other runtime environments such as the jvm and python3. You should ensure you have system installs of python2, python3, pip2, pip3, java, C/C++ available.
 
-2. Install python dependencies for your python3 installation ot virtualenv
+2. Install python dependencies for your python3 installation or virtualenv
 
 `pip install pyyaml`
 
 `pip install biopython`
 
 `pip install numpy`
+
+`pip install pybrain`
+
+  pip install pybrain for python3 may not work with the structure module
+  not correctly installing, instead try these 4 steps:
+
+`wget https://github.com/pybrain/pybrain/archive/master.zip`
+
+`unzip master.zip`
+
+`cd pybrain-master`
+
+`python setup.py install`
 
 3. Install python2 dependencies for your python2 installation ot virtualenv
 
@@ -69,7 +82,7 @@ service of your choice. Alternatively we provide a "master" script which will
 run all the scripts for you, though we note that as the FRAGFOLD step very
 time consuming this master script is not ideal.
 
-Unless otherwised stated we assume python3
+Unless otherwise stated we assume python3
 
 ### Step-by-step Process
 
