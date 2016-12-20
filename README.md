@@ -154,10 +154,9 @@ specifically configure each step.
 
 ## TODO
 
-1. CLI for runConsensus.py
+1. CLI for SlidingWindow.py
 
 ## NEXT UP
-3. CLI for SlidingWindow.py
 4. Write master control script (FFIDP.py)
     done: added runSeqAnalysis
           added runFRAGFOLD

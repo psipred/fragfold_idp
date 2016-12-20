@@ -363,8 +363,8 @@ parser.add_argument('--input_name', help="job name for the files generated in "
                                          "in the previous steps, usually "
                                          "a uuid", required=True)
 parser.add_argument('--indir',
-                    help="Where to find the .ens file. Defaults to the "
-                         "runSeqAnalysis.py output directory",
+                    help="Where to find the dynamine and ffidp files. Defaults ""
+                         "to the runSeqAnalysis.py output directory",
                     default=script_path+"/../output/")
 parser.add_argument('--outdir',
                     help="Where to put the output files",

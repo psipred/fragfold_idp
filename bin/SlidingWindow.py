@@ -3,6 +3,9 @@ from itertools import combinations
 import glob
 from os.path import splitext
 from manipulatePDB import ReadPDB
+import os
+import yaml
+import argparse
 
 """
     The script takes an ensemble of structures (PDB file) and performs sliding
@@ -293,6 +296,32 @@ def RMSD_dumb(arrA, arrB, per_res=False):
     else:
         return np.sqrt(sum([sum(r) for r in zip(*rmsd)])/n_at)
 
-value = run_Sliding_Window("/home/dbuchan/Code/fragfold_idp/output/*_CLUSTER*")
-# value = run_Sliding_Window("/home/dbuchan/Code/fragfold_idp/output/a15a6b5e-9463-11e6-a62a-989096c13ee6_CLUSTER_001.pdb")
-print(value)
+
+script_path = os.path.dirname(os.path.realpath(__file__))
+paths_path = script_path+"/../paths.yml"
+if os.path.isfile(paths_path):
+    paths_yaml = open(paths_path)
+    paths = yaml.load(paths_yaml)
+else:
+    print("Unable to find paths.yml.n\nShould be in top dir for fragfold_idp")
+    exit()
+
+parser = argparse.ArgumentParser(description='Runs the SlidingWindow'
+                                 'superposition code over an input NMR pdbfile')
+parser.add_argument('--input_file', help="Input NMR PDB file", required=True)
+parser.add_argument('--input_name', help="Results naming", required=True)
+parser.add_argument('--outdir',
+                    help="Where to put the output files",
+                    default=script_path+"/../output/")
+parser.add_argument('--window_size',
+                    help="Where to put the output files",
+                    default=10)
+args = parser.parse_args()
+
+print(args.input_file)
+print(args.outdir+"/"+args.input_name+".pdb_ens")
+
+value = run_Sliding_Window(args.input_file,
+                           to_file=args.outdir+"/"+args.input_name+".pdb_ens",
+                           SW_size=args.window_size)# value = run_Sliding_Window("/home/dbuchan/Code/fragfold_idp/output/a15a6b5e-9463-11e6-a62a-989096c13ee6_CLUSTER_001.pdb")
+# print(value)
