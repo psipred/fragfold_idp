@@ -1,5 +1,7 @@
 import argparse
 from scipy import stats
+import os
+import yaml
 
 """
    The script takes any 2 disorder profiles (PDB, FRAGFOLD, consensus, DynaMine)

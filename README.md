@@ -32,6 +32,8 @@ other runtime environments such as the jvm and python3. You should ensure you ha
 
 `pip install pybrain`
 
+`pip install scipy`
+
   pip install pybrain for python3 may not work with the structure module
   not correctly installing, instead try these 4 steps:
 
@@ -139,10 +141,10 @@ IS NOT AN NMR ENSEMBLE
 
 `python SlidingWindow.py --input_name a15a6b5e-9463-11e6-a62a-989096c13ee6 --input_file example_data/2KJV.pdb`
 
-7. Finally we can calculate the correlation between the ensemble available
-for benchmarking and diagnositic purposes.
+7. Finally we can calculate the correlation between the various profiles
+produced. This step is purely for benchmarking and may be omitted.
 
-`python RSEVAL.py --input_name a15a6b5e-9463-11e6-a62a-989096c13ee6`
+`python RSEVAL.py --i a15a6b5e-9463-11e6-a62a-989096c13ee6.pdb_ens -j a15a6b5e-9463-11e6-a62a-989096c13ee6.consensus`
 
 ### Single Step Executable
 

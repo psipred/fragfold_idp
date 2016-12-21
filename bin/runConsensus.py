@@ -373,13 +373,13 @@ parser.add_argument('--ffidp_path',
                     help="The path for the FFIDP profile output",
                     default=script_path+"/../output/")
 parser.add_argument('--dynamine_path',
-                    help="The path for the FFIDP profile output",
+                    help="The path for the dynamine profile output",
                     default=script_path+"/../output/")
 parser.add_argument('--psipred_path',
-                    help="The path for the FFIDP profile output",
+                    help="The path for the psipred ss output",
                     default=script_path+"/../output/")
 parser.add_argument('--alignment_path',
-                    help="The path for the FFIDP profile output",
+                    help="The path for the MSA",
                     default=script_path+"/../output/")
 
 args = parser.parse_args()
