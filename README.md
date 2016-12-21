@@ -162,14 +162,12 @@ specifically configure each step.
 
 ## TODO
 
-4. Write master control script (FFIDP.py)
-    done: added runSeqAnalysis
-          added runFRAGFOLD
-          added dynamine
-    todo: add runFFIDP
-          add runConsensus
-          add RSEVAL
-          add PDBfile slidingwindow superposition
+1. Follow instructions and install from scratch to test if this is working
+2. run FFIDP to get the commands needed and then run each command to test it
+   works
+3. run FFIDP in execute mode.
+4. Double check the dynamine profile parsing in both RSEVAL and runConsensus
+   actually works
 
 ## NEXT UP
 5. Write Docs
