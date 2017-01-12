@@ -142,7 +142,7 @@ IS NOT AN NMR ENSEMBLE
 `python SlidingWindow.py --input_name a15a6b5e-9463-11e6-a62a-989096c13ee6 --input_file example_data/2KJV.pdb`
 
 7. Finally we can calculate the correlation between the various profiles
-produced. This step is purely for benchmarking and may be omitted.
+produced. This step is purely for benchmarking and may be omitted. For instance:
 
 `python RSEVAL.py --i a15a6b5e-9463-11e6-a62a-989096c13ee6.pdb_ens -j a15a6b5e-9463-11e6-a62a-989096c13ee6.consensus`
 
@@ -160,16 +160,19 @@ mode the script will run each command.
 This script has a great number of command line options allowing you to
 specifically configure each step.
 
+## Outputs
+
+FF-IDP produces a large number of intermediary files while executing each step.
+The important files are the outputs of runFFIDP and runConsensus Which...
+blah, blah, blah, blah
+
 ## TODO
 
 1. Follow instructions and install from scratch to test if this is working
 2. run FFIDP to get the commands needed and then run each command to test it
    works
 3. run FFIDP in execute mode.
-4. Double check the dynamine profile parsing in both RSEVAL and runConsensus
-   actually works
-5. Make pretty human understandable outputs for runFFIDP and runConsensus
+4. Make pretty human understandable outputs for runFFIDP and runConsensus
 
 ## NEXT UP
 5. Write Docs
-6. script to run FF on SGE
