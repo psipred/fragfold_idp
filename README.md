@@ -168,6 +168,7 @@ specifically configure each step.
 3. run FFIDP in execute mode.
 4. Double check the dynamine profile parsing in both RSEVAL and runConsensus
    actually works
+5. Make pretty human understandable outputs for runFFIDP and runConsensus
 
 ## NEXT UP
 5. Write Docs
