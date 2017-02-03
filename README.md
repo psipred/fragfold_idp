@@ -38,7 +38,7 @@ other runtime environments such as the jvm and python2. You should ensure you ha
 `python setup.py install`
 
 3. Checkout ansible https://github.com/ansible/ansible
-4. OPTIONAL: You may wish to use a python2 virtualenv for steps 6 to 10.
+4. OPTIONAL: You may wish to use a python2 virtualenv for steps 5 to 10.
 5. Install python2 dependencies
 
 `pip2 install biopython`
