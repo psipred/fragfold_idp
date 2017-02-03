@@ -120,7 +120,7 @@ directory. You can now use this with the dynamine commandline script to
 make a protein dynamics prediction (note where you installed dynamine in the
 paths.yml file). Note dynamine is in python2 and requires biopython
 
-`python /opt/dynamine/dynamine.py output/a15a6b5e-9463-11e6-a62a-989096c13ee6.fasta`
+`python2 /opt/dynamine/dynamine.py output/a15a6b5e-9463-11e6-a62a-989096c13ee6.fasta`
 
 5. We would run the consensus predictor over the FF_IDP RMDS profile and the
 Dynamine profile. This gives our final prediction values
