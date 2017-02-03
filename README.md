@@ -152,7 +152,7 @@ mode the script will run each command.
 This script has a great number of command line options allowing you to
 specifically configure each step.
 
-## Ojutputs
+## Outputs
 
 FF-IDP produces a large number of intermediary files while executing each step.
 The important files are the outputs of runFFIDP and runConsensus Which...
