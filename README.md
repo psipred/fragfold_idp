@@ -4,11 +4,7 @@
 
 FRAGFOLD-IDP is a complex multi-stage processs with a large number of dependencies. These scripts are designed to help automate both installation and running FF-IDP.
 
-### Installation
-
-We provide an ansible script for installation to any standard linux distro, see below. You must have ansible and python2 available. See https://github.com/ansible/ansible for further details.
-
-###  The basit FF-IDP process
+###  The basic FF-IDP process
 
 1. Run basic sequences analysis
 2. Build an ensemble of FRAGFOLD models
@@ -17,24 +13,20 @@ We provide an ansible script for installation to any standard linux distro, see 
 5. Build Consensus output
 6. Generate evaluation statistics
 
-## How to Install
+## Installation
 
-1. The FFIDP code is implemented in python3. Some of the dependencies required
-other runtime environments such as the jvm and python3. You should ensure you have system installs of python2, python3, pip2, pip3, java, C/C++ available.
+We provide an ansible script for installation to any standard linux distro, see below. You must have ansible and python2 available. See https://github.com/ansible/ansible for further details.
 
-2. Install python dependencies for your python3 installation or virtualenv
+### Install Steps
 
-`pip install pyyaml`
+1. The FFIDP code is implemented in python3. Some of the dependencies require
+other runtime environments such as the jvm and python2. You should ensure you have system installs of python2, python3, pip2, pip3, java, C/C++ available.
 
-`pip install biopython`
+2. Install python3 dependencies for your python3 installation or virtualenv
 
-`pip install numpy`
+`pip install -r requirements.txt`
 
-`pip install pybrain`
-
-`pip install scipy`
-
-  pip install pybrain for python3 may not work with the structure module
+ Note: pip install pybrain for python3 may not work with the structure module
   not correctly installing, instead try these 4 steps:
 
 `wget https://github.com/pybrain/pybrain/archive/master.zip`
@@ -45,17 +37,17 @@ other runtime environments such as the jvm and python3. You should ensure you ha
 
 `python setup.py install`
 
-3. Install python2 dependencies for your python2 installation ot virtualenv
+3. Checkout ansible https://github.com/ansible/ansible
+4. OPTIONAL: You may wish to use a python2 virtualenv for steps 6 to 10.
+5. Install python2 dependencies
 
 `pip2 install biopython`
 
-4. Checkout ansible https://github.com/ansible/ansible
-5. OPTIONAL: switch to a python2 virtualenv
 6. Get a Dynamine API key from http://dynamine.ibsquare.be/download/
 7. Edit the paths.yml file to reflect where you want to install the various
    components or where they have already been installed.
 
-8. Run intialisation script for ansible
+8. Run the ansible intialisation script provided by the ansible package
 
 `source ~/ansible/hacking/env-setup`
 
@@ -72,7 +64,7 @@ in the listed locations. If this fails or you wish to change anything the
 ansible-playbook command can be run repeatedly.
 
 11. If you used a python2 virtualenv to run ansible then switch back to
-your python3 evironment once the ansible install has been succesful
+your python3 evironment once the ansible install is been succesful
 
 ## How to run FRAGFOLD-IDP
 
@@ -160,7 +152,7 @@ mode the script will run each command.
 This script has a great number of command line options allowing you to
 specifically configure each step.
 
-## Outputs
+## Ojutputs
 
 FF-IDP produces a large number of intermediary files while executing each step.
 The important files are the outputs of runFFIDP and runConsensus Which...

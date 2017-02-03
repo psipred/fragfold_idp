@@ -1,0 +1,6 @@
+biopython==1.68
+numpy==1.11.2
+pyaml==16.11.4
+PyYAML==3.12
+scipy==0.18.1
+PyBrain==0.3.3
