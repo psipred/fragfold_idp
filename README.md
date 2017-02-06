@@ -46,7 +46,7 @@ other runtime environments such as the jvm and python2. You should ensure you ha
 
     `pip2 install biopython`
 
-6. Get a Dynamine API key from http://dynamine.ibsquare.be/download/
+6. Get a DynaMine API key from http://dynamine.ibsquare.be/download/
 7. Edit the paths.yml file to reflect where you want to install the various
    components or where they have already been installed.
 
@@ -119,9 +119,9 @@ and the FRAGFOLD IDP superposition. It will output the FF_IDP RMSD profile
     `python runFFIDP.py --input_name a15a6b5e-9463-11e6-a62a-989096c13ee6`
 
 4. Step 1 will have generated a fasta file from your input pdb in the output
-    directory. You can now use this with the dynamine commandline script to
-    make a protein dynamics prediction (note where you installed dynamine in the
-    paths.yml file). Note dynamine is in python2 and requires biopython
+    directory. You can now use this with the DynaMine commandline script to
+    make a protein dynamics prediction (note where you installed DynaMine in the
+    paths.yml file). Note, *DynaMine is in python2 and requires biopython*
 
     `python2 /opt/dynamine/dynamine.py output/a15a6b5e-9463-11e6-a62a-989096c13ee6.fasta`
 
@@ -130,14 +130,13 @@ Dynamine profile. This gives our final prediction values
 
     `python runConsensus.py --input_name a15a6b5e-9463-11e6-a62a-989096c13ee6`
 
-6. If your input PDB file is an NMR file with an ensembl of structures you
-can now run the slidingwindow script. SKIP THIS STEP IF YOUR INPUT PDB FILE
-IS NOT AN NMR ENSEMBLE
+6. Run sliding window superposition on your output ensembles. If you do benchmarking and your input PDB file 
+is an NMR file with an ensemble of structures you can also run the sliding window script on it.
 
     `python SlidingWindow.py --input_name a15a6b5e-9463-11e6-a62a-989096c13ee6 --input_file example_data/2KJV.pdb`
 
-7. Finally we can calculate the correlation between the various profiles
-produced. This step is purely for benchmarking and may be omitted. For instance:
+7. Finally, we can calculate the correlation between the various profiles
+produced. *This step is purely for benchmarking and may be omitted.* For instance:
 
     `python RSEVAL.py --i a15a6b5e-9463-11e6-a62a-989096c13ee6.pdb_ens -j a15a6b5e-9463-11e6-a62a-989096c13ee6.consensus`
 
@@ -152,8 +151,8 @@ mode the script will run each command.
     `python FFIDP.py --input example/2KJV.pdb`
     `python FFIDP.py --input 2KJV.pdb --mode execute`
 
-    This script has a great number of command line options allowing you to
-    specifically configure each step.
+    *This script has a great number of command line options allowing you to
+    specifically configure each step.*
 
 ## Outputs
 
