@@ -133,14 +133,14 @@ Dynamine profile. This gives our final prediction values
 
 `python runConsensus.py --input_name a15a6b5e-9463-11e6-a62a-989096c13ee6`
 
-6. If your input PDB file is an NMR file with an ensembl of structures you
+6. If your input PDB file is an NMR file with an ensemble of structures you
 can now run the slidingwindow script. SKIP THIS STEP IF YOUR INPUT PDB FILE
 IS NOT AN NMR ENSEMBLE
 
 `python SlidingWindow.py --input_name a15a6b5e-9463-11e6-a62a-989096c13ee6 --input_file example_data/2KJV.pdb`
 
 7. Finally we can calculate the correlation between the ensemble available
-for benchmarking and diagnositic purposes.
+for benchmarking and diagnostic purposes.
 
 `python RSEVAL.py --input_name a15a6b5e-9463-11e6-a62a-989096c13ee6`
 
