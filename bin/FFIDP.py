@@ -3,6 +3,9 @@ import yaml
 import argparse
 import sys
 import uuid
+import glob
+import itertools
+from subprocess import call
 
 """
     Master scripts
@@ -27,6 +30,9 @@ else:
 
 parser = argparse.ArgumentParser(description='Runs FRAGFOLD-IDP')
 parser.add_argument('--input', help="PDB file for input", required=True)
+parser.add_argument('--mode', help="Control whether the commands are printed"
+                                   "or executed",
+                                   default="print")
 
 # Seq Analysis arguments
 parser.add_argument('--chain',
@@ -92,6 +98,30 @@ parser.add_argument('--dynamine_dir',
                     help="installation location for dynamine, used by ",
                     default=paths["dynamine_dir"])
 
+##FFIDP arguments
+
+##runConsensus arguments
+parser.add_argument('--ffidp_profile_path',
+                    help="The path for the FFIDP profile output for "
+                         "runConsensus",
+                    default=script_path+"/../output/")
+parser.add_argument('--dynamine_profile_path',
+                    help="The path for the dynamine profile output for "
+                          "runConsensus",
+                    default=script_path+"/../output/")
+parser.add_argument('--psipred_result_path',
+                    help="The path for the psipred ss output for runConsensus",
+                    default=script_path+"/../output/")
+parser.add_argument('--alignment_path',
+                    help="The path for the MSA for runConsensus",
+                    default=script_path+"/../output/")
+
+
+##SlidingWindow arguments
+parser.add_argument('--window_size',
+                    help="size of the sliding window for SlidingWindow.py",
+                    default=10)
+
 args = parser.parse_args()
 
 # Construct the runSeqAnalysis.py command 1st step
@@ -138,6 +168,18 @@ if "--fragfold_dir" in sys.argv:
 print("#### runFRAGFOLD Command ####")
 print(" ".join(ff_args)+"\n")
 
+# Construct the runFFIDP command 3rd step
+ffidp_args = ["python", script_path+"/runFFIDP.py",
+              "--input_name", args.name,
+              ]
+if "--outdir" in sys.argv:
+    ffidp_args += ['--outdir', args.outdir]
+if "--indir" in sys.argv:
+    ffidp_args += ['--indir', args.indir]
+
+print("#### runFFIDP Command ####")
+print(" ".join(ffidp_args)+"\n")
+
 # Construct the dynamine command 4th step
 dynamine_args = ["python2", args.dynamine_dir+"/dynamine.py",
                  args.outdir+args.name+".fasta",
@@ -145,3 +187,67 @@ dynamine_args = ["python2", args.dynamine_dir+"/dynamine.py",
 
 print("#### Dynamine Command ####")
 print(" ".join(dynamine_args)+"\n")
+
+# Construct the runConsensus 5th step
+consensus_args = ["python", script_path+"/runConsensus.py",
+                  "--input_name", args.name,
+                  ]
+if "--outdir" in sys.argv:
+    consensus_args += ['--outdir', args.outdir]
+if "--indir" in sys.argv:
+    consensus_args += ['--indir', args.indir]
+if "--ffidp_profile_path" in sys.argv:
+    consensus_args += ['--ffidp_path', args.ffidp_profile_path]
+if "--dynamine_profile_path" in sys.argv:
+    consensus_args += ['--dynamine_path', args.dynamine_profile_path]
+if "--psipred_result_path" in sys.argv:
+    consensus_args += ['--psipred_path', args.psipred_result_path]
+if "--alignment_path" in sys.argv:
+    consensus_args += ['--alignment_path', args.alignment_path]
+
+print("#### runConsensus Command ####")
+print(" ".join(consensus_args)+"\n")
+
+# Construct the run sliding window command
+sliding_args = ["python", script_path+"/SlidingWindow.py",
+                "--input_name", args.name,
+                "--input_file", args.input]
+if "--outdir" in sys.argv:
+    sliding_args += ['--outdir', args.outdir]
+if "--window_size" in sys.argv:
+    sliding_args += ['--window_size', args.window_size]
+
+print("#### SlidingWindow Command ####")
+print(" ".join(sliding_args)+"\n")
+
+
+print("#### RSEVAL Commands ####")
+dynaResults = glob.glob(args.outdir+"/"+args.name+"/Dynamine_b_*")[0]
+dynamineOutput = ''
+for dynaFile in glob.glob(dynaResults+"/*"):
+    if ".pred" in dynaFile:
+        dynamineOutput = dynaFile
+
+profiles = [args.outdir+"/"+args.name+".ffidp",  # FFIDP profile
+            dynamineOutput,  # Dynamime profile
+            args.outdir+"/"+args.name+".consensus",  # Consensus profile
+            args.outdir+"/"+args.name+".pdb_ens",  # PDB profile
+            ]
+for pair in itertools.combinations(profiles, 2):
+    if pair[0] == pair[1]:
+        continue
+    rseval_args = ['python', script_path+"/RSEVAL.py",
+                   '-i', pair[0],
+                   '-j', pair[1],]
+    print(" ".join(rseval_args)+"\n")
+
+# Construct RSEVAL command
+if args.mode == 'execute':
+    call(seq_args)
+    call(ff_args)
+    call(ffidp_args)
+    call(dynamine_args)
+    call(consensus_args)
+    call(sliding_args)
+    print("RSEVAL calls are not executed. These should be run manually if "
+          "needed")

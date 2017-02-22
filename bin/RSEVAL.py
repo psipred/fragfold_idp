@@ -1,16 +1,25 @@
 import argparse
 from scipy import stats
+import os
+import yaml
 
 """
    The script takes any 2 disorder profiles (PDB, FRAGFOLD, consensus, DynaMine)
    and outputs Spearman's rank correlation coefficient (Rs) between them
 """
 
+def skip_comments(iterable, char):
+    '''Skip comments lines when parsing a file'''
+    for line in iterable:
+        if not line.startswith(char):
+            yield line
+
 
 def read_profile(fp):
     pr_rmsd = []
     with open(fp, 'r') as f:
-        for line in f:
+        lines = skip_comments(f.readlines(), "*")
+        for line in lines:
             value = line.split()
             if len(value) > 1:
                 pr_rmsd.append(float(value[1]))

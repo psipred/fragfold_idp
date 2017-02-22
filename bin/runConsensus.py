@@ -18,6 +18,11 @@ import glob
     consensus output
 """
 
+def skip_comments(iterable, char):
+    '''Skip comments lines when parsing a file'''
+    for line in iterable:
+        if not line.startswith(char):
+            yield line
 
 def run_network(ffidp_fp, dm_fp, ss_fp, aln_fp, net_fp, out_fp=None, scale=False):
     '''main script to run the neural network
@@ -157,13 +162,13 @@ def read_inp(finp, columns=False):
         list of per-residue input features
     '''
     f = open(str(finp), 'r')
-    lines = f.readlines()
+    lines = skip_comments(f.readlines(), "*")
     f.close()
     #print(lines)
     inp = []
     for line in lines:
-        # ignore commented (#) and blank lines
-        if line.startswith('#') or not line.strip():
+        # blank lines
+        if len(line.strip()) == 0:
             continue
         if not columns:
             inp.append(list(map(float, line.split())))
@@ -363,7 +368,7 @@ parser.add_argument('--input_name', help="job name for the files generated in "
                                          "in the previous steps, usually "
                                          "a uuid", required=True)
 parser.add_argument('--indir',
-                    help="Where to find the dynamine and ffidp files. Defaults ""
+                    help="Where to find the dynamine and ffidp files. Defaults "
                          "to the runSeqAnalysis.py output directory",
                     default=script_path+"/../output/")
 parser.add_argument('--outdir',
@@ -373,13 +378,13 @@ parser.add_argument('--ffidp_path',
                     help="The path for the FFIDP profile output",
                     default=script_path+"/../output/")
 parser.add_argument('--dynamine_path',
-                    help="The path for the FFIDP profile output",
+                    help="The path for the dynamine profile output",
                     default=script_path+"/../output/")
 parser.add_argument('--psipred_path',
-                    help="The path for the FFIDP profile output",
+                    help="The path for the psipred ss output",
                     default=script_path+"/../output/")
 parser.add_argument('--alignment_path',
-                    help="The path for the FFIDP profile output",
+                    help="The path for the MSA",
                     default=script_path+"/../output/")
 
 args = parser.parse_args()
