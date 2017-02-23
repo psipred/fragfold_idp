@@ -15,28 +15,28 @@
   - name: change psipred db
     when: psipred_exist.stat.exists == False
     replace:
-      dest: "{{ download_path }}/psipred/BLAST+/runpsipredplus"
+      dest: "{{ psipred_dir }}/BLAST+/runpsipredplus"
       replace: 'set dbname = uniref90.fasta'
       regexp: '^set\sdbname\s=\suniref90filt'
 
   - name: change psipred blastdb
     when: psipred_exist.stat.exists == False
     replace:
-      dest: "{{ download_path }}/psipred/BLAST+/runpsipredplus"
+      dest: "{{ psipred_dir }}/BLAST+/runpsipredplus"
       replace: 'set ncbidir = {{ blast_dir }}/bin'
       regexp: '^set\sncbidir\s=\s/usr/local/bin'
 
   - name: change psipred psipred bin
     when: psipred_exist.stat.exists == False
     replace:
-      dest: "{{ download_path }}/psipred/BLAST+/runpsipredplus"
+      dest: "{{ psipred_dir }}/BLAST+/runpsipredplus"
       replace: 'set execdir = {{ psipred_dir }}/bin'
       regexp: '^set\sexecdir\s=\s../bin'
 
   - name: change psipred psipred data
     when: psipred_exist.stat.exists == False
     replace:
-      dest: "{{ download_path }}/psipred/BLAST+/runpsipredplus"
+      dest: "{{ psipred_dir }}/BLAST+/runpsipredplus"
       replace: 'set datadir = {{ psipred_dir }}/data'
       regexp: '^set\sdatadir\s=\s../data'
 
@@ -48,16 +48,20 @@
     when: blast_exist.stat.exists == False
     get_url:
       url: "ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/{{ blastversion }}/ncbi-blast-{{ blastversion }}+-x64-linux.tar.gz"
-      dest: "{{ download_path }}"
+      dest: "{{ blast_parent_dir }}"
       timeout: 120
     register: get_url_result
 
   - name: unarchive blast+
+    shell: cd {{ blast_parent_dir }}/; tar -zxvf ncbi-blast-{{ blastversion }}+-x64-linux.tar.gz
     when: blast_exist.stat.exists == False
-    unarchive:
-      src: "{{ download_path }}/ncbi-blast-{{ blastversion }}+-x64-linux.tar.gz"
-      dest: "{{ download_path }}"
-      remote_src: yes
+
+  # - name: unarchive blast+
+  #   when: blast_exist.stat.exists == False
+  #   unarchive:
+  #     src: "{{ download_path }}/ncbi-blast-{{ blastversion }}+-x64-linux.tar.gz"
+  #     dest: "{{ download_path }}"
+  #     remote_src: yes
 
   - name: Check if HHSuite installed
     stat: path={{ hhsuite_dir }}
@@ -66,17 +70,21 @@
   - name: get HHBlits
     when: hhsuite_exist.stat.exists == False
     get_url:
-      url: http://wwwuser.gwdg.de/~compbiol/data/hhsuite/releases/hhsuite-latest-linux-x86_64.tar.gz
-      dest: "{{ download_path }}"
+      url: "http://wwwuser.gwdg.de/~compbiol/data/hhsuite/releases/{{ hhdownload }}"
+      dest: "{{ hhsuite_parent_dir }}"
       timeout: 120
     register: get_url_result
 
+  # - name: unarchive hhblits
+  #   when: blast_exist.stat.exists == False
+  #   unarchive:
+  #     src: "{{ download_path }}/hhsuite-latest-linux-x86_64.tar.gz"
+  #     dest: "{{ download_path }}"
+  #     remote_src: yes
+
   - name: unarchive hhblits
-    when: blast_exist.stat.exists == False
-    unarchive:
-      src: "{{ download_path }}/hhsuite-latest-linux-x86_64.tar.gz"
-      dest: "{{ download_path }}"
-      remote_src: yes
+    shell: cd {{ hhsuite_parent_dir }}/; tar -zxvf {{ hhdownload }}
+    when: hhsuite_exist.stat.exists == False
 
   - name: Check if uniref90 available
     stat: path={{ uniref90_dir }}
@@ -170,16 +178,20 @@
     when: dynamine_exist.stat.exists == False
     get_url:
       url: "http://dynamine.ibsquare.be/www/dynamine.tgz"
-      dest: "{{ download_path }}"
+      dest: "{{ dynamine_parent_dir }}"
       timeout: 120
     register: get_url_result
 
-  - name: unarchive dynamine
+  # - name: unarchive dynamine
+  #   when: dynamine_exist.stat.exists == False
+  #   unarchive:
+  #     src: "{{ dynamine_parent_dir }}/dynamine.tgz"
+  #     dest: "{{ dynamine_parent_dir }}"
+  #     remote_src: yes
+
+  - name: untar dynamie
+    shell: "cd {{ dynamine_parent_dir }}; tar -zxvf dynamine.tgz"
     when: dynamine_exist.stat.exists == False
-    unarchive:
-      src: "{{ download_path }}/dynamine.tgz"
-      dest: "{{ download_path }}"
-      remote_src: yes
 
   - name: change dynamine API Key
     when: dynamine_exist.stat.exists == False

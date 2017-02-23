@@ -22,7 +22,7 @@ You must have ansible and python2 available. See https://github.com/ansible/ansi
 ### Install Steps
 
 1. The FFIDP code is implemented in python3. Some of the dependencies require
-other runtime environments such as the jvm and python2. You should ensure you have system installs of python2, python3, pip2, pip3, java, C/C++ available.
+other runtime environments such as the jvm and python2. You should ensure you have system installs of tar, python2, python3, pip2, pip3, java and C/C++ available.
 
 2. Install python3 dependencies for your python3 installation or virtualenv
 
@@ -39,24 +39,31 @@ other runtime environments such as the jvm and python2. You should ensure you ha
 
     `python setup.py install`
 
-3. Checkout ansible https://github.com/ansible/ansible
+3. Checkout ansible
+
+    `git clone https://github.com/ansible/ansible`
+
 4. OPTIONAL: You may wish to use a python2 virtualenv for steps 5 to 10.  
 
 5. Install python2 dependencies
 
     `pip2 install biopython`
+    `pip2 install jinja2`
 
 6. Get a DynaMine API key from http://dynamine.ibsquare.be/download/
+
 7. Edit the paths.yml file to reflect where you want to install the various
-   components or where they have already been installed.
+   components or where they have already been installed. Ensure you have the
+   version for blast and hhdb for your operating system. Note that you are
+   free to update to more recent versions HHBlits or Blast+
 
 8. Run the ansible intialisation script provided by the ansible package
 
-    `source ~/ansible/hacking/env-setup`
+    `source [path_to_ansible]/ansible/hacking/env-setup`
 
 9. Change to the FFIDP ansible script directory
 
-    `cd ~/FRAGFOLD_idp/ansible`
+    `cd [ff_idp_root]/fragfold_idp/ansible`
 
 10. Run FFIDP installation script
 

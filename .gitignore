@@ -8,3 +8,4 @@ opt/hhsuite-2.0.16-linux-x86_64/
 /bin/dependencies/fragfold/*
 *__pycache__*
 *.DS_store
+paths_mac.yml
