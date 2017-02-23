@@ -1,10 +1,10 @@
 Query         example_data/2KJV.pdb| chain A
 Match_columns 101
 No_of_seqs    1028 out of 2064
-Neff          7.9
+Neff          7.9 
 Searched_HMMs 778
-Date          Thu Feb 23 12:39:13 2017
-Command       /opt/hhsuite-2.0.16-linux-x86_64/bin/hhblits -i /../output/e62fe446-f9c3-11e6-9363-989096c13ee6.fasta -o /Code/fragfold_idp/bin/../output/e62fe446-f9c3-11e6-9363-989096c13ee6.hh -oa3m /fragfold_idp/bin/../output/e62fe446-f9c3-11e6-9363-989096c13ee6.a3m -n 3 -d /opt/hhdb/uniprot20_2016_02/uniprot20_2016_02 -cpu 10 
+Date          Thu Feb 23 15:35:42 2017
+Command       /scratch0/NOT_BACKED_UP/dbuchan/opt/hhsuite-2.0.16-linux-x86_64/bin/hhblits -i /scratch0/NOT_BACKED_UP/dbuchan/Code/fragfold_idp/bin/../output/e62fe446-f9c3-11e6-9363-989096c13ee6.fasta -o /scratch0/NOT_BACKED_UP/dbuchan/Code/fragfold_idp/bin/../output/e62fe446-f9c3-11e6-9363-989096c13ee6.hh -oa3m /scratch0/NOT_BACKED_UP/dbuchan/Code/fragfold_idp/bin/../output/e62fe446-f9c3-11e6-9363-989096c13ee6.a3m -n 3 -d /scratch0/NOT_BACKED_UP/dbuchan/opt/hhdb/uniprot20_2016_02/uniprot20_2016_02 -cpu 10 
 
  No Hit                             Prob E-value P-value  Score    SS Cols Query HMM  Template HMM
   1 sp|Q606H8|RS6_METCA 30S riboso 100.0 2.3E-40 1.3E-45  218.7   0.0   97    1-98      1-97  (136)
@@ -508,7 +508,7 @@ Command       /opt/hhsuite-2.0.16-linux-x86_64/bin/hhblits -i /../output/e62fe44
 499 tr|Q4YTC7|Q4YTC7_PLABA 30S rib  98.0 3.8E-08 1.7E-13   66.2   0.0   61   34-94     73-133 (164)
 500 tr|Q4YTC7|Q4YTC7_PLABA 30S rib  98.0 3.8E-08 1.7E-13   66.2   0.0   61   34-94     73-133 (164)
 
-No 1
+No 1  
 >sp|Q606H8|RS6_METCA 30S ribosomal protein S6 OS=Methylococcus capsulatus (strain ATCC 33009 / NCIMB 11132 / Bath) GN=rpsF PE=3 SV=2
 Probab=100.00  E-value=2.3e-40  Score=218.71  Aligned_cols=97  Identities=31%  Similarity=0.545  Sum_probs=94.6
 
@@ -528,7 +528,7 @@ T sp|Q606H8|RS6_   80 INEDVLRFLTIKVEEKKE   97 (136)
 Confidence            999999999999988543
 
 
-No 2
+No 2  
 >sp|Q606H8|RS6_METCA 30S ribosomal protein S6 OS=Methylococcus capsulatus (strain ATCC 33009 / NCIMB 11132 / Bath) GN=rpsF PE=3 SV=2
 Probab=100.00  E-value=2.3e-40  Score=218.71  Aligned_cols=97  Identities=31%  Similarity=0.545  Sum_probs=94.6
 
@@ -548,7 +548,7 @@ T sp|Q606H8|RS6_   80 INEDVLRFLTIKVEEKKE   97 (136)
 Confidence            999999999999988543
 
 
-No 3
+No 3  
 >tr|A0A081SJ58|A0A081SJ58_9CHLB 30S ribosomal protein S6 OS=Chlorobium sp. GBChlB GN=rpsF PE=3 SV=1
 Probab=100.00  E-value=4.1e-40  Score=217.24  Aligned_cols=98  Identities=35%  Similarity=0.646  Sum_probs=95.7
 
@@ -568,7 +568,7 @@ T tr|A0A081SJ58|   86 LNEAVLRYLTVRLEEAIA  103 (131)
 Confidence            999999999999998653
 
 
-No 4
+No 4  
 >tr|A0A081SJ58|A0A081SJ58_9CHLB 30S ribosomal protein S6 OS=Chlorobium sp. GBChlB GN=rpsF PE=3 SV=1
 Probab=100.00  E-value=4.1e-40  Score=217.24  Aligned_cols=98  Identities=35%  Similarity=0.646  Sum_probs=95.7
 
@@ -588,7 +588,7 @@ T tr|A0A081SJ58|   86 LNEAVLRYLTVRLEEAIA  103 (131)
 Confidence            999999999999998653
 
 
-No 5
+No 5  
 >tr|E6L1K9|E6L1K9_9PROT 30S ribosomal protein S6 OS=Arcobacter butzleri JV22 GN=rpsF PE=3 SV=1
 Probab=100.00  E-value=1.6e-39  Score=208.31  Aligned_cols=99  Identities=36%  Similarity=0.590  Sum_probs=96.1
 
@@ -608,7 +608,7 @@ T tr|E6L1K9|E6L1   84 INEDVIRHMIVKLDKKAAA  102 (107)
 Confidence            9999999999999986544
 
 
-No 6
+No 6  
 >tr|E6L1K9|E6L1K9_9PROT 30S ribosomal protein S6 OS=Arcobacter butzleri JV22 GN=rpsF PE=3 SV=1
 Probab=100.00  E-value=1.6e-39  Score=208.31  Aligned_cols=99  Identities=36%  Similarity=0.590  Sum_probs=96.1
 
@@ -628,7 +628,7 @@ T tr|E6L1K9|E6L1   84 INEDVIRHMIVKLDKKAAA  102 (107)
 Confidence            9999999999999986544
 
 
-No 7
+No 7  
 >sp|Q6AK02|RS6_DESPS 30S ribosomal protein S6 OS=Desulfotalea psychrophila (strain LSv54 / DSM 12343) GN=rpsF PE=3 SV=2
 Probab=100.00  E-value=6e-39  Score=215.50  Aligned_cols=99  Identities=30%  Similarity=0.636  Sum_probs=96.8
 
@@ -648,7 +648,7 @@ T sp|Q6AK02|RS6_   81 RINEEVLRFLTVKYENKKEI  100 (159)
 Confidence            99999999999999987654
 
 
-No 8
+No 8  
 >sp|Q6AK02|RS6_DESPS 30S ribosomal protein S6 OS=Desulfotalea psychrophila (strain LSv54 / DSM 12343) GN=rpsF PE=3 SV=2
 Probab=100.00  E-value=6e-39  Score=215.50  Aligned_cols=99  Identities=30%  Similarity=0.636  Sum_probs=96.8
 
@@ -668,7 +668,7 @@ T sp|Q6AK02|RS6_   81 RINEEVLRFLTVKYENKKEI  100 (159)
 Confidence            99999999999999987654
 
 
-No 9
+No 9  
 >tr|A0A0B0EIG6|A0A0B0EIG6_9BACT 30S ribosomal protein S6 OS=Candidatus Scalindua brodae GN=rpsF PE=3 SV=1
 Probab=100.00  E-value=4.4e-38  Score=206.65  Aligned_cols=98  Identities=37%  Similarity=0.565  Sum_probs=95.9
 
@@ -688,7 +688,7 @@ T tr|A0A0B0EIG6|   81 INDDVIRFLTIKVDEHEE   98 (130)
 Confidence            999999999999998654
 
 
-No 10
+No 10 
 >tr|A0A0B0EIG6|A0A0B0EIG6_9BACT 30S ribosomal protein S6 OS=Candidatus Scalindua brodae GN=rpsF PE=3 SV=1
 Probab=100.00  E-value=4.4e-38  Score=206.65  Aligned_cols=98  Identities=37%  Similarity=0.565  Sum_probs=95.9
 
@@ -708,7 +708,7 @@ T tr|A0A0B0EIG6|   81 INDDVIRFLTIKVDEHEE   98 (130)
 Confidence            999999999999998654
 
 
-No 11
+No 11 
 >tr|E2CQ77|E2CQ77_9RHOB 30S ribosomal protein S6 OS=Roseibium sp. TrichSKD4 GN=rpsF PE=3 SV=1
 Probab=100.00  E-value=4.7e-38  Score=206.20  Aligned_cols=97  Identities=30%  Similarity=0.617  Sum_probs=94.7
 
@@ -728,7 +728,7 @@ T tr|E2CQ77|E2CQ   81 FNDAVLRNLTIRVKEAE   97 (136)
 Confidence            99999999999998754
 
 
-No 12
+No 12 
 >tr|E2CQ77|E2CQ77_9RHOB 30S ribosomal protein S6 OS=Roseibium sp. TrichSKD4 GN=rpsF PE=3 SV=1
 Probab=100.00  E-value=4.7e-38  Score=206.20  Aligned_cols=97  Identities=30%  Similarity=0.617  Sum_probs=94.7
 
@@ -748,7 +748,7 @@ T tr|E2CQ77|E2CQ   81 FNDAVLRNLTIRVKEAE   97 (136)
 Confidence            99999999999998754
 
 
-No 13
+No 13 
 >tr|A0A060JEB2|A0A060JEB2_9MICO 30S ribosomal protein S6 OS=Rhodoluna lacicola GN=rpsF PE=3 SV=1
 Probab=100.00  E-value=9.9e-38  Score=201.86  Aligned_cols=98  Identities=24%  Similarity=0.543  Sum_probs=94.9
 
@@ -768,7 +768,7 @@ T tr|A0A060JEB2|   81 FNDAILRHLILRVEGAIT   98 (128)
 Confidence            999999999999887543
 
 
-No 14
+No 14 
 >tr|A0A060JEB2|A0A060JEB2_9MICO 30S ribosomal protein S6 OS=Rhodoluna lacicola GN=rpsF PE=3 SV=1
 Probab=100.00  E-value=1.7e-37  Score=201.86  Aligned_cols=98  Identities=24%  Similarity=0.543  Sum_probs=94.9
 
@@ -788,7 +788,7 @@ T tr|A0A060JEB2|   81 FNDAILRHLILRVEGAIT   98 (128)
 Confidence            999999999999887543
 
 
-No 15
+No 15 
 >tr|A0A0P7WPU9|A0A0P7WPU9_9BACT SSU ribosomal protein S6 RpsF OS=Bacteroidetes bacterium HLUCCA01 GN=rpsF PE=4 SV=1
 Probab=100.00  E-value=2.1e-37  Score=199.50  Aligned_cols=101  Identities=34%  Similarity=0.595  Sum_probs=98.7
 
@@ -808,7 +808,7 @@ T tr|A0A0P7WPU9|   83 RDEKVLRFLTTKLDKHAIAYA  103 (123)
 Confidence            999999999999999887774
 
 
-No 16
+No 16 
 >tr|A0A0P7WPU9|A0A0P7WPU9_9BACT SSU ribosomal protein S6 RpsF OS=Bacteroidetes bacterium HLUCCA01 GN=rpsF PE=4 SV=1
 Probab=100.00  E-value=3.8e-37  Score=199.50  Aligned_cols=101  Identities=34%  Similarity=0.595  Sum_probs=98.7
 
@@ -828,7 +828,7 @@ T tr|A0A0P7WPU9|   83 RDEKVLRFLTTKLDKHAIAYA  103 (123)
 Confidence            999999999999999887774
 
 
-No 17
+No 17 
 >tr|A0A0G1DHB5|A0A0G1DHB5_9BACT 30S ribosomal protein S6 OS=Microgenomates (Woesebacteria) bacterium GW2011_GWB1_43_14 GN=rpsF PE=3 SV=1
 Probab=100.00  E-value=3.7e-37  Score=197.81  Aligned_cols=98  Identities=32%  Similarity=0.631  Sum_probs=95.5
 
@@ -848,7 +848,7 @@ T tr|A0A0G1DHB5|   93 ITDGVLRYLIVRKEESKS  110 (112)
 Confidence            999999999999988654
 
 
-No 18
+No 18 
 >tr|A0A0G1DHB5|A0A0G1DHB5_9BACT 30S ribosomal protein S6 OS=Microgenomates (Woesebacteria) bacterium GW2011_GWB1_43_14 GN=rpsF PE=3 SV=1
 Probab=100.00  E-value=3.7e-37  Score=197.81  Aligned_cols=98  Identities=32%  Similarity=0.631  Sum_probs=95.5
 
@@ -868,7 +868,7 @@ T tr|A0A0G1DHB5|   93 ITDGVLRYLIVRKEESKS  110 (112)
 Confidence            999999999999988654
 
 
-No 19
+No 19 
 >tr|A0A0F2NGL0|A0A0F2NGL0_9DELT 30S ribosomal protein S6 OS=Desulfobulbaceae bacterium BRH_c16a GN=rpsF PE=3 SV=1
 Probab=100.00  E-value=5.2e-37  Score=205.16  Aligned_cols=98  Identities=34%  Similarity=0.615  Sum_probs=95.4
 
@@ -888,7 +888,7 @@ T tr|A0A0F2NGL0|   81 LDEEVLRFMTVRREKLEK   98 (142)
 Confidence            999999999999987543
 
 
-No 20
+No 20 
 >tr|A0A0F2NGL0|A0A0F2NGL0_9DELT 30S ribosomal protein S6 OS=Desulfobulbaceae bacterium BRH_c16a GN=rpsF PE=3 SV=1
 Probab=100.00  E-value=5.2e-37  Score=205.16  Aligned_cols=98  Identities=34%  Similarity=0.615  Sum_probs=95.4
 
@@ -908,7 +908,7 @@ T tr|A0A0F2NGL0|   81 LDEEVLRFMTVRREKLEK   98 (142)
 Confidence            999999999999987543
 
 
-No 21
+No 21 
 >tr|U2QZJ2|U2QZJ2_9FIRM 30S ribosomal protein S6 OS=Faecalitalea cylindroides ATCC 27803 GN=rpsF PE=3 SV=1
 Probab=100.00  E-value=1.5e-35  Score=190.60  Aligned_cols=96  Identities=32%  Similarity=0.562  Sum_probs=94.0
 
@@ -928,7 +928,7 @@ T tr|U2QZJ2|U2QZ  109 ISDDVIRHMIVKLDAE  124 (125)
 Confidence            9999999999998864
 
 
-No 22
+No 22 
 >tr|A0A0J9DBQ0|A0A0J9DBQ0_9PORP 30S ribosomal protein S6 OS=Parabacteroides sp. D26 GN=rpsF PE=3 SV=1
 Probab=100.00  E-value=2.5e-35  Score=191.85  Aligned_cols=101  Identities=27%  Similarity=0.506  Sum_probs=98.5
 
@@ -948,7 +948,7 @@ T tr|A0A0J9DBQ0|  108 RDERVIRFLTFRQDKIAAEYA  128 (145)
 Confidence            999999999999999877765
 
 
-No 23
+No 23 
 >tr|A0A0J9DBQ0|A0A0J9DBQ0_9PORP 30S ribosomal protein S6 OS=Parabacteroides sp. D26 GN=rpsF PE=3 SV=1
 Probab=100.00  E-value=2.5e-35  Score=191.85  Aligned_cols=101  Identities=27%  Similarity=0.506  Sum_probs=98.5
 
@@ -968,7 +968,7 @@ T tr|A0A0J9DBQ0|  108 RDERVIRFLTFRQDKIAAEYA  128 (145)
 Confidence            999999999999999877765
 
 
-No 24
+No 24 
 >tr|U2QZJ2|U2QZJ2_9FIRM 30S ribosomal protein S6 OS=Faecalitalea cylindroides ATCC 27803 GN=rpsF PE=3 SV=1
 Probab=100.00  E-value=2.5e-35  Score=190.60  Aligned_cols=96  Identities=32%  Similarity=0.562  Sum_probs=94.0
 
@@ -988,7 +988,7 @@ T tr|U2QZJ2|U2QZ  109 ISDDVIRHMIVKLDAE  124 (125)
 Confidence            9999999999998864
 
 
-No 25
+No 25 
 >tr|A0A059GAF4|A0A059GAF4_9RHOB 30S ribosomal protein S6 OS=Hyphomonas oceanitis SCH89 GN=rpsF PE=3 SV=1
 Probab=100.00  E-value=3e-35  Score=191.67  Aligned_cols=97  Identities=27%  Similarity=0.517  Sum_probs=94.8
 
@@ -1008,7 +1008,7 @@ T tr|A0A059GAF4|  115 FNDAVLRHLTVKMKKAE  131 (146)
 Confidence            99999999999998754
 
 
-No 26
+No 26 
 >tr|A0A059GAF4|A0A059GAF4_9RHOB 30S ribosomal protein S6 OS=Hyphomonas oceanitis SCH89 GN=rpsF PE=3 SV=1
 Probab=100.00  E-value=3e-35  Score=191.67  Aligned_cols=97  Identities=27%  Similarity=0.517  Sum_probs=94.8
 
@@ -1028,7 +1028,7 @@ T tr|A0A059GAF4|  115 FNDAVLRHLTVKMKKAE  131 (146)
 Confidence            99999999999998754
 
 
-No 27
+No 27 
 >tr|A0A0D6ADG7|A0A0D6ADG7_9CHRO 30S ribosomal protein S6 OS=Geminocystis sp. NIES-3708 GN=rpsF PE=3 SV=1
 Probab=100.00  E-value=4.3e-35  Score=192.95  Aligned_cols=97  Identities=27%  Similarity=0.436  Sum_probs=94.7
 
@@ -1048,7 +1048,7 @@ T tr|A0A0D6ADG7|   83 SEEVIRYLTLKLDRVMD   99 (151)
 Confidence            99999999999998654
 
 
-No 28
+No 28 
 >tr|A0A0G0L3I3|A0A0G0L3I3_9BACT 30S ribosomal protein S6 OS=Parcubacteria bacterium GW2011_GWA2_38_13 GN=rpsF PE=3 SV=1
 Probab=100.00  E-value=4.5e-35  Score=198.76  Aligned_cols=97  Identities=29%  Similarity=0.627  Sum_probs=94.8
 
@@ -1068,7 +1068,7 @@ T tr|A0A0G0L3I3|   81 LNDEILRHLIINKEKKY   97 (156)
 Confidence            99999999999988754
 
 
-No 29
+No 29 
 >tr|A0A0G0L3I3|A0A0G0L3I3_9BACT 30S ribosomal protein S6 OS=Parcubacteria bacterium GW2011_GWA2_38_13 GN=rpsF PE=3 SV=1
 Probab=100.00  E-value=4.5e-35  Score=198.76  Aligned_cols=97  Identities=29%  Similarity=0.627  Sum_probs=94.8
 
@@ -1088,7 +1088,7 @@ T tr|A0A0G0L3I3|   81 LNDEILRHLIINKEKKY   97 (156)
 Confidence            99999999999988754
 
 
-No 30
+No 30 
 >tr|A0A0D6ADG7|A0A0D6ADG7_9CHRO 30S ribosomal protein S6 OS=Geminocystis sp. NIES-3708 GN=rpsF PE=3 SV=1
 Probab=100.00  E-value=7e-35  Score=192.95  Aligned_cols=97  Identities=27%  Similarity=0.436  Sum_probs=94.7
 
@@ -1108,7 +1108,7 @@ T tr|A0A0D6ADG7|   83 SEEVIRYLTLKLDRVMD   99 (151)
 Confidence            99999999999998654
 
 
-No 31
+No 31 
 >tr|A0A0D6JJ17|A0A0D6JJ17_9RHIZ 30S ribosomal protein S6 OS=Candidatus Filomicrobium marinum GN=rpsF PE=3 SV=1
 Probab=100.00  E-value=4e-34  Score=189.59  Aligned_cols=98  Identities=26%  Similarity=0.443  Sum_probs=95.6
 
@@ -1128,7 +1128,7 @@ T tr|A0A0D6JJ17|   81 ISEDVIRFLTIRVEELEE   98 (164)
 Confidence            999999999999998543
 
 
-No 32
+No 32 
 >tr|A0A0F9W531|A0A0F9W531_9ZZZZ Uncharacterized protein OS=marine sediment metagenome GN=LCGC14_0003920 PE=3 SV=1
 Probab=100.00  E-value=4.3e-34  Score=190.21  Aligned_cols=96  Identities=28%  Similarity=0.531  Sum_probs=93.6
 
@@ -1148,7 +1148,7 @@ T tr|A0A0F9W531|   80 YNDAVIRNLVIRRDEAV   96 (165)
 Confidence            99999999999998753
 
 
-No 33
+No 33 
 >tr|A0A0D6JJ17|A0A0D6JJ17_9RHIZ 30S ribosomal protein S6 OS=Candidatus Filomicrobium marinum GN=rpsF PE=3 SV=1
 Probab=99.96  E-value=7.6e-34  Score=189.59  Aligned_cols=98  Identities=26%  Similarity=0.443  Sum_probs=95.6
 
@@ -1168,7 +1168,7 @@ T tr|A0A0D6JJ17|   81 ISEDVIRFLTIRVEELEE   98 (164)
 Confidence            999999999999998543
 
 
-No 34
+No 34 
 >tr|A0A0F9C717|A0A0F9C717_9ZZZZ Uncharacterized protein OS=marine sediment metagenome GN=LCGC14_2703360 PE=3 SV=1
 Probab=99.96  E-value=7.7e-34  Score=189.56  Aligned_cols=96  Identities=28%  Similarity=0.562  Sum_probs=92.8
 
@@ -1188,7 +1188,7 @@ T tr|A0A0F9C717|   80 FNDAVLRELTIRRDKAL   96 (154)
 Confidence            99999999999998754
 
 
-No 35
+No 35 
 >tr|A0A0F9C717|A0A0F9C717_9ZZZZ Uncharacterized protein OS=marine sediment metagenome GN=LCGC14_2703360 PE=3 SV=1
 Probab=99.96  E-value=7.7e-34  Score=189.56  Aligned_cols=96  Identities=28%  Similarity=0.562  Sum_probs=92.8
 
@@ -1208,7 +1208,7 @@ T tr|A0A0F9C717|   80 FNDAVLRELTIRRDKAL   96 (154)
 Confidence            99999999999998754
 
 
-No 36
+No 36 
 >tr|A0A0F9W531|A0A0F9W531_9ZZZZ Uncharacterized protein OS=marine sediment metagenome GN=LCGC14_0003920 PE=3 SV=1
 Probab=99.96  E-value=8.3e-34  Score=190.21  Aligned_cols=96  Identities=28%  Similarity=0.531  Sum_probs=93.6
 
@@ -1228,7 +1228,7 @@ T tr|A0A0F9W531|   80 YNDAVIRNLVIRRDEAV   96 (165)
 Confidence            99999999999998753
 
 
-No 37
+No 37 
 >tr|A0A0K1PEG4|A0A0K1PEG4_9DELT 30S ribosomal protein S6 OS=Vulgatibacter incomptus GN=rpsF PE=3 SV=1
 Probab=99.95  E-value=2.6e-33  Score=188.70  Aligned_cols=97  Identities=31%  Similarity=0.479  Sum_probs=94.9
 
@@ -1248,7 +1248,7 @@ T tr|A0A0K1PEG4|   96 RLNEDVLRFQTVRVEEID  113 (171)
 Confidence            999999999999998754
 
 
-No 38
+No 38 
 >tr|A0A0K1PEG4|A0A0K1PEG4_9DELT 30S ribosomal protein S6 OS=Vulgatibacter incomptus GN=rpsF PE=3 SV=1
 Probab=99.95  E-value=2.6e-33  Score=188.70  Aligned_cols=97  Identities=31%  Similarity=0.479  Sum_probs=94.9
 
@@ -1268,7 +1268,7 @@ T tr|A0A0K1PEG4|   96 RLNEDVLRFQTVRVEEID  113 (171)
 Confidence            999999999999998754
 
 
-No 39
+No 39 
 >tr|A0A0G1RH57|A0A0G1RH57_9BACT 30S ribosomal protein S6 OS=Microgenomates (Amesbacteria) bacterium GW2011_GWA2_47_11 GN=rpsF PE=3 SV=1
 Probab=99.95  E-value=8e-33  Score=172.56  Aligned_cols=94  Identities=36%  Similarity=0.704  Sum_probs=91.8
 
@@ -1288,7 +1288,7 @@ T tr|A0A0G1RH57|   81 SLDDSVLRHLLLRRD   95 (95)
 Confidence            999999999999853
 
 
-No 40
+No 40 
 >tr|A0A0G1RH57|A0A0G1RH57_9BACT 30S ribosomal protein S6 OS=Microgenomates (Amesbacteria) bacterium GW2011_GWA2_47_11 GN=rpsF PE=3 SV=1
 Probab=99.95  E-value=1.1e-32  Score=172.56  Aligned_cols=94  Identities=36%  Similarity=0.704  Sum_probs=91.8
 
@@ -1308,7 +1308,7 @@ T tr|A0A0G1RH57|   81 SLDDSVLRHLLLRRD   95 (95)
 Confidence            999999999999853
 
 
-No 41
+No 41 
 >tr|S5ZMW9|S5ZMW9_9SPIO 30S ribosomal protein S6 OS=Treponema pedis str. T A4 GN=rpsF PE=3 SV=1
 Probab=99.95  E-value=1.3e-32  Score=170.24  Aligned_cols=87  Identities=32%  Similarity=0.604  Sum_probs=84.1
 
@@ -1328,7 +1328,7 @@ T tr|S5ZMW9|S5ZM   79 RYLIVKLDE   87 (87)
 Confidence            999999874
 
 
-No 42
+No 42 
 >tr|S5ZMW9|S5ZMW9_9SPIO 30S ribosomal protein S6 OS=Treponema pedis str. T A4 GN=rpsF PE=3 SV=1
 Probab=99.95  E-value=1.3e-32  Score=170.24  Aligned_cols=87  Identities=32%  Similarity=0.604  Sum_probs=84.1
 
@@ -1348,7 +1348,7 @@ T tr|S5ZMW9|S5ZM   79 RYLIVKLDE   87 (87)
 Confidence            999999874
 
 
-No 43
+No 43 
 >tr|A0A0F9Z452|A0A0F9Z452_9BACT 30S ribosomal protein S6 OS=Peregrinibacteria bacterium GW2011_GWC2_33_13 GN=rpsF PE=3 SV=1
 Probab=99.95  E-value=2e-32  Score=192.64  Aligned_cols=96  Identities=32%  Similarity=0.598  Sum_probs=93.8
 
@@ -1368,7 +1368,7 @@ T tr|A0A0F9Z452|   81 IDKNVLRHLVIKTEKE   96 (220)
 Confidence            9999999999998874
 
 
-No 44
+No 44 
 >tr|A0A0F9Z452|A0A0F9Z452_9BACT 30S ribosomal protein S6 OS=Peregrinibacteria bacterium GW2011_GWC2_33_13 GN=rpsF PE=3 SV=1
 Probab=99.95  E-value=3.1e-32  Score=192.64  Aligned_cols=96  Identities=32%  Similarity=0.598  Sum_probs=93.8
 
@@ -1388,7 +1388,7 @@ T tr|A0A0F9Z452|   81 IDKNVLRHLVIKTEKE   96 (220)
 Confidence            9999999999998874
 
 
-No 45
+No 45 
 >tr|K9SEZ3|K9SEZ3_9CYAN 30S ribosomal protein S6 OS=Pseudanabaena sp. PCC 7367 GN=rpsF PE=3 SV=1
 Probab=99.94  E-value=2.6e-31  Score=170.58  Aligned_cols=96  Identities=28%  Similarity=0.470  Sum_probs=93.6
 
@@ -1408,7 +1408,7 @@ T tr|K9SEZ3|K9SE   84 SEDVIRYLTVKQEGPL   99 (132)
 Confidence            9999999999998754
 
 
-No 46
+No 46 
 >tr|K9SEZ3|K9SEZ3_9CYAN 30S ribosomal protein S6 OS=Pseudanabaena sp. PCC 7367 GN=rpsF PE=3 SV=1
 Probab=99.94  E-value=4.8e-31  Score=170.58  Aligned_cols=96  Identities=28%  Similarity=0.470  Sum_probs=93.6
 
@@ -1428,7 +1428,7 @@ T tr|K9SEZ3|K9SE   84 SEDVIRYLTVKQEGPL   99 (132)
 Confidence            9999999999998754
 
 
-No 47
+No 47 
 >tr|A0A0G1TQ18|A0A0G1TQ18_9BACT 30S ribosomal protein S6 OS=candidate division WWE3 bacterium GW2011_GWB1_47_11 GN=rpsF PE=3 SV=1
 Probab=99.93  E-value=7e-31  Score=160.96  Aligned_cols=94  Identities=21%  Similarity=0.403  Sum_probs=91.9
 
@@ -1448,7 +1448,7 @@ T tr|A0A0G1TQ18|   81 IMENVIRYLIIADD   94 (94)
 Confidence            99999999998763
 
 
-No 48
+No 48 
 >tr|A0A0P1NT67|A0A0P1NT67_9BACT SSU ribosomal protein S6P OS=bacterium JGI-24 GN=JGI24_01080 PE=4 SV=1
 Probab=99.93  E-value=7.4e-31  Score=171.97  Aligned_cols=96  Identities=26%  Similarity=0.515  Sum_probs=93.0
 
@@ -1468,7 +1468,7 @@ T tr|A0A0P1NT67|   93 DENILRYLIIVLTKPA  108 (149)
 Confidence            9999999999987653
 
 
-No 49
+No 49 
 >tr|A0A0G1TQ18|A0A0G1TQ18_9BACT 30S ribosomal protein S6 OS=candidate division WWE3 bacterium GW2011_GWB1_47_11 GN=rpsF PE=3 SV=1
 Probab=99.93  E-value=9.8e-31  Score=160.96  Aligned_cols=94  Identities=21%  Similarity=0.403  Sum_probs=91.9
 
@@ -1488,7 +1488,7 @@ T tr|A0A0G1TQ18|   81 IMENVIRYLIIADD   94 (94)
 Confidence            99999999998763
 
 
-No 50
+No 50 
 >tr|R5L8I8|R5L8I8_9SPIR 30S ribosomal protein S6 OS=Brachyspira sp. CAG:700 GN=rpsF PE=3 SV=1
 Probab=99.93  E-value=1.1e-30  Score=169.18  Aligned_cols=90  Identities=30%  Similarity=0.557  Sum_probs=82.7
 
@@ -1508,7 +1508,7 @@ T tr|R5L8I8|R5L8   73 LEKEFRYNDAILRFLIVRLDEAIT   96 (133)
 Confidence            999999999999999999988654
 
 
-No 51
+No 51 
 >tr|R5TNC1|R5TNC1_9FIRM 30S ribosomal protein S6 OS=Ruminococcus gnavus CAG:126 GN=rpsF PE=3 SV=1
 Probab=99.93  E-value=1.1e-30  Score=170.49  Aligned_cols=94  Identities=37%  Similarity=0.671  Sum_probs=91.8
 
@@ -1528,7 +1528,7 @@ T tr|R5TNC1|R5TN  122 IMDNVLRYLLVKQE  135 (136)
 Confidence            99999999999865
 
 
-No 52
+No 52 
 >tr|A0A0P1NT67|A0A0P1NT67_9BACT SSU ribosomal protein S6P OS=bacterium JGI-24 GN=JGI24_01080 PE=4 SV=1
 Probab=99.93  E-value=1.2e-30  Score=171.97  Aligned_cols=96  Identities=26%  Similarity=0.515  Sum_probs=93.0
 
@@ -1548,7 +1548,7 @@ T tr|A0A0P1NT67|   93 DENILRYLIIVLTKPA  108 (149)
 Confidence            9999999999987653
 
 
-No 53
+No 53 
 >tr|R5TNC1|R5TNC1_9FIRM 30S ribosomal protein S6 OS=Ruminococcus gnavus CAG:126 GN=rpsF PE=3 SV=1
 Probab=99.93  E-value=1.5e-30  Score=170.49  Aligned_cols=94  Identities=37%  Similarity=0.671  Sum_probs=91.8
 
@@ -1568,7 +1568,7 @@ T tr|R5TNC1|R5TN  122 IMDNVLRYLLVKQE  135 (136)
 Confidence            99999999999865
 
 
-No 54
+No 54 
 >tr|R5L8I8|R5L8I8_9SPIR 30S ribosomal protein S6 OS=Brachyspira sp. CAG:700 GN=rpsF PE=3 SV=1
 Probab=99.93  E-value=1.8e-30  Score=169.18  Aligned_cols=90  Identities=30%  Similarity=0.557  Sum_probs=82.7
 
@@ -1588,7 +1588,7 @@ T tr|R5L8I8|R5L8   73 LEKEFRYNDAILRFLIVRLDEAIT   96 (133)
 Confidence            999999999999999999988654
 
 
-No 55
+No 55 
 >tr|J4WRI0|J4WRI0_9GAMM 30S ribosomal protein S6 OS=SAR86 cluster bacterium SAR86A GN=rpsF PE=3 SV=1
 Probab=99.93  E-value=2.1e-30  Score=172.30  Aligned_cols=95  Identities=24%  Similarity=0.464  Sum_probs=92.6
 
@@ -1608,7 +1608,7 @@ T tr|J4WRI0|J4WR   80 LSEDVIRYLTVKQEGP   95 (158)
 Confidence            9999999999998754
 
 
-No 56
+No 56 
 >tr|H1LHE5|H1LHE5_9LACO 30S ribosomal protein S6 OS=Lactobacillus kisonensis F0435 GN=rpsF PE=3 SV=1
 Probab=99.93  E-value=2.8e-30  Score=164.12  Aligned_cols=94  Identities=26%  Similarity=0.484  Sum_probs=91.0
 
@@ -1628,7 +1628,7 @@ T tr|H1LHE5|H1LH  109 INNDILRHMIVKRED  123 (123)
 Confidence            999999999999874
 
 
-No 57
+No 57 
 >tr|H1LHE5|H1LHE5_9LACO 30S ribosomal protein S6 OS=Lactobacillus kisonensis F0435 GN=rpsF PE=3 SV=1
 Probab=99.93  E-value=2.8e-30  Score=164.12  Aligned_cols=94  Identities=26%  Similarity=0.484  Sum_probs=91.0
 
@@ -1648,7 +1648,7 @@ T tr|H1LHE5|H1LH  109 INNDILRHMIVKRED  123 (123)
 Confidence            999999999999874
 
 
-No 58
+No 58 
 >tr|J4WRI0|J4WRI0_9GAMM 30S ribosomal protein S6 OS=SAR86 cluster bacterium SAR86A GN=rpsF PE=3 SV=1
 Probab=99.93  E-value=3e-30  Score=172.30  Aligned_cols=95  Identities=24%  Similarity=0.464  Sum_probs=92.6
 
@@ -1668,7 +1668,7 @@ T tr|J4WRI0|J4WR   80 LSEDVIRYLTVKQEGP   95 (158)
 Confidence            9999999999998754
 
 
-No 59
+No 59 
 >tr|M7NRF6|M7NRF6_PNEMU 30S ribosomal protein S6 OS=Pneumocystis murina (strain B123) GN=PNEG_02033 PE=4 SV=1
 Probab=99.92  E-value=1.6e-29  Score=161.83  Aligned_cols=95  Identities=20%  Similarity=0.293  Sum_probs=90.7
 
@@ -1688,7 +1688,7 @@ T tr|M7NRF6|M7NR   79 IRRTLRLDPRVIRSSIVKLGDKL  101 (109)
 Confidence            99999999999999999999854
 
 
-No 60
+No 60 
 >tr|M7NRF6|M7NRF6_PNEMU 30S ribosomal protein S6 OS=Pneumocystis murina (strain B123) GN=PNEG_02033 PE=4 SV=1
 Probab=99.92  E-value=1.6e-29  Score=161.83  Aligned_cols=95  Identities=20%  Similarity=0.293  Sum_probs=90.7
 
@@ -1708,7 +1708,7 @@ T tr|M7NRF6|M7NR   79 IRRTLRLDPRVIRSSIVKLGDKL  101 (109)
 Confidence            99999999999999999999854
 
 
-No 61
+No 61 
 >tr|A0A0M0D437|A0A0M0D437_9PROT 30S ribosomal protein S6 OS=Mariprofundus ferrooxydans GN=rpsF PE=3 SV=1
 Probab=99.92  E-value=3.5e-29  Score=163.59  Aligned_cols=97  Identities=22%  Similarity=0.450  Sum_probs=93.7
 
@@ -1728,7 +1728,7 @@ T tr|A0A0M0D437|   81 NEDILRFIVIKYESKKE   97 (155)
 Confidence            99999999999987554
 
 
-No 62
+No 62 
 >tr|A0A0M0D437|A0A0M0D437_9PROT 30S ribosomal protein S6 OS=Mariprofundus ferrooxydans GN=rpsF PE=3 SV=1
 Probab=99.91  E-value=3.9e-29  Score=163.59  Aligned_cols=97  Identities=22%  Similarity=0.450  Sum_probs=93.7
 
@@ -1748,7 +1748,7 @@ T tr|A0A0M0D437|   81 NEDILRFIVIKYESKKE   97 (155)
 Confidence            99999999999987554
 
 
-No 63
+No 63 
 >tr|A0A0G0PD33|A0A0G0PD33_9BACT 30S ribosomal protein S6 OS=Microgenomates (Levybacteria) bacterium GW2011_GWA1_39_11 GN=rpsF PE=3 SV=1
 Probab=99.91  E-value=1.6e-28  Score=150.75  Aligned_cols=90  Identities=31%  Similarity=0.595  Sum_probs=87.4
 
@@ -1768,7 +1768,7 @@ T tr|A0A0G0PD33|   78 SNDNILRHLLIRR   90 (90)
 Confidence            9999999999873
 
 
-No 64
+No 64 
 >tr|M4V737|M4V737_9DELT 30S ribosomal protein S6 OS=Bdellovibrio exovorus JSS GN=rpsF PE=3 SV=1
 Probab=99.90  E-value=2e-28  Score=163.52  Aligned_cols=97  Identities=26%  Similarity=0.461  Sum_probs=94.3
 
@@ -1788,7 +1788,7 @@ T tr|M4V737|M4V7   88 FNDFVMRHVTTKLDENA  104 (154)
 Confidence            99999999999998754
 
 
-No 65
+No 65 
 >tr|A0A0G0PD33|A0A0G0PD33_9BACT 30S ribosomal protein S6 OS=Microgenomates (Levybacteria) bacterium GW2011_GWA1_39_11 GN=rpsF PE=3 SV=1
 Probab=99.90  E-value=2.4e-28  Score=150.75  Aligned_cols=90  Identities=31%  Similarity=0.595  Sum_probs=87.4
 
@@ -1808,7 +1808,7 @@ T tr|A0A0G0PD33|   78 SNDNILRHLLIRR   90 (90)
 Confidence            9999999999873
 
 
-No 66
+No 66 
 >tr|M4V737|M4V737_9DELT 30S ribosomal protein S6 OS=Bdellovibrio exovorus JSS GN=rpsF PE=3 SV=1
 Probab=99.90  E-value=3.2e-28  Score=163.52  Aligned_cols=97  Identities=26%  Similarity=0.461  Sum_probs=94.3
 
@@ -1828,7 +1828,7 @@ T tr|M4V737|M4V7   88 FNDFVMRHVTTKLDENA  104 (154)
 Confidence            99999999999998754
 
 
-No 67
+No 67 
 >tr|F0EWL8|F0EWL8_9NEIS 30S ribosomal protein S6 OS=Kingella denitrificans ATCC 33394 GN=rpsF PE=3 SV=1
 Probab=99.90  E-value=5.2e-28  Score=157.88  Aligned_cols=94  Identities=24%  Similarity=0.507  Sum_probs=91.3
 
@@ -1848,7 +1848,7 @@ T tr|F0EWL8|F0EW  125 FNDAILRHLTIQMKA  139 (169)
 Confidence            999999999998764
 
 
-No 68
+No 68 
 >tr|F0EWL8|F0EWL8_9NEIS 30S ribosomal protein S6 OS=Kingella denitrificans ATCC 33394 GN=rpsF PE=3 SV=1
 Probab=99.90  E-value=5.2e-28  Score=157.88  Aligned_cols=94  Identities=24%  Similarity=0.507  Sum_probs=91.3
 
@@ -1868,7 +1868,7 @@ T tr|F0EWL8|F0EW  125 FNDAILRHLTIQMKA  139 (169)
 Confidence            999999999998764
 
 
-No 69
+No 69 
 >tr|A0A0G0E8J6|A0A0G0E8J6_9BACT 30S ribosomal protein S6 OS=Microgenomates (Roizmanbacteria) bacterium GW2011_GWA2_35_19 GN=rpsF PE=3 SV=1
 Probab=99.90  E-value=6e-28  Score=148.19  Aligned_cols=86  Identities=28%  Similarity=0.544  Sum_probs=80.8
 
@@ -1888,7 +1888,7 @@ T tr|A0A0G0E8J6|   74 NQNILRSLVVRLN   86 (87)
 Confidence            9999999999875
 
 
-No 70
+No 70 
 >tr|A0A0G0E8J6|A0A0G0E8J6_9BACT 30S ribosomal protein S6 OS=Microgenomates (Roizmanbacteria) bacterium GW2011_GWA2_35_19 GN=rpsF PE=3 SV=1
 Probab=99.90  E-value=6e-28  Score=148.19  Aligned_cols=86  Identities=28%  Similarity=0.544  Sum_probs=80.8
 
@@ -1908,7 +1908,7 @@ T tr|A0A0G0E8J6|   74 NQNILRSLVVRLN   86 (87)
 Confidence            9999999999875
 
 
-No 71
+No 71 
 >tr|G2DFS4|G2DFS4_9GAMM 30S ribosomal protein S6 OS=endosymbiont of Riftia pachyptila (vent Ph05) GN=rpsF PE=3 SV=1
 Probab=99.89  E-value=3.4e-27  Score=157.42  Aligned_cols=96  Identities=27%  Similarity=0.491  Sum_probs=93.1
 
@@ -1928,7 +1928,7 @@ T tr|G2DFS4|G2DF  110 YNDAVLRNLVIKEKKAI  126 (189)
 Confidence            99999999999987643
 
 
-No 72
+No 72 
 >tr|G2DFS4|G2DFS4_9GAMM 30S ribosomal protein S6 OS=endosymbiont of Riftia pachyptila (vent Ph05) GN=rpsF PE=3 SV=1
 Probab=99.88  E-value=3.8e-27  Score=157.42  Aligned_cols=96  Identities=27%  Similarity=0.491  Sum_probs=93.1
 
@@ -1948,7 +1948,7 @@ T tr|G2DFS4|G2DF  110 YNDAVLRNLVIKEKKAI  126 (189)
 Confidence            99999999999987643
 
 
-No 73
+No 73 
 >tr|A0A0C3PMC1|A0A0C3PMC1_PISTI Uncharacterized protein OS=Pisolithus tinctorius Marx 270 GN=M404DRAFT_224177 PE=4 SV=1
 Probab=99.88  E-value=9.8e-27  Score=152.04  Aligned_cols=98  Identities=17%  Similarity=0.213  Sum_probs=94.0
 
@@ -1968,7 +1968,7 @@ T tr|A0A0C3PMC1|   81 ARLRRDPRVLRWTMLKLGEKLE  102 (133)
 Confidence            9999999999999999998754
 
 
-No 74
+No 74 
 >tr|W4LXC2|W4LXC2_9DELT 30S ribosomal protein S6 OS=Candidatus Entotheonella sp. TSY1 GN=rpsF PE=3 SV=1
 Probab=99.87  E-value=1.5e-26  Score=154.64  Aligned_cols=96  Identities=30%  Similarity=0.488  Sum_probs=93.4
 
@@ -1988,7 +1988,7 @@ T tr|W4LXC2|W4LX   85 SDRVLRYLTVRFEKEE  100 (181)
 Confidence            9999999999998754
 
 
-No 75
+No 75 
 >tr|X8H2M1|X8H2M1_9FUSO Putative ribosomal protein S6 OS=Fusobacterium sp. CM22 GN=HMPREF1500_1782 PE=4 SV=1
 Probab=99.87  E-value=1.5e-26  Score=132.54  Aligned_cols=60  Identities=33%  Similarity=0.572  Sum_probs=59.2
 
@@ -2000,7 +2000,7 @@ T tr|X8H2M1|X8H2    1 MRKYEIMYIIRPDLDEEAKNELIERFKEVLTSNGATIIKSKVWGKRKLAYEINKFREG
 Confidence            899999999999999999999999999999999999999999999999999999999998
 
 
-No 76
+No 76 
 >tr|W4LXC2|W4LXC2_9DELT 30S ribosomal protein S6 OS=Candidatus Entotheonella sp. TSY1 GN=rpsF PE=3 SV=1
 Probab=99.87  E-value=1.7e-26  Score=154.64  Aligned_cols=96  Identities=30%  Similarity=0.488  Sum_probs=93.4
 
@@ -2020,7 +2020,7 @@ T tr|W4LXC2|W4LX   85 SDRVLRYLTVRFEKEE  100 (181)
 Confidence            9999999999998754
 
 
-No 77
+No 77 
 >tr|A0A0C3PMC1|A0A0C3PMC1_PISTI Uncharacterized protein OS=Pisolithus tinctorius Marx 270 GN=M404DRAFT_224177 PE=4 SV=1
 Probab=99.87  E-value=1.8e-26  Score=152.04  Aligned_cols=98  Identities=17%  Similarity=0.213  Sum_probs=94.0
 
@@ -2040,7 +2040,7 @@ T tr|A0A0C3PMC1|   81 ARLRRDPRVLRWTMLKLGEKLE  102 (133)
 Confidence            9999999999999999998754
 
 
-No 78
+No 78 
 >tr|X8H2M1|X8H2M1_9FUSO Putative ribosomal protein S6 OS=Fusobacterium sp. CM22 GN=HMPREF1500_1782 PE=4 SV=1
 Probab=99.87  E-value=2.1e-26  Score=132.54  Aligned_cols=60  Identities=33%  Similarity=0.572  Sum_probs=59.2
 
@@ -2052,7 +2052,7 @@ T tr|X8H2M1|X8H2    1 MRKYEIMYIIRPDLDEEAKNELIERFKEVLTSNGATIIKSKVWGKRKLAYEINKFREG
 Confidence            899999999999999999999999999999999999999999999999999999999998
 
 
-No 79
+No 79 
 >tr|A0A0Q6PRE9|A0A0Q6PRE9_9MICO 30S ribosomal protein S6 OS=Leifsonia sp. Root112D2 GN=ASC63_04875 PE=4 SV=1
 Probab=99.87  E-value=2.8e-26  Score=153.04  Aligned_cols=97  Identities=27%  Similarity=0.517  Sum_probs=93.4
 
@@ -2072,7 +2072,7 @@ T tr|A0A0Q6PRE9|   81 LSEAVMRTKVLRAEEAI   97 (182)
 Confidence            99999999999887643
 
 
-No 80
+No 80 
 >tr|R6JHQ2|R6JHQ2_9PORP 30S ribosomal protein S6 OS=Parabacteroides sp. CAG:2 GN=rpsF PE=3 SV=1
 Probab=99.87  E-value=2.9e-26  Score=152.60  Aligned_cols=101  Identities=27%  Similarity=0.444  Sum_probs=97.6
 
@@ -2092,7 +2092,7 @@ T tr|R6JHQ2|R6JH  157 RDERVIRFLTFRQDKYAAEYA  177 (194)
 Confidence            999999999999998776665
 
 
-No 81
+No 81 
 >tr|R6JHQ2|R6JHQ2_9PORP 30S ribosomal protein S6 OS=Parabacteroides sp. CAG:2 GN=rpsF PE=3 SV=1
 Probab=99.87  E-value=2.9e-26  Score=152.60  Aligned_cols=101  Identities=27%  Similarity=0.444  Sum_probs=97.6
 
@@ -2112,7 +2112,7 @@ T tr|R6JHQ2|R6JH  157 RDERVIRFLTFRQDKYAAEYA  177 (194)
 Confidence            999999999999998776665
 
 
-No 82
+No 82 
 >tr|A4GI31|A4GI31_9BACT 30S ribosomal protein S6 OS=uncultured marine bacterium EB0_41B09 GN=rpsF PE=3 SV=1
 Probab=99.87  E-value=3.5e-26  Score=153.10  Aligned_cols=94  Identities=27%  Similarity=0.509  Sum_probs=90.7
 
@@ -2132,7 +2132,7 @@ T tr|A4GI31|A4GI   80 FNDAVIRHLVVSKKT   94 (203)
 Confidence            999999999987543
 
 
-No 83
+No 83 
 >tr|A4GI31|A4GI31_9BACT 30S ribosomal protein S6 OS=uncultured marine bacterium EB0_41B09 GN=rpsF PE=3 SV=1
 Probab=99.87  E-value=3.5e-26  Score=153.10  Aligned_cols=94  Identities=27%  Similarity=0.509  Sum_probs=90.7
 
@@ -2152,7 +2152,7 @@ T tr|A4GI31|A4GI   80 FNDAVIRHLVVSKKT   94 (203)
 Confidence            999999999987543
 
 
-No 84
+No 84 
 >tr|A0A0Q6PRE9|A0A0Q6PRE9_9MICO 30S ribosomal protein S6 OS=Leifsonia sp. Root112D2 GN=ASC63_04875 PE=4 SV=1
 Probab=99.86  E-value=4.2e-26  Score=153.04  Aligned_cols=97  Identities=27%  Similarity=0.517  Sum_probs=93.4
 
@@ -2172,7 +2172,7 @@ T tr|A0A0Q6PRE9|   81 LSEAVMRTKVLRAEEAI   97 (182)
 Confidence            99999999999887643
 
 
-No 85
+No 85 
 >tr|K0MH45|K0MH45_BORPB 30S ribosomal protein S6 OS=Bordetella parapertussis (strain Bpp5) GN=rpsF PE=3 SV=1
 Probab=99.86  E-value=4.8e-26  Score=147.37  Aligned_cols=96  Identities=28%  Similarity=0.483  Sum_probs=92.7
 
@@ -2192,7 +2192,7 @@ T tr|K0MH45|K0MH  111 YNDAVLRHLVIKTKKAP  127 (157)
 Confidence            99999999999987654
 
 
-No 86
+No 86 
 >tr|K0MH45|K0MH45_BORPB 30S ribosomal protein S6 OS=Bordetella parapertussis (strain Bpp5) GN=rpsF PE=3 SV=1
 Probab=99.86  E-value=4.8e-26  Score=147.37  Aligned_cols=96  Identities=28%  Similarity=0.483  Sum_probs=92.7
 
@@ -2212,7 +2212,7 @@ T tr|K0MH45|K0MH  111 YNDAVLRHLVIKTKKAP  127 (157)
 Confidence            99999999999987654
 
 
-No 87
+No 87 
 >tr|H6SJ92|H6SJ92_RHOPH 30S ribosomal protein S6 OS=Pararhodospirillum photometricum DSM 122 GN=rpsF PE=3 SV=1
 Probab=99.86  E-value=8.5e-26  Score=151.27  Aligned_cols=98  Identities=28%  Similarity=0.470  Sum_probs=95.0
 
@@ -2232,7 +2232,7 @@ T tr|H6SJ92|H6SJ  118 LNEDVIRHMTVRVEELEE  135 (192)
 Confidence            999999999999987543
 
 
-No 88
+No 88 
 >tr|H6SJ92|H6SJ92_RHOPH 30S ribosomal protein S6 OS=Pararhodospirillum photometricum DSM 122 GN=rpsF PE=3 SV=1
 Probab=99.86  E-value=9.7e-26  Score=151.27  Aligned_cols=98  Identities=28%  Similarity=0.470  Sum_probs=95.0
 
@@ -2252,7 +2252,7 @@ T tr|H6SJ92|H6SJ  118 LNEDVIRHMTVRVEELEE  135 (192)
 Confidence            999999999999987543
 
 
-No 89
+No 89 
 >tr|F2ULD1|F2ULD1_SALR5 Putative uncharacterized protein OS=Salpingoeca rosetta (strain ATCC 50818 / BSB-021) GN=PTSG_09565 PE=4 SV=1
 Probab=99.85  E-value=1.4e-25  Score=142.98  Aligned_cols=94  Identities=26%  Similarity=0.430  Sum_probs=90.5
 
@@ -2272,7 +2272,7 @@ T tr|F2ULD1|F2UL   80 HELKVDEDVIRWSFVKKPA   98 (112)
 Confidence            9999999999999999873
 
 
-No 90
+No 90 
 >tr|F2ULD1|F2ULD1_SALR5 Putative uncharacterized protein OS=Salpingoeca rosetta (strain ATCC 50818 / BSB-021) GN=PTSG_09565 PE=4 SV=1
 Probab=99.85  E-value=1.8e-25  Score=142.98  Aligned_cols=94  Identities=26%  Similarity=0.430  Sum_probs=90.5
 
@@ -2292,7 +2292,7 @@ T tr|F2ULD1|F2UL   80 HELKVDEDVIRWSFVKKPA   98 (112)
 Confidence            9999999999999999873
 
 
-No 91
+No 91 
 >tr|V4JDG7|V4JDG7_9GAMM 30S ribosomal protein S6 (Fragment) OS=uncultured Thiohalocapsa sp. PB-PSB1 GN=N838_16650 PE=3 SV=1
 Probab=99.84  E-value=4.3e-25  Score=136.24  Aligned_cols=75  Identities=24%  Similarity=0.459  Sum_probs=71.5
 
@@ -2304,7 +2304,7 @@ T tr|V4JDG7|V4JD    1 MIERYRANIEEHGGTIHRLEDWGRRQLAYPINKLHKAHYVLMNIECGQEVLIELETAF
 Confidence            367889999999999999999999999999999999999999999999999999999999999999999998764
 
 
-No 92
+No 92 
 >tr|I0YS97|I0YS97_9CHLO Mitochondrial ribosomal protein S6 (Fragment) OS=Coccomyxa subellipsoidea C-169 GN=COCSUDRAFT_9408 PE=4 SV=1
 Probab=99.84  E-value=4.6e-25  Score=135.67  Aligned_cols=93  Identities=23%  Similarity=0.293  Sum_probs=89.4
 
@@ -2324,7 +2324,7 @@ T tr|I0YS97|I0YS   81 RILRLDPSVLRYTILRK   97 (97)
 Confidence            99999999999999873
 
 
-No 93
+No 93 
 >tr|I0YS97|I0YS97_9CHLO Mitochondrial ribosomal protein S6 (Fragment) OS=Coccomyxa subellipsoidea C-169 GN=COCSUDRAFT_9408 PE=4 SV=1
 Probab=99.84  E-value=5.6e-25  Score=135.67  Aligned_cols=93  Identities=23%  Similarity=0.293  Sum_probs=89.4
 
@@ -2344,7 +2344,7 @@ T tr|I0YS97|I0YS   81 RILRLDPSVLRYTILRK   97 (97)
 Confidence            99999999999999873
 
 
-No 94
+No 94 
 >tr|V4JDG7|V4JDG7_9GAMM 30S ribosomal protein S6 (Fragment) OS=uncultured Thiohalocapsa sp. PB-PSB1 GN=N838_16650 PE=3 SV=1
 Probab=99.84  E-value=7e-25  Score=136.24  Aligned_cols=75  Identities=24%  Similarity=0.459  Sum_probs=71.5
 
@@ -2356,7 +2356,7 @@ T tr|V4JDG7|V4JD    1 MIERYRANIEEHGGTIHRLEDWGRRQLAYPINKLHKAHYVLMNIECGQEVLIELETAF
 Confidence            367889999999999999999999999999999999999999999999999999999999999999999998764
 
 
-No 95
+No 95 
 >tr|A5UYQ7|A5UYQ7_ROSS1 30S ribosomal protein S6 OS=Roseiflexus sp. (strain RS-1) GN=rpsF PE=3 SV=1
 Probab=99.84  E-value=7.3e-25  Score=144.08  Aligned_cols=96  Identities=26%  Similarity=0.524  Sum_probs=87.6
 
@@ -2376,7 +2376,7 @@ T tr|A5UYQ7|A5UY   86 AADRVAELERALKLNDSVLRYLLTLVETKS  115 (159)
 Confidence            999999999999999999999998877653
 
 
-No 96
+No 96 
 >tr|A5UYQ7|A5UYQ7_ROSS1 30S ribosomal protein S6 OS=Roseiflexus sp. (strain RS-1) GN=rpsF PE=3 SV=1
 Probab=99.83  E-value=9.8e-25  Score=144.08  Aligned_cols=96  Identities=26%  Similarity=0.524  Sum_probs=87.6
 
@@ -2396,7 +2396,7 @@ T tr|A5UYQ7|A5UY   86 AADRVAELERALKLNDSVLRYLLTLVETKS  115 (159)
 Confidence            999999999999999999999998877653
 
 
-No 97
+No 97 
 >tr|A0A0G0R378|A0A0G0R378_9BACT 30S ribosomal protein S6 OS=Parcubacteria bacterium GW2011_GWB1_40_14 GN=rpsF PE=3 SV=1
 Probab=99.83  E-value=2e-24  Score=144.42  Aligned_cols=97  Identities=20%  Similarity=0.448  Sum_probs=93.3
 
@@ -2416,7 +2416,7 @@ T tr|A0A0G0R378|   89 LEKQILRFLLVHKKPQK  105 (152)
 Confidence            99999999999876643
 
 
-No 98
+No 98 
 >tr|A0A067K6R2|A0A067K6R2_JATCU Uncharacterized protein OS=Jatropha curcas GN=JCGZ_19040 PE=3 SV=1
 Probab=99.82  E-value=2.5e-24  Score=156.35  Aligned_cols=97  Identities=27%  Similarity=0.458  Sum_probs=92.9
 
@@ -2436,7 +2436,7 @@ T tr|A0A067K6R2|  222 KDERVIRHLVIKRDEAIT  239 (328)
 Confidence            999999999999988654
 
 
-No 99
+No 99 
 >tr|A0A0G0R378|A0A0G0R378_9BACT 30S ribosomal protein S6 OS=Parcubacteria bacterium GW2011_GWB1_40_14 GN=rpsF PE=3 SV=1
 Probab=99.82  E-value=2.9e-24  Score=144.42  Aligned_cols=97  Identities=20%  Similarity=0.448  Sum_probs=93.3
 
@@ -4306,10 +4306,10 @@ Probab=99.54  E-value=6.9e-18  Score=109.59  Aligned_cols=94  Identities=24%  Si
 
 Q example_data/2    3 RYEVNIVLNPNLDQSQLALEKEIIQRALENYGARVEKVEELGLRRLAYPIAKDPQGYFLWYQVEMPEDRVNDLARELRI-   81 (101)
 Q Consensus         3 ~YEl~~i~~p~~~~~~~~~~~~~~~~~i~~~gg~i~~~e~~G~r~LaY~Ikk~~~G~Y~~~~f~~~~~~i~el~~~l~~-   81 (101)
-                      +||+++|++|+.+-.++-+..+++.+.+....|...-.+.||-|.|||||.|.+++||+...-..+|+.++|+||.|..
+                      +||+++|++|+.+-.++-+..+++.+.+....|...-.+.||-|.|||||.|.+++||+...-..+|+.++|+||.|.. 
 T Consensus        23 kye~vliinpdysmpqvle~fqk~es~vq~y~g~l~paeywgfrtlaypihkrnkahyvyctaq~~pscvkelerflsve  102 (147)
 T tr|A0A023DWU5|   23 KYEVVLIINPDYSMPQVLEVFQKLESQVQGYQGMLSPAEYWGFRTLAYPIHKRNKAHYVYCTAQLDPSCVKELERFLSVE  102 (147)
-Confidence            6999999999999999999999999999999999999999999999999999999999999999999999999999975
+Confidence            6999999999999999999999999999999999999999999999999999999999999999999999999999975 
 
 
 Q example_data/2   82 -RDNVRRVMVVKSQEP   96 (101)
@@ -4366,10 +4366,10 @@ Probab=99.54  E-value=7.4e-18  Score=109.59  Aligned_cols=94  Identities=24%  Si
 
 Q example_data/2    3 RYEVNIVLNPNLDQSQLALEKEIIQRALENYGARVEKVEELGLRRLAYPIAKDPQGYFLWYQVEMPEDRVNDLARELRI-   81 (101)
 Q Consensus         3 ~YEl~~i~~p~~~~~~~~~~~~~~~~~i~~~gg~i~~~e~~G~r~LaY~Ikk~~~G~Y~~~~f~~~~~~i~el~~~l~~-   81 (101)
-                      +||+++|++|+.+-.++-+..+++.+.+....|...-.+.||-|.|||||.|.+++||+...-..+|+.++|+||.|..
+                      +||+++|++|+.+-.++-+..+++.+.+....|...-.+.||-|.|||||.|.+++||+...-..+|+.++|+||.|.. 
 T Consensus        23 kye~vliinpdysmpqvle~fqk~es~vq~y~g~l~paeywgfrtlaypihkrnkahyvyctaq~~pscvkelerflsve  102 (147)
 T tr|A0A023DWU5|   23 KYEVVLIINPDYSMPQVLEVFQKLESQVQGYQGMLSPAEYWGFRTLAYPIHKRNKAHYVYCTAQLDPSCVKELERFLSVE  102 (147)
-Confidence            6999999999999999999999999999999999999999999999999999999999999999999999999999975
+Confidence            6999999999999999999999999999999999999999999999999999999999999999999999999999975 
 
 
 Q example_data/2   82 -RDNVRRVMVVKSQEP   96 (101)
@@ -4982,10 +4982,10 @@ Probab=99.46  E-value=6.4e-17  Score=111.67  Aligned_cols=95  Identities=26%  Si
 
 Q example_data/2    2 RRYEVNIVLNPNLDQSQLALEKEIIQRALENYGARVEKVEELGLRRLAYPIAKDPQGYFLWYQVEMPED-----------   70 (101)
 Q Consensus         2 ~~YEl~~i~~p~~~~~~~~~~~~~~~~~i~~~gg~i~~~e~~G~r~LaY~Ikk~~~G~Y~~~~f~~~~~-----------   70 (101)
-                      +.|||.|++-... +..+.++-+.+..+|...||+....+-.-+|+|||.|+++.+|.|+.-+|+++..
+                      +.|||.|++-... +..+.++-+.+..+|...||+....+-.-+|+|||.|+++.+|.|+.-+|+++..           
 T Consensus         1 MqYELFYLVG~~~-E~~L~aIK~~Ve~il~~ega~f~~~E~~eKRKLaYeIKhqnkG~YIaRRFElpE~d~wadea~~ek   79 (196)
 T tr|A0A0G0LFC5|    1 MQYELFYLVGERQ-EANLDAIKEEVEAILADEGATFVEEELSEKRKLAYEIKHQNKGIYIARRFELPEIDFWADEANGEK   79 (196)
-Confidence            4799999997655 6899999999999999999999999999999999999999999999999999854
+Confidence            4799999997655 6899999999999999999999999999999999999999999999999999854           
 
 
 Q example_data/2   71 --RVNDLARELRIRDNVRRVMVVKSQEPF   97 (101)
@@ -5046,10 +5046,10 @@ Probab=99.45  E-value=9.7e-17  Score=111.67  Aligned_cols=95  Identities=26%  Si
 
 Q example_data/2    2 RRYEVNIVLNPNLDQSQLALEKEIIQRALENYGARVEKVEELGLRRLAYPIAKDPQGYFLWYQVEMPED-----------   70 (101)
 Q Consensus         2 ~~YEl~~i~~p~~~~~~~~~~~~~~~~~i~~~gg~i~~~e~~G~r~LaY~Ikk~~~G~Y~~~~f~~~~~-----------   70 (101)
-                      +.|||.|++-... +..+.++-+.+..+|...||+....+-.-+|+|||.|+++.+|.|+.-+|+++..
+                      +.|||.|++-... +..+.++-+.+..+|...||+....+-.-+|+|||.|+++.+|.|+.-+|+++..           
 T Consensus         1 MqYELFYLVG~~~-E~~L~aIK~~Ve~il~~ega~f~~~E~~eKRKLaYeIKhqnkG~YIaRRFElpE~d~wadea~~ek   79 (196)
 T tr|A0A0G0LFC5|    1 MQYELFYLVGERQ-EANLDAIKEEVEAILADEGATFVEEELSEKRKLAYEIKHQNKGIYIARRFELPEIDFWADEANGEK   79 (196)
-Confidence            4799999997655 6899999999999999999999999999999999999999999999999999854
+Confidence            4799999997655 6899999999999999999999999999999999999999999999999999854           
 
 
 Q example_data/2   71 --RVNDLARELRIRDNVRRVMVVKSQEPF   97 (101)
@@ -5510,10 +5510,10 @@ Probab=99.40  E-value=4.2e-16  Score=104.10  Aligned_cols=90  Identities=23%  Si
 
 Q example_data/2    3 RYEVNIVLNPNLDQSQLALEKEIIQRALENYGARVEKVEELGLRRLAYPIAKDPQGYFLWYQVEMPEDRVNDLARELR--   80 (101)
 Q Consensus         3 ~YEl~~i~~p~~~~~~~~~~~~~~~~~i~~~gg~i~~~e~~G~r~LaY~Ikk~~~G~Y~~~~f~~~~~~i~el~~~l~--   80 (101)
-                      .||+|+|++|+++++|.+.-+.++...+.+.|..-.+--..|+.+|||||||..+|.|++..+.+.|.+-..+...|.
+                      .||+|+|++|+++++|.+.-+.++...+.+.|..-.+--..|+.+|||||||..+|.|++..+.+.|.+-..+...|.  
 T Consensus        71 ~YETMiiLkPtlsDEERD~ELAKFeA~L~Kq~~~~i~~lVRGR~kLAYPIKk~~EGIYVLYsY~A~~~~g~AVQ~~LS~P  150 (166)
 T tr|E1ZFU3|E1ZF   71 TYETMIILKPTLSDEERDRELAKFEAYLNKQECSQINALVRGRSKLAYPIKKEWEGIYVLYSYTAARQTGRAVQKLLSNP  150 (166)
-Confidence            699999999999999999999999999999999888888899999999999999999999999999988777777665
+Confidence            699999999999999999999999999999999888888899999999999999999999999999988777777665  
 
 
 Q example_data/2   81 ---IRDNVRRVMVVK   92 (101)
@@ -5550,10 +5550,10 @@ Probab=99.39  E-value=5e-16  Score=104.10  Aligned_cols=90  Identities=23%  Simi
 
 Q example_data/2    3 RYEVNIVLNPNLDQSQLALEKEIIQRALENYGARVEKVEELGLRRLAYPIAKDPQGYFLWYQVEMPEDRVNDLARELR--   80 (101)
 Q Consensus         3 ~YEl~~i~~p~~~~~~~~~~~~~~~~~i~~~gg~i~~~e~~G~r~LaY~Ikk~~~G~Y~~~~f~~~~~~i~el~~~l~--   80 (101)
-                      .||+|+|++|+++++|.+.-+.++...+.+.|..-.+--..|+.+|||||||..+|.|++..+.+.|.+-..+...|.
+                      .||+|+|++|+++++|.+.-+.++...+.+.|..-.+--..|+.+|||||||..+|.|++..+.+.|.+-..+...|.  
 T Consensus        71 ~YETMiiLkPtlsDEERD~ELAKFeA~L~Kq~~~~i~~lVRGR~kLAYPIKk~~EGIYVLYsY~A~~~~g~AVQ~~LS~P  150 (166)
 T tr|E1ZFU3|E1ZF   71 TYETMIILKPTLSDEERDRELAKFEAYLNKQECSQINALVRGRSKLAYPIKKEWEGIYVLYSYTAARQTGRAVQKLLSNP  150 (166)
-Confidence            699999999999999999999999999999999888888899999999999999999999999999988777777665
+Confidence            699999999999999999999999999999999888888899999999999999999999999999988777777665  
 
 
 Q example_data/2   81 ---IRDNVRRVMVVK   92 (101)
@@ -6958,10 +6958,10 @@ Probab=99.13  E-value=1.1e-13  Score=94.77  Aligned_cols=96  Identities=22%  Sim
 
 Q example_data/2    1 MRRYEVNIVLNPNLDQSQLALEKEIIQRALENYGARVEKVEELGLRRLAYPIAKDPQGYFLWYQVEMPE-----------   69 (101)
 Q Consensus         1 M~~YEl~~i~~p~~~~~~~~~~~~~~~~~i~~~gg~i~~~e~~G~r~LaY~Ikk~~~G~Y~~~~f~~~~-----------   69 (101)
-                      |..||++|++-.+ .+.++..+-..+..+|+++||.+...+.--+|+|+|.|++...|.|+.-+|+.+.
+                      |..||++|++-.+ .+.++..+-..+..+|+++||.+...+.--+|+|+|.|++...|.|+.-+|+.+.           
 T Consensus         1 ~mEYEi~YLiGES-kE~~LdKIr~~ve~iitK~~G~~LE~E~V~kRrlSYeIKrEaRG~YvakRF~i~~KDEREE~~~~~   79 (191)
 T tr|A0A0G0C366|    1 NMEYEICYLIGES-KEANLDKIRPIVEGIITKHKGTFLEGEFVRKRRLSYEIKREARGTYVAKRFTIPSKDEREEQLFPD   79 (191)
-Confidence            6789999999754 4688888888999999999999999999999999999999999999999998764
+Confidence            6789999999754 4688888888999999999999999999999999999999999999999998764           
 
 
 Q example_data/2   70 -DRVNDLARELRIRDNVRRVMVVKSQEPF   97 (101)
@@ -6998,10 +6998,10 @@ Probab=99.13  E-value=1.2e-13  Score=94.77  Aligned_cols=96  Identities=22%  Sim
 
 Q example_data/2    1 MRRYEVNIVLNPNLDQSQLALEKEIIQRALENYGARVEKVEELGLRRLAYPIAKDPQGYFLWYQVEMPE-----------   69 (101)
 Q Consensus         1 M~~YEl~~i~~p~~~~~~~~~~~~~~~~~i~~~gg~i~~~e~~G~r~LaY~Ikk~~~G~Y~~~~f~~~~-----------   69 (101)
-                      |..||++|++-.+ .+.++..+-..+..+|+++||.+...+.--+|+|+|.|++...|.|+.-+|+.+.
+                      |..||++|++-.+ .+.++..+-..+..+|+++||.+...+.--+|+|+|.|++...|.|+.-+|+.+.           
 T Consensus         1 ~mEYEi~YLiGES-kE~~LdKIr~~ve~iitK~~G~~LE~E~V~kRrlSYeIKrEaRG~YvakRF~i~~KDEREE~~~~~   79 (191)
 T tr|A0A0G0C366|    1 NMEYEICYLIGES-KEANLDKIRPIVEGIITKHKGTFLEGEFVRKRRLSYEIKREARGTYVAKRFTIPSKDEREEQLFPD   79 (191)
-Confidence            6789999999754 4688888888999999999999999999999999999999999999999998764
+Confidence            6789999999754 4688888888999999999999999999999999999999999999999998764           
 
 
 Q example_data/2   70 -DRVNDLARELRIRDNVRRVMVVKSQEPF   97 (101)
@@ -8198,10 +8198,10 @@ Probab=98.86  E-value=7.1e-12  Score=87.63  Aligned_cols=95  Identities=22%  Sim
 
 Q example_data/2    1 MRRYEVNIVLNPNLDQSQLALEKEIIQRALENYGARVEKVEELGLRRLAYPIAKDP------------------------   56 (101)
 Q Consensus         1 M~~YEl~~i~~p~~~~~~~~~~~~~~~~~i~~~gg~i~~~e~~G~r~LaY~Ikk~~------------------------   56 (101)
-                      ||.|.+|++++|..+.+.+.+++.+++.-.-+.+|+++.+.++|+-.|+|-|+|-.
+                      ||.|.+|++++|..+.+.+.+++.+++.-.-+.+|+++.+.++|+-.|+|-|+|-.                        
 T Consensus         1 MPLYDCMLlvKP~VtkEAlaeLvaRVa~rayqRNGVvTevKsFG~v~LgYGIrKLDGRhfq~~~~~~~~~~~~~~~p~~~   80 (209)
 T tr|R7VYG5|R7VY    1 MPLYDCMLLVKPLVTKEAMAELVARVARRAYQRNGVVTEVKSFGTVHLGYGIRKLDGRHFQEYQDYSGWVAQKNRCAAVN   80 (209)
-Confidence            89999999999999999999999999999999999999999999999999999732
+Confidence            89999999999999999999999999999999999999999999999999999732                        
 
 
 Q example_data/2   57 ------------------------------------------QGYFLWYQVEMPEDRVNDLARELRIRDNVRRVMVVKSQ   94 (101)
@@ -8286,10 +8286,10 @@ Probab=98.85  E-value=8.3e-12  Score=84.83  Aligned_cols=89  Identities=24%  Sim
 
 Q example_data/2    3 RYEVNIVLNPNLDQSQLALEKEIIQRALENYGARVEKVEELGLRRLAYPIAKDPQGYFLWYQVEMPEDRVNDLARELRI-   81 (101)
 Q Consensus         3 ~YEl~~i~~p~~~~~~~~~~~~~~~~~i~~~gg~i~~~e~~G~r~LaY~Ikk~~~G~Y~~~~f~~~~~~i~el~~~l~~-   81 (101)
-                      .||+|++++|++++++.+--+.+++.++.+..|.-++.-..|.++|||||..+.+|.|++..+-+...+-+.+.+.|..
+                      .||+|++++|++++++.+--+.+++.++.+..|.-++.-..|.++|||||..+.+|.|++..+-+...+-+.+.+.|.. 
 T Consensus        83 ~yetm~vlrp~it~~erd~elakfe~flk~ee~ieisa~vrg~q~~ayp~~g~w~giyvlyty~a~r~~aq~vq~lls~p  162 (178)
 T tr|A0A061RX83|   83 RYETMMVLRPNITNDERDRELAKFEVFLKNEEAIEISAMVRGRQRMAYPMQGHWEGIYVLYTYAAKRTTAQGVQQLLSNP  162 (178)
-Confidence            5999999999999999999999999999999998888889999999999999999999999999987766666665543
+Confidence            5999999999999999999999999999999998888889999999999999999999999999987766666665543 
 
 
 Q example_data/2   82 ----RDNVRRVMVV   91 (101)
@@ -8306,10 +8306,10 @@ Probab=98.85  E-value=9.2e-12  Score=84.83  Aligned_cols=89  Identities=24%  Sim
 
 Q example_data/2    3 RYEVNIVLNPNLDQSQLALEKEIIQRALENYGARVEKVEELGLRRLAYPIAKDPQGYFLWYQVEMPEDRVNDLARELRI-   81 (101)
 Q Consensus         3 ~YEl~~i~~p~~~~~~~~~~~~~~~~~i~~~gg~i~~~e~~G~r~LaY~Ikk~~~G~Y~~~~f~~~~~~i~el~~~l~~-   81 (101)
-                      .||+|++++|++++++.+--+.+++.++.+..|.-++.-..|.++|||||..+.+|.|++..+-+...+-+.+.+.|..
+                      .||+|++++|++++++.+--+.+++.++.+..|.-++.-..|.++|||||..+.+|.|++..+-+...+-+.+.+.|.. 
 T Consensus        83 ~yetm~vlrp~it~~erd~elakfe~flk~ee~ieisa~vrg~q~~ayp~~g~w~giyvlyty~a~r~~aq~vq~lls~p  162 (178)
 T tr|A0A061RX83|   83 RYETMMVLRPNITNDERDRELAKFEVFLKNEEAIEISAMVRGRQRMAYPMQGHWEGIYVLYTYAAKRTTAQGVQQLLSNP  162 (178)
-Confidence            5999999999999999999999999999999998888889999999999999999999999999987766666665543
+Confidence            5999999999999999999999999999999998888889999999999999999999999999987766666665543 
 
 
 Q example_data/2   82 ----RDNVRRVMVV   91 (101)
@@ -8326,10 +8326,10 @@ Probab=98.84  E-value=9.2e-12  Score=87.63  Aligned_cols=95  Identities=22%  Sim
 
 Q example_data/2    1 MRRYEVNIVLNPNLDQSQLALEKEIIQRALENYGARVEKVEELGLRRLAYPIAKDP------------------------   56 (101)
 Q Consensus         1 M~~YEl~~i~~p~~~~~~~~~~~~~~~~~i~~~gg~i~~~e~~G~r~LaY~Ikk~~------------------------   56 (101)
-                      ||.|.+|++++|..+.+.+.+++.+++.-.-+.+|+++.+.++|+-.|+|-|+|-.
+                      ||.|.+|++++|..+.+.+.+++.+++.-.-+.+|+++.+.++|+-.|+|-|+|-.                        
 T Consensus         1 MPLYDCMLlvKP~VtkEAlaeLvaRVa~rayqRNGVvTevKsFG~v~LgYGIrKLDGRhfq~~~~~~~~~~~~~~~p~~~   80 (209)
 T tr|R7VYG5|R7VY    1 MPLYDCMLLVKPLVTKEAMAELVARVARRAYQRNGVVTEVKSFGTVHLGYGIRKLDGRHFQEYQDYSGWVAQKNRCAAVN   80 (209)
-Confidence            89999999999999999999999999999999999999999999999999999732
+Confidence            89999999999999999999999999999999999999999999999999999732                        
 
 
 Q example_data/2   57 ------------------------------------------QGYFLWYQVEMPEDRVNDLARELRIRDNVRRVMVVKSQ   94 (101)
@@ -8642,10 +8642,10 @@ Probab=98.70  E-value=6.3e-11  Score=81.12  Aligned_cols=95  Identities=19%  Sim
 
 Q example_data/2    1 MRRYEVNIVLNPNLDQSQLALEKEIIQRALENYGARVEKVEELGLRRLAYPIAKDP------------------------   56 (101)
 Q Consensus         1 M~~YEl~~i~~p~~~~~~~~~~~~~~~~~i~~~gg~i~~~e~~G~r~LaY~Ikk~~------------------------   56 (101)
-                      |-.|.+.+.++...+..+...++.+...-+.+.||+|..+..+|.+.|||.|.|+.
+                      |-.|.+.+.++...+..+...++.+...-+.+.||+|..+..+|.+.|||.|.|+.                        
 T Consensus         1 mvlydmfiavkstvprsqmadvlrkmghrvldaggvitditsfgtqtlayqirkqgqghlevrvvgslgasnrrvarsrv   80 (200)
 T tr|C1N4I8|C1N4    1 MVLYDMFIAVKSTVPRSQMADVLRKMGHRVLDAGGVITDITSFGTQTLAYQIRKQGQGHLEVRVVGSLGASNRRVARSRV   80 (200)
-Confidence            67899988899999999999999999999999999999999999999999998642
+Confidence            67899988899999999999999999999999999999999999999999998642                        
 
 
 Q example_data/2   57 ---------------------------------------------------QGYFLWYQVEMPEDRVNDLARELRIRDNV   85 (101)
@@ -8670,10 +8670,10 @@ Probab=98.70  E-value=6.3e-11  Score=81.12  Aligned_cols=95  Identities=19%  Sim
 
 Q example_data/2    1 MRRYEVNIVLNPNLDQSQLALEKEIIQRALENYGARVEKVEELGLRRLAYPIAKDP------------------------   56 (101)
 Q Consensus         1 M~~YEl~~i~~p~~~~~~~~~~~~~~~~~i~~~gg~i~~~e~~G~r~LaY~Ikk~~------------------------   56 (101)
-                      |-.|.+.+.++...+..+...++.+...-+.+.||+|..+..+|.+.|||.|.|+.
+                      |-.|.+.+.++...+..+...++.+...-+.+.||+|..+..+|.+.|||.|.|+.                        
 T Consensus         1 mvlydmfiavkstvprsqmadvlrkmghrvldaggvitditsfgtqtlayqirkqgqghlevrvvgslgasnrrvarsrv   80 (200)
 T tr|C1N4I8|C1N4    1 MVLYDMFIAVKSTVPRSQMADVLRKMGHRVLDAGGVITDITSFGTQTLAYQIRKQGQGHLEVRVVGSLGASNRRVARSRV   80 (200)
-Confidence            67899988899999999999999999999999999999999999999999998642
+Confidence            67899988899999999999999999999999999999999999999999998642                        
 
 
 Q example_data/2   57 ---------------------------------------------------QGYFLWYQVEMPEDRVNDLARELRIRDNV   85 (101)
