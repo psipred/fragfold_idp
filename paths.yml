@@ -51,8 +51,8 @@ dynamine_dir: /opt/dynamine
 
 # location to install fragfold
 fragfold_dir: /opt/fragfold
-#dir that runSeqAnalysis should place the fragfold parameter files
-nfpar_dir: output/
+#dir that runSeqAnalysis should ffaln files
+ffaln_dir: output/
 
 # Dynamine API key from dynamine developers
 dynamine_api_key: dc7840495bd3ce6e3ff4344dcc990f4ff3475340b304a57be6436729
