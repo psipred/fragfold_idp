@@ -37,6 +37,9 @@ blast_parent_dir: /opt
 blast_dir: /opt/ncbi-blast-2.5.0+
 # version number of blast+ (must agree with blast_dir)
 blastversion: 2.5.0
+# blast OS
+#blastOS: linux
+blastOS: macosx
 
 # location to download the uniref90 datafile
 uniref90_dir: /opt/uniref

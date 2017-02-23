@@ -74,7 +74,7 @@ other runtime environments such as the jvm and python2. You should ensure you ha
     `ansible-playbook` command can be run repeatedly.
 
 11. If you used a python2 virtualenv to run ansible then switch back to
-your python3 evironment once the ansible install is been successful.
+your python3 evironment once the ansible install has been successful and return to the root fragfold-idp directory.
 
 ## How to run FRAGFOLD-IDP
 
@@ -96,7 +96,7 @@ FRAGFOLD_idp/output dir. You can change the paths on the command line see
 --help. If running this script on a cluster please ensure --num_threads is
 set appropriately
 
-    `python runSeqAnalysis.py --input example_data/2KJV.pdb`
+    `python bin/runSeqAnalysis.py --input example_data/2KJV.pdb`
 
 2. At this point we have generated the pdb file's MSA and FRAGFOLD input files.
 A large ensemble of FRAGFOLD models (>200) needs to be generated. We include
@@ -107,7 +107,7 @@ runSeqAnalysis output files, yours will differ from the example below. If
 running this script on a cluster please ensure --num_threads is set
 appropriately
 
-    `python runFRAGFOLD.py --input_name a15a6b5e-9463-11e6-a62a-989096c13ee6`
+    `python bin/runFRAGFOLD.py --input_name a15a6b5e-9463-11e6-a62a-989096c13ee6`
 
     This step is non-ideal and you should attempt to generate at least 200 models.
     FRAGFOLD is time consuming when generating large numbers of models, we note
@@ -123,7 +123,7 @@ appropriately
 3. Step 3 takes the ensemble file which runFRAGFOLD outputted and runs PFclust
 and the FRAGFOLD IDP superposition. It will output the FF_IDP RMSD profile
 
-    `python runFFIDP.py --input_name a15a6b5e-9463-11e6-a62a-989096c13ee6`
+    `python bin/runFFIDP.py --input_name a15a6b5e-9463-11e6-a62a-989096c13ee6`
 
 4. Step 1 will have generated a fasta file from your input pdb in the output
     directory. You can now use this with the DynaMine commandline script to
@@ -135,18 +135,18 @@ and the FRAGFOLD IDP superposition. It will output the FF_IDP RMSD profile
 5. We would run the consensus predictor over the FF_IDP RMDS profile and the
 Dynamine profile. This gives our final prediction values
 
-    `python runConsensus.py --input_name a15a6b5e-9463-11e6-a62a-989096c13ee6`
+    `python bin/runConsensus.py --input_name a15a6b5e-9463-11e6-a62a-989096c13ee6`
 
 6. If your input PDB file is an NMR file with an ensemble of structures you
 can now run the slidingwindow script. SKIP THIS STEP IF YOUR INPUT PDB FILE
 IS NOT AN NMR ENSEMBLE
 
-    `python SlidingWindow.py --input_name a15a6b5e-9463-11e6-a62a-989096c13ee6 --input_file example_data/2KJV.pdb`
+    `python bin/SlidingWindow.py --input_name a15a6b5e-9463-11e6-a62a-989096c13ee6 --input_file example_data/2KJV.pdb`
 
 7. Finally we can calculate the correlation between the ensemble available
 for benchmarking and diagnostic purposes.
 
-    `python RSEVAL.py --i a15a6b5e-9463-11e6-a62a-989096c13ee6.pdb_ens -j a15a6b5e-9463-11e6-a62a-989096c13ee6.consensus`
+    `python bin/RSEVAL.py --i a15a6b5e-9463-11e6-a62a-989096c13ee6.pdb_ens -j a15a6b5e-9463-11e6-a62a-989096c13ee6.consensus`
 
 ### Single Step Executable
 
@@ -156,8 +156,8 @@ not actually execute each step. You can use this to understand what commands
 you need to run should you plan to run each step on a cloud/cluster. In execution
 mode the script will run each command.
 
-    `python FFIDP.py --input example/2KJV.pdb`
-    `python FFIDP.py --input 2KJV.pdb --mode execute`
+    `python bin/FFIDP.py --input example/2KJV.pdb`
+    `python bin/FFIDP.py --input 2KJV.pdb --mode execute`
 
     *This script has a great number of command line options allowing you to
     specifically configure each step.*

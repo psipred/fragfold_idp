@@ -47,13 +47,13 @@
   - name: get BLAST+
     when: blast_exist.stat.exists == False
     get_url:
-      url: "ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/{{ blastversion }}/ncbi-blast-{{ blastversion }}+-x64-linux.tar.gz"
+      url: "ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/{{ blastversion }}/ncbi-blast-{{ blastversion }}+-x64-{{ blastOS }}.tar.gz"
       dest: "{{ blast_parent_dir }}"
       timeout: 120
     register: get_url_result
 
   - name: unarchive blast+
-    shell: cd {{ blast_parent_dir }}/; tar -zxvf ncbi-blast-{{ blastversion }}+-x64-linux.tar.gz
+    shell: cd {{ blast_parent_dir }}/; tar -zxvf ncbi-blast-{{ blastversion }}+-x64-{{ blastOS }}.tar.gz
     when: blast_exist.stat.exists == False
 
   # - name: unarchive blast+
