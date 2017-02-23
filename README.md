@@ -111,8 +111,8 @@ appropriately
 
     This step is non-ideal and you should attempt to generate at least 200 models.
     FRAGFOLD is time consuming when generating large numbers of models, we note
-    that users use a computing cluster or cloud service to run many simultaneous
-    FRAGFOLD runs. Executing this we must leave as an exercise for the reader.
+    that users should use a computing cluster or cloud service to run many simultaneous FRAGFOLD runs. Arranging this we must leave as an exercise for
+    the user.
 
     If you have (sensibly) chosen to run FRAGFOLD on the cluster computing or cloud
     platform of your choice then the pdb files will now need to be concatenated

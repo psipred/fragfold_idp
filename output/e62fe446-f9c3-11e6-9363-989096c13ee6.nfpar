@@ -1,7 +1,7 @@
 # FRAGFOLD Parameter File
 
 # Alignment file
-ALNFILE /scratch0/NOT_BACKED_UP/dbuchan/Code/fragfold_idp/bin/../output/e62fe446-f9c3-11e6-9363-989096c13ee6.ffaln
+ALNFILE output/e62fe446-f9c3-11e6-9363-989096c13ee6.ffaln
 
 # contacts file
 

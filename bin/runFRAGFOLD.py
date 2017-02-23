@@ -39,7 +39,8 @@ def run_fragfold(args, index):
         print(str(e))
         sys.exit(1)
     if code != 0:
-        print(name+" Non Zero Exit status: "+str(code))
+        print(args.input_name+" Non Zero Exit status: "+str(code))
+        raise OSError(args.input_name+" Non Zero Exit status: "+str(code))
         sys.exit(code)
 
 
@@ -92,7 +93,7 @@ parser.add_argument('--fragfold_dir',
 
 args = parser.parse_args()
 
-eprint("WARNING: This script will only generate 20 fragfold models. An "
+eprint("WARNING: By default this script will only generate 20 fragfold models. An "
        "accurate fragfold_idp run requires that you generate >200 models. We "
        "advise users use an available cloud or cluster service to achieve this "
        "if you wish to use this script to generate more than 20 models "
