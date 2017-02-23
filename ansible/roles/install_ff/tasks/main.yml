@@ -12,6 +12,18 @@
       clone: yes
       force: yes
 
+  - name: clean psipred exe
+    shell: cd {{ psipred_dir }}/src; make clean
+    when: psipred_exist.stat.exists == False
+
+  - name: make psipred exe
+    shell: cd {{ psipred_dir }}/src; make
+    when: psipred_exist.stat.exists == False
+
+  - name: install psipred exe
+    shell: cd {{ psipred_dir }}/src; make install
+    when: psipred_exist.stat.exists == False
+
   - name: change psipred db
     when: psipred_exist.stat.exists == False
     replace:
