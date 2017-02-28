@@ -7,12 +7,12 @@
 # Uncomment whichever lines apply to your operating system #
 ############################################################
 # where HHSuite will install
-#hhsuite_dir: /opt/hhsuite-2.0.16-macosx
+hhsuite_dir: /opt/hhsuite-2.0.16-macosx
 # which hhsuite tarball to get from http://wwwuser.gwdg.de/~compbiol/data/hhsuite/releases/
-#hhdownload: hhsuite-latest-macosx.tar.gz
+hhdownload: hhsuite-latest-macosx.tar.gz
 # For linux installation uncomment the following two lines:
-hhsuite_dir: /opt/hhsuite-2.0.16-linux-x86_64
-hhdownload: hhsuite-latest-linux-x86_64.tar.gz
+# hhsuite_dir: /opt/hhsuite-2.0.16-linux-x86_64
+# hhdownload: hhsuite-latest-linux-x86_64.tar.gz
 
 ####################
 # Set all of these #
