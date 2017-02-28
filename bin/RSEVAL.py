@@ -20,6 +20,8 @@ def read_profile(fp):
     with open(fp, 'r') as f:
         lines = skip_comments(f.readlines(), "*")
         for line in lines:
+            if len(line.rstrip()) == 0:
+                continue
             value = line.split()
             if len(value) > 1:
                 pr_rmsd.append(float(value[1]))
@@ -65,10 +67,12 @@ parser.add_argument('-i', '--input_query', dest='i1',
 parser.add_argument('-j', '--input_target', dest='i2',
                     help="path to target disorder profile",
                     required=True)
-
+parser.add_argument('--results_dir',
+                    help="The path for the FFIDP profile output",
+                    default=script_path+"/../output/")
 args = parser.parse_args()
 
-profile1 = read_profile(args.i1)
-profile2 = read_profile(args.i2)
+profile1 = read_profile(args.results_dir+"/"+args.i1)
+profile2 = read_profile(args.results_dir+"/"+args.i2)
 
 print(Rs(profile1, profile2))

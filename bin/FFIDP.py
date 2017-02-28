@@ -222,23 +222,24 @@ print(" ".join(sliding_args)+"\n")
 
 
 print("#### RSEVAL Commands ####")
-dynaResults = glob.glob(args.outdir+"/"+args.name+"/Dynamine_b_*")[0]
-dynamineOutput = ''
-for dynaFile in glob.glob(dynaResults+"/*"):
-    if ".pred" in dynaFile:
-        dynamineOutput = dynaFile
-
 profiles = [args.outdir+"/"+args.name+".ffidp",  # FFIDP profile
-            dynamineOutput,  # Dynamime profile
             args.outdir+"/"+args.name+".consensus",  # Consensus profile
             args.outdir+"/"+args.name+".pdb_ens",  # PDB profile
             ]
+if glob.glob(args.outdir+"/"+args.name+"/Dynamine_b_*"):
+    dynaResults = glob.glob(args.outdir+"/"+args.name+"/Dynamine_b_*")[0]
+    dynamineOutput = ''
+    for dynaFile in glob.glob(dynaResults+"/*"):
+        if ".pred" in dynaFile:
+            dynamineOutput = dynaFile
+    profiles.append(dynamineOutput)
+
 for pair in itertools.combinations(profiles, 2):
     if pair[0] == pair[1]:
         continue
     rseval_args = ['python', script_path+"/RSEVAL.py",
                    '-i', pair[0],
-                   '-j', pair[1],]
+                   '-j', pair[1], ]
     print(" ".join(rseval_args)+"\n")
 
 # Construct RSEVAL command
