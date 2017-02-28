@@ -32,8 +32,7 @@ other runtime environments such as the jvm and python2. You should ensure you ha
 
     `pip install -r requirements.txt`
 
-    Note: pip install pybrain for python3 may not work with the structure module
-    not correctly installing, instead try these 4 steps:
+    Note: pip install pybrain for python3 may not work with the structure module not correctly installing or runConsensus.py (below) may not run, instead try these 4 steps:
 
     `wget https://github.com/pybrain/pybrain/archive/master.zip`
 
@@ -113,22 +112,22 @@ appropriately
 
     `python bin/runFRAGFOLD.py --input_name a15a6b5e-9463-11e6-a62a-989096c13ee6`
 
-    This step is non-ideal and you should attempt to generate at least 200 models.
-    FRAGFOLD is time consuming when generating large numbers of models, we note
-    that users should use a computing cluster or cloud service to run many simultaneous FRAGFOLD runs. Arranging this we must leave as an exercise for
-    the user.
+  This step is non-ideal and you should attempt to generate at least 200models.
+  FRAGFOLD is time consuming when generating large numbers of models, wenote
+  that users should use a computing cluster or cloud service to run manysimultaneous FRAGFOLD runs. Arranging this we must leave as an exercisefor
+  the user.
 
-    Fragfold requires as input the .nfpar and .ffaln file. In paths.yml ensure you set ffaln_dir a the directory on your cluster that the fragfold ptocess can see.  This is where you need to move the .ffaln and .nfpar files. Setting this
-    path correctly ensures the runSeqAnalaysis will write correct .nfpar file.  
+  Fragfold requires as input the .nfpar and .ffaln file. In paths.ymlensure you set ffaln_dir a the directory on your cluster that thefragfold ptocess can see.  This is where you need to move the .ffaln and.nfpar files. Setting this
+  path correctly ensures the runSeqAnalaysis will write correct .nfparfile.  
 
-    If you have (sensibly) chosen to run FRAGFOLD on the cluster computing or cloud
-    platform of your choice then the pdb files will now need to be concatenated
-    together. A cat command such as the following should suffice:
+  If you have (sensibly) chosen to run FRAGFOLD on the cluster computing orcloud
+  platform of your choice then the pdb files will now need to beconcatenated
+  together. A cat command such as the following should suffice:
 
     `cat *.pdb > a15a6b5e-9463-11e6-a62a-989096c13ee6.ens`
 
-    The .ens file should be placed in the output directory you have been using
-    (defaults to output/)
+  The .ens file should be placed in the output directory you have been using
+  (defaults to output/)
 
 3. Step 3 takes the ensemble file which runFRAGFOLD outputted and runs PFclust
 and the FRAGFOLD IDP superposition. It will output the FF_IDP RMSD profile
@@ -136,12 +135,15 @@ and the FRAGFOLD IDP superposition. It will output the FF_IDP RMSD profile
     `python bin/runFFIDP.py --input_name a15a6b5e-9463-11e6-a62a-989096c13ee6`
 
 4. Step 1 will have generated a fasta file from your input pdb in the output
-    directory. You can now use this with the DynaMine commandline script to
-    make a protein dynamics prediction (note where you installed DynaMine in the
-    paths.yml file). Note, *DynaMine is in python2 and requires biopython*
-    If you are using a python2 virtualenv switch to it for this step
+  directory. You can now use this with the DynaMine commandline script to
+  make a protein dynamics prediction (note where you installed DynaMine in the
+  paths.yml file). Note, *DynaMine is in python2 and requires biopython*
+  If you are using a python2 virtualenv switch to it for this step
 
     `python2 /opt/dynamine/dynamine.py output/a15a6b5e-9463-11e6-a62a-989096c13ee6.fasta`
+
+  NOTE: It is critical that dynamine completes, do not continue to steps 5-7
+  unless dynamine has produced it's output
 
 5. We would run the consensus predictor over the FF_IDP RMDS profile and the
 Dynamine profile. This gives our final prediction values
@@ -157,7 +159,7 @@ IS NOT AN NMR ENSEMBLE
 7. Finally we can calculate the correlation between the ensemble available
 for benchmarking and diagnostic purposes.
 
-    `python bin/RSEVAL.py --i a15a6b5e-9463-11e6-a62a-989096c13ee6.pdb_ens -j a15a6b5e-9463-11e6-a62a-989096c13ee6.consensus`
+    `python bin/RSEVAL.py -i a15a6b5e-9463-11e6-a62a-989096c13ee6.pdb_ens -j a15a6b5e-9463-11e6-a62a-989096c13ee6.consensus`
 
 ### Single Step Executable
 

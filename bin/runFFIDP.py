@@ -11,7 +11,7 @@ from manipulatePDB import ReadPDB
 
 """
     3rd part of the process takes the fragfold ensemble and runs PFClust
-    and sliding windwo thing. Outputs FFIDP RMSD profile
+    and sliding window thing. Outputs FFIDP RMSD profile
 
 
     Sliding Window Code takes an ensemble of structures (PDB file) and performs sliding

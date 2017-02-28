@@ -392,7 +392,7 @@ args = parser.parse_args()
 # print(args.ffidp_path+args.input_name+"/Dynamine_b_*")
 # print(args.ffidp_path+args.input_name+".ss2")
 # print(args.ffidp_path+args.input_name+".aln")
-if not os.path.isdir(args.ffidp_path+args.input_name+"/Dynamine_b_*"):
+if not glob.glob(args.ffidp_path+args.input_name+"/Dynamine_b_*"):
     print("Dynamine results are not available")
     exit(1)
 
