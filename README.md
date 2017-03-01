@@ -126,8 +126,8 @@ appropriately
 
     `cat *.pdb > a15a6b5e-9463-11e6-a62a-989096c13ee6.ens`
 
-  The .ens file should be placed in the output directory you have been using
-  (defaults to output/)
+  The .ens file should then be placed in the output directory you have been using
+  (default is output/)
 
 3. Step 3 takes the ensemble file which runFRAGFOLD outputted and runs PFclust
 and the FRAGFOLD IDP superposition. It will output the FF_IDP RMSD profile

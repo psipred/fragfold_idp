@@ -50,7 +50,8 @@ dynamine_parent_dir: /opt
 dynamine_dir: /opt/dynamine
 
 # location to install fragfold
-fragfold_dir: /opt/fragfold
+fragfold_dir: /scratch0/NOT_BACKED_UP/dbuchan/opt/fragfold
+#fragfold_dir: /opt/fragfold
 # This is the path that the .ffaln files will be moved to when you run
 # run fragfold
 ffaln_dir: output/
