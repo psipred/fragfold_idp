@@ -157,7 +157,10 @@ IS NOT AN NMR ENSEMBLE
     `python bin/SlidingWindow.py --input_name a15a6b5e-9463-11e6-a62a-989096c13ee6 --input_file example_data/2KJV.pdb`
 
 7. Finally we can calculate the correlation between the ensemble available
-for benchmarking and diagnostic purposes.
+for benchmarking and diagnostic purposes. Assuming the outputs are in the
+results directory the previous scripts have all been using you provide
+the names of the output files. If you want to move these to another
+directory then provide the --results_dir flag
 
     `python bin/RSEVAL.py -i a15a6b5e-9463-11e6-a62a-989096c13ee6.pdb_ens -j a15a6b5e-9463-11e6-a62a-989096c13ee6.consensus`
 
