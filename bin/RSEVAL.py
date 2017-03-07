@@ -62,10 +62,10 @@ parser = argparse.ArgumentParser(description='calculate Spearman\'s rank'
                                              'correlation coefficient (Rs)'
                                              'between 2 disorder profiles')
 parser.add_argument('-i', '--input_query', dest='i1',
-                    help="path to query disorder profile",
+                    help="Name of query disorder profile",
                     required=True)
 parser.add_argument('-j', '--input_target', dest='i2',
-                    help="path to target disorder profile",
+                    help="Name of target disorder profile",
                     required=True)
 parser.add_argument('--results_dir',
                     help="The path for the FFIDP profile output",
