@@ -312,7 +312,7 @@ def run_exe(args, name):
     code = 0
     print("Running "+name)
     try:
-        # print(' '.join(args))
+        print(' '.join(args))
         code = subprocess.call(' '.join(args), shell=True)
     except Exception as e:
         print(str(e))
