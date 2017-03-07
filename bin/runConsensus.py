@@ -367,10 +367,6 @@ parser = argparse.ArgumentParser(description='Builds a Consensus disorder ' \
 parser.add_argument('--input_name', help="job name for the files generated in "
                                          "in the previous steps, usually "
                                          "a uuid", required=True)
-parser.add_argument('--indir',
-                    help="Where to find the dynamine and ffidp files. Defaults "
-                         "to the runSeqAnalysis.py output directory",
-                    default=script_path+"/../output/")
 parser.add_argument('--outdir',
                     help="Where to put the output files",
                     default=script_path+"/../output/")
@@ -392,11 +388,11 @@ args = parser.parse_args()
 # print(args.ffidp_path+args.input_name+"/Dynamine_b_*")
 # print(args.ffidp_path+args.input_name+".ss2")
 # print(args.ffidp_path+args.input_name+".aln")
-if not glob.glob(args.ffidp_path+args.input_name+"/Dynamine_b_*"):
+if not glob.glob(args.dynamine_path+args.input_name+"/Dynamine_b_*"):
     print("Dynamine results are not available")
     exit(1)
 
-dynaResults = glob.glob(args.ffidp_path+args.input_name+"/Dynamine_b_*")[0]
+dynaResults = glob.glob(args.dynamine_path+args.input_name+"/Dynamine_b_*")[0]
 dynamineOutput = ''
 for dynaFile in glob.glob(dynaResults+"/*"):
     if ".pred" in dynaFile:
