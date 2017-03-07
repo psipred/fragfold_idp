@@ -1,0 +1,2 @@
+numclust	sil	dunn	threshold
+Clusters = 3	Silhouette = -0.441	Dunn = 0	Threshold = 15.15
