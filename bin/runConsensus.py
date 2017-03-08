@@ -1,4 +1,4 @@
-    #!/usr/bin/env python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 
@@ -63,7 +63,7 @@ def run_network(ffidp_fp, dm_fp, ss_fp, aln_fp, net_fp, out_fp=None, scale=False
     nn = np.array(nn)
 
     if out_fp:
-        np.savetxt(out_fp, nn, fmt='%.3f\n')
+        np.savetxt(out_fp, nn, fmt='%.3f')
 
     if scale:
         nn = scale_out(nn)
@@ -353,6 +353,26 @@ def scale_out(raw_out, mean=0.986):
     scaled_out = 1.0/(np.exp(-1.0*raw_out/(2+(2*mean))))
     return scaled_out
 
+def print_output(fasta_fp, results, out_fp):
+    seq_lines = skip_comments(open(fasta_fp, 'r').readlines(), ">")
+    fasta = ""
+    for line in seq_lines:
+        fasta = fasta + line
+    fasta = np.array(list(fasta), dtype=str)
+    try:
+        assert len(fasta) == len(results)
+    except AssertionError:
+        print('sequence length does not match the number of consensus predictions')
+
+    out = np.zeros(fasta.size, dtype=[('v1', 'U32'), ('v2', float)])
+    out['v1'] = fasta
+    out['v2'] = results
+
+    np.savetxt(out_fp,
+               out,
+               fmt='%s\t%.3f')
+    return True
+
 script_path = os.path.dirname(os.path.realpath(__file__))
 paths_path = script_path+"/../paths.yml"
 if os.path.isfile(paths_path):
@@ -403,6 +423,10 @@ network_results = run_network(args.ffidp_path+args.input_name+".ffidp",
                               dynamineOutput,
                               args.ffidp_path+args.input_name+".ss",
                               args.ffidp_path+args.input_name+".msa",
-                              script_path+"/../data/network_params_example",
-                              out_fp=args.outdir+args.input_name+".consensus"
+                              script_path+"/../data/network_params_example"
                               )
+
+out_fp = args.outdir + args.input_name + ".consensus"
+# print network results in pretty format, i.e.
+# res_name\tres_value
+print_output(args.ffidp_path+args.input_name+".fasta", network_results, out_fp)
