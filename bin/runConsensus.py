@@ -12,17 +12,12 @@ import re
 import yaml
 import argparse
 import glob
+from manipulatePDB import skip_comments, print_output
 
 """
     5th step in the process. Takes DynaMine and FFIDP RMSD profile and builds
     consensus output
 """
-
-def skip_comments(iterable, char):
-    '''Skip comments lines when parsing a file'''
-    for line in iterable:
-        if not line.lstrip().startswith(char):
-            yield line
 
 def run_network(ffidp_fp, dm_fp, ss_fp, aln_fp, net_fp, out_fp=None, scale=False):
     '''main script to run the neural network
@@ -101,7 +96,8 @@ def network_input(ffidp_fp, dm_fp, ss_fp, aln_fp, win_size=9):
     # read DynaMine results
     dm = read_inp(dm_fp, columns=(1, 2))
     # read FRAGFOLD-IDP results and apply sigmoid transformation
-    ff = list(map(lambda x: sigmoid(x, x0=1.432), read_inp(ffidp_fp)))
+    ff = list(map(lambda x: sigmoid(x, x0=1.432), read_inp(ffidp_fp,
+                                                           columns=(1, 2))))
     # read secondary structure predictions
     # PSIPRED SS2 file
     ss = read_inp(ss_fp,  columns=(3, 6))
@@ -353,25 +349,6 @@ def scale_out(raw_out, mean=0.986):
     scaled_out = 1.0/(np.exp(-1.0*raw_out/(2+(2*mean))))
     return scaled_out
 
-def print_output(fasta_fp, results, out_fp):
-    seq_lines = skip_comments(open(fasta_fp, 'r').readlines(), ">")
-    fasta = ""
-    for line in seq_lines:
-        fasta = fasta + line
-    fasta = np.array(list(fasta), dtype=str)
-    try:
-        assert len(fasta) == len(results)
-    except AssertionError:
-        print('sequence length does not match the number of consensus predictions')
-
-    out = np.zeros(fasta.size, dtype=[('v1', 'U32'), ('v2', float)])
-    out['v1'] = fasta
-    out['v2'] = results
-
-    np.savetxt(out_fp,
-               out,
-               fmt='%s\t%.3f')
-    return True
 
 script_path = os.path.dirname(os.path.realpath(__file__))
 paths_path = script_path+"/../paths.yml"

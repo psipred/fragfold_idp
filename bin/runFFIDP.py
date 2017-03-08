@@ -7,7 +7,7 @@ import numpy as np
 from itertools import combinations
 import glob
 from os.path import splitext
-from manipulatePDB import ReadPDB
+from manipulatePDB import ReadPDB, skip_comments, print_output
 
 """
     3rd part of the process takes the fragfold ensemble and runs PFClust
@@ -18,7 +18,6 @@ from manipulatePDB import ReadPDB
     window superposition on all structures in an ensemble. It outputs
     a per-residue RMSD profile of the ensemble.
 """
-
 
 def run_Sliding_Window(ens_fp, SW_size=10, to_file=False):
 
@@ -363,5 +362,9 @@ pfclust_args = ["java",
 run_exe(pfclust_args, "PFClust")
 
 #print(args.outdir+args.input_name+"_CLUSTER_001.pdb")
-run_Sliding_Window(args.outdir+args.input_name+"_CLUSTER_001.pdb", 10,
-                   args.outdir+args.input_name)
+sw_out = run_Sliding_Window(args.outdir+args.input_name+"_CLUSTER_001.pdb", 10)
+
+out_fp = args.outdir+args.input_name+'.ffidp'
+fasta_fp = args.indir+args.input_name+".fasta"
+
+print_output(fasta_fp, sw_out, out_fp)
