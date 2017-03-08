@@ -21,7 +21,7 @@ import glob
 def skip_comments(iterable, char):
     '''Skip comments lines when parsing a file'''
     for line in iterable:
-        if not line.startswith(char):
+        if not line.lstrip().startswith(char):
             yield line
 
 def run_network(ffidp_fp, dm_fp, ss_fp, aln_fp, net_fp, out_fp=None, scale=False):
@@ -162,7 +162,7 @@ def read_inp(finp, columns=False):
         list of per-residue input features
     '''
     f = open(str(finp), 'r')
-    lines = skip_comments(f.readlines(), "*")
+    lines = skip_comments(f.readlines(), ("*", "#"))
     f.close()
     #print(lines)
     inp = []
