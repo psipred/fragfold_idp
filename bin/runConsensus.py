@@ -1,4 +1,4 @@
-    #!/usr/bin/env python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 
@@ -12,17 +12,12 @@ import re
 import yaml
 import argparse
 import glob
+from manipulatePDB import skip_comments, print_output
 
 """
     5th step in the process. Takes DynaMine and FFIDP RMSD profile and builds
     consensus output
 """
-
-def skip_comments(iterable, char):
-    '''Skip comments lines when parsing a file'''
-    for line in iterable:
-        if not line.startswith(char):
-            yield line
 
 def run_network(ffidp_fp, dm_fp, ss_fp, aln_fp, net_fp, out_fp=None, scale=False):
     '''main script to run the neural network
@@ -63,7 +58,7 @@ def run_network(ffidp_fp, dm_fp, ss_fp, aln_fp, net_fp, out_fp=None, scale=False
     nn = np.array(nn)
 
     if out_fp:
-        np.savetxt(out_fp, nn, fmt='%.3f\n')
+        np.savetxt(out_fp, nn, fmt='%.3f')
 
     if scale:
         nn = scale_out(nn)
@@ -101,7 +96,8 @@ def network_input(ffidp_fp, dm_fp, ss_fp, aln_fp, win_size=9):
     # read DynaMine results
     dm = read_inp(dm_fp, columns=(1, 2))
     # read FRAGFOLD-IDP results and apply sigmoid transformation
-    ff = list(map(lambda x: sigmoid(x, x0=1.432), read_inp(ffidp_fp)))
+    ff = list(map(lambda x: sigmoid(x, x0=1.432), read_inp(ffidp_fp,
+                                                           columns=(1, 2))))
     # read secondary structure predictions
     # PSIPRED SS2 file
     ss = read_inp(ss_fp,  columns=(3, 6))
@@ -162,7 +158,7 @@ def read_inp(finp, columns=False):
         list of per-residue input features
     '''
     f = open(str(finp), 'r')
-    lines = skip_comments(f.readlines(), "*")
+    lines = skip_comments(f.readlines(), ("*", "#"))
     f.close()
     #print(lines)
     inp = []
@@ -353,6 +349,7 @@ def scale_out(raw_out, mean=0.986):
     scaled_out = 1.0/(np.exp(-1.0*raw_out/(2+(2*mean))))
     return scaled_out
 
+
 script_path = os.path.dirname(os.path.realpath(__file__))
 paths_path = script_path+"/../paths.yml"
 if os.path.isfile(paths_path):
@@ -403,6 +400,10 @@ network_results = run_network(args.ffidp_path+args.input_name+".ffidp",
                               dynamineOutput,
                               args.ffidp_path+args.input_name+".ss",
                               args.ffidp_path+args.input_name+".msa",
-                              script_path+"/../data/network_params_example",
-                              out_fp=args.outdir+args.input_name+".consensus"
+                              script_path+"/../data/network_params_example"
                               )
+
+out_fp = args.outdir + args.input_name + ".consensus"
+# print network results in pretty format, i.e.
+# res_name\tres_value
+print_output(args.ffidp_path+args.input_name+".fasta", network_results, out_fp)

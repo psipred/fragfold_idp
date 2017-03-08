@@ -13,6 +13,31 @@ import re
         * calculate ensemble statistics
 """
 
+def skip_comments(iterable, char):
+    '''Skip comments lines when parsing a file'''
+    for line in iterable:
+        if not line.lstrip().startswith(char):
+            yield line
+
+def print_output(fasta_fp, results, out_fp):
+    seq_lines = skip_comments(open(fasta_fp, 'r').readlines(), ">")
+    fasta = ""
+    for line in seq_lines:
+        fasta = fasta + line
+    fasta = np.array(list(fasta), dtype=str)
+    try:
+        assert len(fasta) == len(results)
+    except AssertionError:
+        print('sequence length does not match the number of consensus predictions')
+
+    out = np.zeros(fasta.size, dtype=[('v1', 'U32'), ('v2', float)])
+    out['v1'] = fasta
+    out['v2'] = results
+
+    np.savetxt(out_fp,
+               out,
+               fmt='%s\t%.3f')
+    return True
 
 def ReadPDB(filename, chain_mode='CA'):
     '''
