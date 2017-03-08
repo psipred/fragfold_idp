@@ -6,6 +6,7 @@ from manipulatePDB import ReadPDB
 import os
 import yaml
 import argparse
+from manipulatePDB import skip_comments, print_output
 
 """
     The script takes an ensemble of structures (PDB file) and performs sliding
@@ -321,7 +322,11 @@ args = parser.parse_args()
 # print(args.input_file)
 # print(args.outdir+"/"+args.input_name+".pdb_ens")
 
-value = run_Sliding_Window(args.input_file,
-                           to_file=args.outdir+"/"+args.input_name+".pdb_ens",
-                           SW_size=args.window_size)# value = run_Sliding_Window("/home/dbuchan/Code/fragfold_idp/output/a15a6b5e-9463-11e6-a62a-989096c13ee6_CLUSTER_001.pdb")
-# print(value)
+sw_out = run_Sliding_Window(args.input_file,
+                            SW_size=args.window_size)# value = run_Sliding_Window("/home/dbuchan/Code/fragfold_idp/output/a15a6b5e-9463-11e6-a62a-989096c13ee6_CLUSTER_001.pdb")
+
+
+out_fp = args.outdir+"/"+args.input_name+".pdb_ens"
+fasta_fp = args.indir+args.input_name+".fasta"
+
+print_output(fasta_fp, sw_out, out_fp)
