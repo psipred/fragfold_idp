@@ -2,8 +2,7 @@
 
 ## Introduction
 
-FRAGFOLD-IDP (FFIDP) is a complex multi-stage processs with a large number of dependencies.
-These scripts are designed to help automate both installation and running FFIDP.
+FRAGFOLD-IDP (FFIDP) calculate protein chain backbone dynamics, from which you can infer which residues in a protein may be intrinsically disordered. FFIDP is a complex multi-stage processs with a large number of dependencies. These scripts are designed to help automate both installation and running FFIDP.
 
 ###  The basic FFIDP process
 
@@ -21,8 +20,7 @@ You must have ansible and python2 available. See https://github.com/ansible/ansi
 
 ### Install Steps
 
-1. The FFIDP code is implemented in python3. Some of the dependencies require
-other runtime environments such as the jvm and python2. You should ensure you have system installs of tar, python2, python3, pip2, pip3, java and C/C++ available.
+1. The FFIDP code is implemented in python3. Some of the dependencies require other runtime environments such as the jvm and python2. You should ensure you have system installs of tar, python2, python3, pip2, pip3, java and C/C++ available.
 
 2. Enter the src/ directory and run the following
 
@@ -76,8 +74,7 @@ other runtime environments such as the jvm and python2. You should ensure you ha
     in the listed locations. If this fails or you wish to change anything the
     `ansible-playbook` command can be run repeatedly.
 
-12. If you used a python2 virtualenv to run ansible then switch back to
-your python3 evironment once the ansible install has been successful and return to the root fragfold-idp directory.
+12. If you used a python2 virtualenv to run ansible then switch back to your python3 evironment once the ansible install has been successful and return to the root fragfold-idp directory.
 
 ## How to run FRAGFOLD-IDP
 
@@ -90,6 +87,9 @@ run all the scripts for you, though we note that as the FRAGFOLD step very
 time consuming this master script is not ideal.
 
 **Unless otherwise stated we assume Python3**
+
+If you are only interested in making an FFIDP protein backbone dynamics prediction then
+you can stop at the end of Step 3. If you wish to make a full FFIDP-dynamine consensus prediction you must continue until at least the end of step 6.
 
 ### Step-by-step Process
 
