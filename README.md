@@ -181,16 +181,14 @@ mode the script will run each command.
 ## Outputs
 
 FFIDP produces a large number of intermediary files while executing each step.
-The important files are the outputs of runFFIDP and runConsensus Which...
-blah, blah, blah, blah
-
-## TODO
-
-1. Follow instructions and install from scratch to test if this is working
-2. run FFIDP to get the commands needed and then run each command to test it
-   works
-3. run FFIDP in execute mode.
-4. Make pretty human understandable outputs for runFFIDP and runConsensus
+The important files are the outputs of runFFIDP (`.ffidp`) and runConsensus files (`.consensus`). They represent predicted per-residue RMSD (Å) values. To compare FRAGFOLD-IDP and DynaMine results using e.g. `RSEVAL.py`, we recommend computing `1-S^2`. Sample FRAGFOLD-IDP output is in the form:
+```
+A	0.581
+R	1.620
+Y	1.722
+E	1.535
+```
+where the first column indicates amino acid, as inferred from the input sequence, and the second column is the predicted per-residue RMSD. 
 
 ## NEXT UP
-5. Write Docs
+1. Write Docs
