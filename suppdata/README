@@ -1,0 +1,11 @@
+This is the raw data for the 200 protein set described in:
+
+Predictions of Backbone Dynamics in Intrinsically Disordered Proteins Using De Novo Fragment-Based Protein Structure Predictions.
+T. Kosciolek, D. W. A. Buchan, D.T. Jones
+
+
+File information:
+    * seq files - protein sequence files in FASTA format
+    * ffidp files - raw FRAGFOLD-IDP predictions (per-residue RMSD values)
+    * dm files - DynaMine predictions (NMR order parameter; S^2)
+    * consensus files - results of the consensus predictor
