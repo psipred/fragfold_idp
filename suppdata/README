@@ -1,0 +1,11 @@
+This is the raw data for the 200 protein NMR ensemble set described in:
+
+Predictions of Backbone Dynamics in Intrinsically Disordered Proteins Using De Novo Fragment-Based Protein Structure Predictions.
+T. Kosciolek, D.W.A. Buchan & D.T. Jones (2017)
+
+Directory information:
+
+    * seq - protein sequence files in FASTA format
+    * dynamine - contains DynaMine (http://dynamine.ibsquare.be) predictions for each sequence - NMR order parameter S^2
+    * ffidp - contains raw FRAGFOLD-IDP predictions (FRAGFOLD only; *no* neural network) - per-residue RMSD values
+    * cons - contains consensus neural network predictions combining FRAGFOLD-IDP and DynaMine
