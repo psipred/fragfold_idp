@@ -1,5 +1,9 @@
 # FRAGFOLD_idp
 
+## Citation
+This software and data related to the following publication:  
+T. Kosciolek, D.W.A. Buchan & D.T. Jones (2017) "Predictions of Backbone Dynamics in Intrinsically Disordered Proteins Using De Novo Fragment-Based Protein Structure Predictions." Scientific Reports 7, 6999 (https://www.nature.com/articles/s41598-017-07156-1)
+
 ## Introduction
 
 FRAGFOLD-IDP (FFIDP) calculate protein chain backbone dynamics, from which you can infer which residues in a protein may be intrinsically disordered. FFIDP is a complex multi-stage processs with a large number of dependencies. These scripts are designed to help automate both installation and running FFIDP.
