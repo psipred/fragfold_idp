@@ -379,6 +379,9 @@ parser.add_argument('--psipred_path',
 parser.add_argument('--alignment_path',
                     help="The path for the MSA",
                     default=script_path+"/../output/")
+parser.add_argument('--network_path',
+                    help="The path for the neural network",
+                    default=script_path+"/../data/network_params_example")
 
 args = parser.parse_args()
 # print(args.ffidp_path+args.input_name+".ffidp")
@@ -400,7 +403,7 @@ network_results = run_network(args.ffidp_path+args.input_name+".ffidp",
                               dynamineOutput,
                               args.ffidp_path+args.input_name+".ss",
                               args.ffidp_path+args.input_name+".msa",
-                              script_path+"/../data/network_params_example"
+                              args.network_path
                               )
 
 out_fp = args.outdir + args.input_name + ".consensus"
